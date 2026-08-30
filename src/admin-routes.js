@@ -1,6 +1,7 @@
 import { Router } from 'express';
 import { pool, query } from './db.js';
-import { casePatch, uuid, verificationPatch } from './validation.js';
+import { casePatch, uuid, verificationPatch, accountStatusPatch } from './validation.js';
+import { adminOnly } from './auth.js';
 
 const router = Router();
 const parseId = (value) => uuid.safeParse(value);
@@ -13,14 +14,7 @@ const many = async (res, sql, values = []) => res.json((await query(sql, values)
 
 // Authentication remains outside this module. A trusted middleware may set req.adminId;
 // for standalone use, an upstream gateway can provide x-admin-id.
-router.use(async (req, res, next) => {
-  const adminId = req.adminId || req.get('x-admin-id');
-  if (!adminId || !parseId(adminId).success) return res.status(403).json({ error: 'Admin context is required' });
-  const result = await query("SELECT id FROM users WHERE id = $1 AND role = 'ADMIN' AND account_status = 'ACTIVE'", [adminId]);
-  if (!result.rowCount) return res.status(403).json({ error: 'Active administrator required' });
-  req.adminId = adminId;
-  next();
-});
+router.use(adminOnly);
 
 router.get('/students', (req, res, next) => many(res, `SELECT u.id,u.name,u.email,u.account_status,u.created_at,sp.college,sp.skills,sp.availability,
   (SELECT v.verification_status FROM verifications v WHERE v.student_id=u.id ORDER BY v.created_at DESC LIMIT 1) AS verification_status
@@ -28,8 +22,28 @@ router.get('/students', (req, res, next) => many(res, `SELECT u.id,u.name,u.emai
 router.get('/students/:id', (req, res, next) => !parseId(req.params.id).success ? bad(res, 'Invalid student id') : one(res, `SELECT u.id,u.name,u.email,u.account_status,u.created_at,sp.college,sp.skills,sp.portfolio,sp.previous_work,sp.availability,sp.profile_information,
   (SELECT v.verification_status FROM verifications v WHERE v.student_id=u.id ORDER BY v.created_at DESC LIMIT 1) AS verification_status
   FROM users u JOIN student_profiles sp ON sp.user_id=u.id WHERE u.id=$1 AND u.role='STUDENT'`, [req.params.id]).catch(next));
+router.patch('/students/:id/status', async (req,res,next) => {
+  if (!parseId(req.params.id).success) return bad(res,'Invalid student id');
+  const body = accountStatusPatch.safeParse(req.body); if (!body.success) return bad(res, body.error.issues[0].message);
+  try {
+    const updated = await query("UPDATE users SET account_status=$1 WHERE id=$2 AND role='STUDENT' RETURNING id,name,email,account_status", [body.data.account_status, req.params.id]);
+    if (!updated.rowCount) return res.status(404).json({ error: 'Resource not found' });
+    await query("INSERT INTO admin_action_history(actor_id,entity_type,entity_id,action,details) VALUES($1,'User',$2,'Account status change',$3)", [req.adminId, req.params.id, JSON.stringify({ account_status: body.data.account_status })]);
+    return res.json(updated.rows[0]);
+  } catch (e) { next(e); }
+});
 router.get('/clients', (req, res, next) => many(res, `SELECT u.id,u.name,u.email,u.account_status,u.created_at,cp.profile_information,cp.reputation FROM users u JOIN client_profiles cp ON cp.user_id=u.id WHERE u.role='CLIENT' ORDER BY u.created_at DESC`).catch(next));
 router.get('/clients/:id', (req, res, next) => !parseId(req.params.id).success ? bad(res, 'Invalid client id') : one(res, `SELECT u.id,u.name,u.email,u.account_status,u.created_at,cp.profile_information,cp.reputation FROM users u JOIN client_profiles cp ON cp.user_id=u.id WHERE u.id=$1 AND u.role='CLIENT'`, [req.params.id]).catch(next));
+router.patch('/clients/:id/status', async (req,res,next) => {
+  if (!parseId(req.params.id).success) return bad(res,'Invalid client id');
+  const body = accountStatusPatch.safeParse(req.body); if (!body.success) return bad(res, body.error.issues[0].message);
+  try {
+    const updated = await query("UPDATE users SET account_status=$1 WHERE id=$2 AND role='CLIENT' RETURNING id,name,email,account_status", [body.data.account_status, req.params.id]);
+    if (!updated.rowCount) return res.status(404).json({ error: 'Resource not found' });
+    await query("INSERT INTO admin_action_history(actor_id,entity_type,entity_id,action,details) VALUES($1,'User',$2,'Account status change',$3)", [req.adminId, req.params.id, JSON.stringify({ account_status: body.data.account_status })]);
+    return res.json(updated.rows[0]);
+  } catch (e) { next(e); }
+});
 
 router.get('/verifications', (req, res, next) => many(res, `SELECT v.id,v.student_id,v.verification_status,v.admin_action,v.created_at,v.updated_at,v.reviewed_at,u.name,u.email FROM verifications v JOIN users u ON u.id=v.student_id ORDER BY v.created_at DESC`).catch(next));
 router.get('/verifications/:id', (req, res, next) => !parseId(req.params.id).success ? bad(res, 'Invalid verification id') : one(res, `SELECT v.id,v.student_id,v.college_id_file_reference,v.verification_status,v.admin_action,v.created_at,v.updated_at,v.reviewed_at,u.name,u.email FROM verifications v JOIN users u ON u.id=v.student_id WHERE v.id=$1`, [req.params.id]).catch(next));
