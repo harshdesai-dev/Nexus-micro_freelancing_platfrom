@@ -1,0 +1,136 @@
+<!DOCTYPE html>
+<html class="dark" lang="en">
+<head>
+  <meta charset="utf-8"/>
+  <meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+  <title>NEXUS - Job Details</title>
+  <script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+  <link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet"/>
+  <link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+  <script id="tailwind-config">
+    tailwind.config = {
+      darkMode: "class",
+      theme: { extend: {
+        colors: {
+          "background": "#131315", "surface": "#18181b", "surface-container": "#201f22",
+          "surface-container-high": "#2a2a2c", "text-primary": "#ffffff", "text-secondary": "#a1a1aa",
+          "primary": "#4edea3", "primary-container": "#10b981", "border": "#27272a",
+          "error": "#ffb4ab", "on-background": "#e5e1e4"
+        },
+        borderRadius: { "lg": "0.5rem", "xl": "0.75rem", "full": "9999px" },
+        spacing: { "max-width": "1280px", "margin-mobile": "16px", "margin-desktop": "32px", "gutter": "16px" },
+        fontFamily: { "headline-lg": ["Geist"], "headline-md": ["Geist"], "label-md": ["Geist"], "body-md": ["Geist"], "body-lg": ["Geist"] },
+        fontSize: {
+          "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+          "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+          "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+          "body-md": ["14px", { "lineHeight": "1.5" }], "body-lg": ["16px", { "lineHeight": "1.6" }]
+        }
+      }}
+    }
+  </script>
+  <script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md">
+  <header class="bg-background border-b border-border w-full sticky top-0 z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto">
+    <div class="flex items-center gap-8">
+      <a class="font-headline-md text-headline-md font-bold text-primary tracking-tight" href="../nexus_landing_page_updated_hero/code.html">NEXUS</a>
+      <nav class="hidden md:flex items-center gap-6">
+        <a class="text-text-secondary hover:text-text-primary transition-opacity" href="../nexus_student_dashboard_desktop/code.html">Dashboard</a>
+        <a class="text-primary font-bold border-b-2 border-primary pb-2" href="../nexus_find_jobs_desktop_2/code.html">Find Jobs</a>
+        <a class="text-text-secondary hover:text-text-primary transition-opacity" href="../nexus_my_applications_desktop_2/code.html">Applications</a>
+        <a class="text-text-secondary hover:text-text-primary transition-opacity" href="../nexus_job_workspace_desktop_student_view/code.html">My Work</a>
+      </nav>
+    </div>
+    <div class="flex items-center gap-4">
+      <button aria-label="Notifications" class="hidden md:flex text-text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">notifications</span></button>
+      <button aria-label="Profile" class="hidden md:flex text-text-secondary hover:text-primary transition-colors"><span class="material-symbols-outlined">account_circle</span></button>
+      <a class="bg-primary-container text-white px-4 py-2 rounded-lg font-label-md font-semibold hover:opacity-90 transition-opacity" href="../nexus_client_registration_desktop/code.html">Post a Job</a>
+    </div>
+  </header>
+
+  <div class="flex flex-1 max-w-max-width mx-auto w-full">
+    <aside class="bg-surface h-screen w-64 fixed left-0 top-0 hidden lg:flex flex-col border-r border-border py-8 mt-16 z-40">
+      <div class="px-6 mb-8 flex items-center gap-4">
+        <div class="w-12 h-12 rounded-full bg-surface-container border border-border flex items-center justify-center"><span class="material-symbols-outlined text-text-secondary">account_circle</span></div>
+        <div><div class="font-headline-md font-bold text-primary">Student Pro</div><div class="text-text-secondary text-label-md">Verified Status</div></div>
+      </div>
+      <nav class="flex flex-col gap-2 px-2 flex-1">
+        <a class="flex items-center gap-3 text-text-secondary px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors" href="../nexus_student_dashboard_desktop/code.html"><span class="material-symbols-outlined">dashboard</span><span>Dashboard</span></a>
+        <a class="flex items-center gap-3 text-primary bg-primary-container/10 border-r-4 border-primary px-4 py-3 rounded-lg" href="../nexus_find_jobs_desktop_2/code.html"><span class="material-symbols-outlined">search</span><span>Find Jobs</span></a>
+        <a class="flex items-center gap-3 text-text-secondary px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors" href="../nexus_my_applications_desktop_2/code.html"><span class="material-symbols-outlined">assignment_turned_in</span><span>Applications</span></a>
+        <a class="flex items-center gap-3 text-text-secondary px-4 py-3 hover:bg-surface-container-high rounded-lg transition-colors" href="../nexus_job_workspace_desktop_student_view/code.html"><span class="material-symbols-outlined">work_outline</span><span>My Work</span></a>
+      </nav>
+      <div class="px-6 mt-auto flex flex-col gap-2 text-text-secondary">
+        <span class="flex items-center gap-3 px-4 py-3"><span class="material-symbols-outlined">settings</span><span>Settings</span></span>
+        <span class="flex items-center gap-3 px-4 py-3"><span class="material-symbols-outlined">help_outline</span><span>Support</span></span>
+      </div>
+    </aside>
+
+    <main class="flex-1 w-full lg:ml-64 px-margin-mobile md:px-margin-desktop py-8">
+      <div class="max-w-5xl">
+        <div class="flex flex-wrap items-center gap-2 text-text-secondary font-label-md mb-5">
+          <a class="hover:text-primary transition-colors" href="../nexus_find_jobs_desktop_2/code.html">Find Jobs</a>
+          <span class="material-symbols-outlined text-sm">chevron_right</span>
+          <span class="text-text-primary">Job Details</span>
+        </div>
+        <div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4 mb-8">
+          <div>
+            <div class="flex items-center gap-3 mb-3"><span class="bg-primary/10 text-primary border border-primary/20 px-3 py-1 rounded-full font-label-md">Open</span><span class="text-text-secondary font-body-md">Posted by College Club</span></div>
+            <h1 class="font-headline-lg text-text-primary">Fix a Python / Flask Issue</h1>
+            <p class="font-body-lg text-text-secondary mt-2">A small, focused engineering task for a verified campus organization.</p>
+          </div>
+          <a class="inline-flex items-center justify-center gap-2 border border-border text-text-primary px-4 py-2 rounded-lg font-label-md hover:border-primary hover:text-primary transition-colors" href="../nexus_find_jobs_desktop_2/code.html"><span class="material-symbols-outlined text-sm">arrow_back</span>Back to Find Jobs</a>
+        </div>
+
+        <div class="grid grid-cols-1 lg:grid-cols-[minmax(0,1fr)_320px] gap-8 items-start">
+          <div class="space-y-6">
+            <section class="bg-surface border border-border rounded-xl p-6">
+              <div class="grid grid-cols-2 sm:grid-cols-4 gap-5">
+                <div><div class="text-text-secondary font-label-md uppercase tracking-wide mb-2">Budget</div><div class="text-primary font-headline-md">₹300</div></div>
+                <div><div class="text-text-secondary font-label-md uppercase tracking-wide mb-2">Deadline</div><div class="text-text-primary font-body-md flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span>2 days</div></div>
+                <div class="col-span-2"><div class="text-text-secondary font-label-md uppercase tracking-wide mb-2">Required Skills</div><div class="flex flex-wrap gap-2"><span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-md border border-primary/20">Python</span><span class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-md border border-primary/20">Flask</span></div></div>
+              </div>
+            </section>
+
+            <section class="bg-surface border border-border rounded-xl p-6">
+              <h2 class="font-headline-md text-text-primary mb-3">About This Job</h2>
+              <p class="text-text-secondary font-body-lg">Need help identifying and fixing an issue in a small Flask application. The completed work should resolve the reported issue and provide a clean working solution.</p>
+              <h3 class="font-headline-md text-text-primary mt-7 mb-4">Requirements</h3>
+              <ol class="space-y-3 text-text-secondary font-body-md list-decimal pl-5">
+                <li>Identify the Flask issue.</li><li>Fix the underlying problem.</li><li>Test the application.</li><li>Provide the completed solution.</li>
+              </ol>
+            </section>
+
+            <section class="bg-surface border border-border rounded-xl p-6">
+              <h2 class="font-headline-md text-text-primary mb-4">Reference Files</h2>
+              <div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 bg-surface-container border border-border rounded-lg p-4" id="reference-file">
+                <div class="flex items-center gap-3"><span class="material-symbols-outlined text-primary text-2xl">picture_as_pdf</span><div><div class="text-text-primary font-body-md font-medium">flask_issue_description.pdf</div><div class="text-text-secondary font-label-md mt-1">PDF · 1.2 MB</div></div></div>
+                <a class="text-primary font-label-md hover:underline flex items-center gap-1" href="#reference-file">View File <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+              </div>
+            </section>
+          </div>
+
+          <aside class="space-y-6 lg:sticky lg:top-24">
+            <section class="bg-surface border border-border rounded-xl p-5">
+              <h2 class="font-headline-md text-text-primary mb-4">Client Information</h2>
+              <div class="flex items-center gap-3"><div class="w-11 h-11 rounded-full bg-primary/10 text-primary flex items-center justify-center"><span class="material-symbols-outlined">groups</span></div><div><div class="text-text-primary font-body-md font-medium">College Club</div><div class="text-primary font-label-md mt-1 flex items-center gap-1"><span class="material-symbols-outlined text-sm">verified</span>Verified Job Provider</div></div></div>
+              <div class="flex items-center gap-1 text-text-secondary font-body-md mt-4"><span class="material-symbols-outlined text-primary text-base">star</span>4.7</div>
+              <span class="block text-text-secondary font-label-md mt-4">Profile details are not available in this prototype.</span>
+            </section>
+
+            <section class="bg-primary-container/10 border border-primary/25 rounded-xl p-5">
+              <div class="flex items-center gap-2 text-primary mb-3"><span class="material-symbols-outlined">auto_awesome</span><h2 class="font-headline-md">AI Skill Match</h2></div>
+              <div class="text-text-primary font-headline-lg mb-2">94% Match</div>
+              <p class="text-text-secondary font-body-md mb-4">Strong match based on your Python and Flask skills and relevant portfolio work.</p>
+              <ul class="space-y-2 text-text-secondary font-label-md"><li class="flex gap-2"><span class="text-primary">✓</span>Python skill match</li><li class="flex gap-2"><span class="text-primary">✓</span>Flask experience</li><li class="flex gap-2"><span class="text-primary">✓</span>Relevant portfolio project</li></ul>
+            </section>
+
+            <a class="w-full bg-primary-container text-white py-3 px-4 rounded-lg font-body-md font-bold hover:bg-emerald-600 transition-colors flex justify-center items-center gap-2 text-center" href="../nexus_submit_job_application_desktop_2/code.html">Apply for This Job <span class="material-symbols-outlined text-sm">arrow_forward</span></a>
+          </aside>
+        </div>
+      </div>
+    </main>
+  </div>
+</body>
+</html>

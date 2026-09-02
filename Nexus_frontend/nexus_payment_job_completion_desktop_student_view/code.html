@@ -1,0 +1,269 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Payment & Job Completion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "tertiary-container": "#fc7c78",
+                        "on-surface-variant": "#bbcabf",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-low": "#1c1b1d",
+                        "background": "#131315",
+                        "on-primary-container": "#00422b",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e2e1eb",
+                        "surface-tint": "#4edea3",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "primary": "#4edea3",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-secondary-fixed": "#1a1b22",
+                        "secondary-container": "#45464e",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#711419",
+                        "on-tertiary": "#650911",
+                        "border": "#27272a",
+                        "surface-container-highest": "#353437",
+                        "surface-bright": "#39393b",
+                        "on-surface": "#e5e1e4",
+                        "surface-container": "#201f22",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#86948a",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary": "#c6c6cf",
+                        "on-error": "#690005",
+                        "on-secondary": "#2f3037",
+                        "on-primary-fixed": "#002113",
+                        "on-background": "#e5e1e4",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-surface": "#e5e1e4",
+                        "inverse-primary": "#006c49",
+                        "text-primary": "#ffffff",
+                        "tertiary": "#ffb3af",
+                        "on-primary": "#003824",
+                        "surface-container-lowest": "#0e0e10",
+                        "text-secondary": "#a1a1aa",
+                        "outline-variant": "#3c4a42",
+                        "surface": "#18181b",
+                        "surface-dim": "#131315",
+                        "primary-fixed-dim": "#4edea3",
+                        "inverse-on-surface": "#313032",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-variant": "#353437",
+                        "primary-container": "#10b981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background font-body-md min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<nav class="bg-background dark:bg-background text-primary dark:text-primary docked full-width top-0 border-b border-border dark:border-border flat no shadows hidden md:flex justify-between items-center w-full px-margin-desktop h-16 shrink-0 sticky z-50">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary">NEXUS</span>
+<div class="flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant font-headline-md text-headline-md hover:text-primary transition-colors" href="#">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-headline-md text-headline-md hover:text-primary transition-colors Active: opacity-80 transition-all" href="#">My Jobs</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-headline-md text-headline-md hover:text-primary transition-colors" href="#">Applications</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant font-headline-md text-headline-md hover:text-primary transition-colors" href="#">Profile</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors" data-icon="notifications">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors" data-icon="settings">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full bg-surface-container-highest border border-border overflow-hidden">
+<img alt="User profile" class="object-cover w-full h-full" data-alt="A futuristic, low-poly abstract avatar in shades of deep gray and vibrant emerald green. High contrast, sharp edges, dark mode aesthetic, modern minimalist digital art." src="https://lh3.googleusercontent.com/aida-public/AB6AXuD95wVspYU71n3uiVsDkON70hO1sI-wfFca59pqTbHdtMhDyZuu7B4NrE20icC3iEwBu9-IdDQwc1YwXorPjDAke0Z_3VsKBYVmTRwjff3OYrCV_uBaeYGzMlVGDPXpE-i3Ig_x-kpvh1bhAaK7X7pDIifJwtjyb_yb85_lLtAAg_zOJYHervvyUvYT-ZVbUzNRP3eiGXH233TyouIXKDZ-W9iK4fOuCVM7G3DY0AHdkZmkaQBag6VmhA"/>
+</div>
+</div>
+</nav>
+<!-- SideNavBar & Main Content Wrapper -->
+<div class="flex flex-1 overflow-hidden relative">
+<!-- SideNavBar -->
+<aside class="bg-background dark:bg-background text-primary dark:text-primary h-screen w-64 left-0 top-0 border-r border-border dark:border-border flat no shadows hidden lg:flex flex-col fixed left-0 top-0 h-full pt-16 z-40">
+<div class="p-6 shrink-0 border-b border-border">
+<h2 class="font-headline-md text-headline-md text-primary">Console</h2>
+<p class="font-body-md text-body-md text-text-secondary mt-1">Management Suite</p>
+<button class="w-full mt-4 bg-primary text-on-primary py-2 px-4 rounded-lg font-label-md text-label-md font-semibold hover:opacity-90 transition-opacity">Post a Job</button>
+</div>
+<div class="flex-1 overflow-y-auto py-4">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Overview
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                    Available Gigs
+                </a>
+<a class="flex items-center gap-3 text-primary font-semibold border-l-4 border-primary bg-primary/10 px-4 py-3 hover:bg-surface-container-low transition-all Active: scale-95 duration-150 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                    Active Contracts
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                    Payments
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                    Support
+                </a>
+</div>
+<div class="p-4 shrink-0 border-t border-border mt-auto">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all font-body-md text-body-md rounded-lg" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 lg:ml-64 p-margin-desktop overflow-y-auto">
+<div class="max-w-max-width mx-auto">
+<!-- Breadcrumb -->
+<nav class="flex items-center gap-2 text-text-secondary font-label-md text-label-md mb-8">
+<a class="hover:text-primary transition-colors" href="#">My Work</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Job Workspace</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-background">Payment & Completion</span>
+</nav>
+<!-- Header -->
+<header class="mb-10">
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">Payment & Job Completion</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl">The work has been approved by the client. Review your earnings and wait for payment release.</p>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Left Column: Job Summary & Payment Breakdown -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<!-- Approved Job Summary Card -->
+<div class="bg-surface border border-border rounded-xl p-6 relative overflow-hidden group">
+<!-- Ambient Glow Effect -->
+<div class="absolute -top-24 -right-24 w-48 h-48 bg-primary/10 rounded-full blur-3xl group-hover:bg-primary/20 transition-all duration-500"></div>
+<div class="flex items-start justify-between mb-6 relative z-10">
+<div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-1">Fix a Python / Flask Issue</h3>
+<p class="font-body-md text-body-md text-text-secondary">Client: College Club</p>
+</div>
+<span class="bg-primary/15 text-primary border border-primary/30 px-3 py-1 rounded-full font-label-md text-label-md flex items-center gap-1.5">
+<span class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></span>
+                                    Work Approved
+                                </span>
+</div>
+<div class="border-t border-border pt-4 mt-2 relative z-10">
+<p class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-1">Agreed Budget</p>
+<p class="font-headline-lg text-headline-lg text-text-primary">â‚¹300</p>
+</div>
+</div>
+<!-- Payment Breakdown Card -->
+<div class="bg-surface border border-border rounded-xl p-6">
+<h3 class="font-headline-md text-headline-md text-text-primary mb-6 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">account_balance_wallet</span>
+                                Payment Breakdown
+                            </h3>
+<div class="space-y-4">
+<div class="flex justify-between items-center py-2 border-b border-border/50">
+<span class="font-body-md text-body-md text-text-secondary">Job Amount</span>
+<span class="font-body-md text-body-md text-text-primary">â‚¹300</span>
+</div>
+<div class="flex justify-between items-center py-2 border-b border-border/50">
+<span class="font-body-md text-body-md text-text-secondary">Platform Commission (10%)</span>
+<span class="font-body-md text-body-md text-error">- â‚¹30</span>
+</div>
+<div class="flex justify-between items-center pt-2">
+<span class="font-headline-md text-headline-md text-text-primary">Your Earnings</span>
+<span class="font-headline-md text-headline-md text-primary">â‚¹270</span>
+</div>
+</div>
+</div>
+</div>
+<!-- Right Column: Status & Actions -->
+<div class="flex flex-col gap-gutter">
+<!-- Action Card -->
+<div class="bg-surface border border-border rounded-xl p-6 flex flex-col h-full">
+<div class="mb-8 text-center flex flex-col items-center">
+<div class="w-16 h-16 rounded-full bg-primary/10 border border-primary/20 flex items-center justify-center mb-4 relative">
+<span class="material-symbols-outlined text-primary text-[32px] z-10" data-weight="fill">check_circle</span>
+<!-- Rotating ring effect -->
+<div class="absolute inset-0 border border-primary/30 rounded-full border-t-primary animate-spin" style="animation-duration: 3s;"></div>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary">Payment Ready</h3>
+<p class="font-body-md text-body-md text-text-secondary mt-2 text-center">Funds are held safely in escrow.</p>
+</div>
+<div class="mt-auto space-y-4">
+<!-- Disabled Primary Action -->
+<button class="w-full bg-surface-container-highest border border-border text-text-secondary py-3 px-4 rounded-lg font-label-md text-label-md font-semibold cursor-not-allowed flex items-center justify-center gap-2" disabled="">
+<span class="material-symbols-outlined text-[18px]">hourglass_empty</span>
+                                    Waiting for Client to Release Payment
+                                </button>
+<!-- Next Action Hint -->
+<div class="bg-surface-container-low border border-border rounded-lg p-4 flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-0.5">info</span>
+<div>
+<p class="font-label-md text-label-md text-text-primary mb-1">Next Step</p>
+<p class="font-body-md text-body-md text-text-secondary text-sm">Once completed, you can Rate Client.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

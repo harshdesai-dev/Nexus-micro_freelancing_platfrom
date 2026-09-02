@@ -1,0 +1,355 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Payment &amp; Job Completion</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/lucide/0.294.0/umd/lucide.min.js"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b;
+            color: #e5e1e4;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "tertiary-container": "#fc7c78",
+                        "on-surface-variant": "#bbcabf",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-low": "#1c1b1d",
+                        "background": "#131315",
+                        "on-primary-container": "#00422b",
+                        "error-container": "#93000a",
+                        "secondary-fixed": "#e2e1eb",
+                        "surface-tint": "#4edea3",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "primary": "#4edea3",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-secondary-fixed": "#1a1b22",
+                        "secondary-container": "#45464e",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#711419",
+                        "on-tertiary": "#650911",
+                        "border": "#27272a",
+                        "surface-container-highest": "#353437",
+                        "surface-bright": "#39393b",
+                        "on-surface": "#e5e1e4",
+                        "surface-container": "#201f22",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#86948a",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary": "#c6c6cf",
+                        "on-error": "#690005",
+                        "on-secondary": "#2f3037",
+                        "on-primary-fixed": "#002113",
+                        "on-background": "#e5e1e4",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-surface": "#e5e1e4",
+                        "inverse-primary": "#006c49",
+                        "text-primary": "#ffffff",
+                        "tertiary": "#ffb3af",
+                        "on-primary": "#003824",
+                        "surface-container-lowest": "#0e0e10",
+                        "text-secondary": "#a1a1aa",
+                        "outline-variant": "#3c4a42",
+                        "surface": "#18181b",
+                        "surface-dim": "#131315",
+                        "primary-fixed-dim": "#4edea3",
+                        "inverse-on-surface": "#313032",
+                        "error": "#ffb4ab",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-variant": "#353437",
+                        "primary-container": "#10b981"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "base": "4px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": [
+                            "Geist"
+                        ],
+                        "body-md": [
+                            "Geist"
+                        ],
+                        "label-md": [
+                            "Geist"
+                        ],
+                        "body-lg": [
+                            "Geist"
+                        ],
+                        "headline-lg": [
+                            "Geist"
+                        ],
+                        "headline-md": [
+                            "Geist"
+                        ]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": [
+                            "24px",
+                            {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "body-md": [
+                            "14px",
+                            {
+                                "lineHeight": "1.5",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "label-md": [
+                            "12px",
+                            {
+                                "lineHeight": "1",
+                                "letterSpacing": "0.02em",
+                                "fontWeight": "500"
+                            }
+                        ],
+                        "body-lg": [
+                            "16px",
+                            {
+                                "lineHeight": "1.6",
+                                "letterSpacing": "0",
+                                "fontWeight": "400"
+                            }
+                        ],
+                        "headline-lg": [
+                            "32px",
+                            {
+                                "lineHeight": "1.2",
+                                "letterSpacing": "-0.02em",
+                                "fontWeight": "600"
+                            }
+                        ],
+                        "headline-md": [
+                            "20px",
+                            {
+                                "lineHeight": "1.4",
+                                "letterSpacing": "-0.01em",
+                                "fontWeight": "600"
+                            }
+                        ]
+                    }
+                }
+            }
+        }
+    </script>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col">
+<!-- TopNavBar -->
+<header class="bg-background dark:bg-background docked full-width top-0 border-b border-border dark:border-border flat no shadows hidden md:flex justify-between items-center w-full px-margin-desktop h-16 sticky z-50">
+<div class="flex items-center gap-8">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary tracking-tighter">NEXUS</span>
+<nav class="flex gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Dashboard</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 hover:text-primary transition-colors font-body-md text-body-md opacity-80 transition-all" href="#">My Jobs</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Applications</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors font-body-md text-body-md" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<img alt="User profile" class="w-8 h-8 rounded-full border border-border object-cover" data-alt="A small, circular avatar image of a professional young man in a well-lit studio. He is wearing a dark, minimalist t-shirt, set against a dark gray background. High contrast, sharp focus, digital studio aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB-tsvkHqqnwPfaVxzDwPP3OTRniDVvReUpV_oTjyMISuDNGnt_dz5OZWIPqWd_IXUQp6-KD5ayD4EjTBwtobmEl5DQKIs9dfiSFBK3HDX4L_C8ORz0coEu3Sw17J-9XgR1xqmQtKzNcoJh_V8t4-sibfwdXMoPVSHMgh0kKY4sT4SACHJ5YUf5YI0RVJW55euymK1xRkmqOiomQD1CxLX1ZXuSkOKq-VuI_ZIbsHE1FVMC6cgxUA-Bmw"/>
+</div>
+</header>
+<div class="flex flex-1">
+<!-- SideNavBar -->
+<aside class="bg-background dark:bg-background h-screen w-64 left-0 top-0 border-r border-border dark:border-border flat no shadows hidden lg:flex flex-col fixed left-0 top-0 h-full pt-20 z-40">
+<div class="px-6 pb-6 border-b border-border mb-6">
+<h2 class="font-headline-md text-headline-md text-primary tracking-tight">Console</h2>
+<p class="font-body-md text-body-md text-on-surface-variant mt-1">Management Suite</p>
+<button class="w-full mt-6 bg-primary text-on-primary py-2 px-4 rounded-lg font-body-md text-body-md font-medium hover:bg-primary-fixed-dim transition-colors">
+                    Post a Job
+                </button>
+</div>
+<nav class="flex-1 flex flex-col gap-2 px-2">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+                    Find Talent
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                    Applications
+                </a>
+<a class="flex items-center gap-3 text-primary font-semibold border-l-4 border-primary bg-primary/10 px-4 py-3 hover:bg-surface-container-low transition-all rounded-lg font-body-md text-body-md scale-95 duration-150" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                    My Jobs
+                </a>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="contact_support">contact_support</span>
+                    Support
+                </a>
+</nav>
+<div class="mt-auto px-2 pb-6 border-t border-border pt-4">
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 hover:bg-surface-container-low transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 text-error px-4 py-3 hover:bg-error-container/20 transition-all rounded-lg font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+                    Logout
+                </a>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 lg:ml-64 p-margin-desktop w-full max-w-max-width mx-auto">
+<!-- Breadcrumb & Header -->
+<div class="mb-8">
+<nav aria-label="Breadcrumb" class="flex text-on-surface-variant font-label-md text-label-md mb-4">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="hover:text-primary transition-colors" href="#">My Jobs</a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="mx-2 text-border">/</span>
+<a class="hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_36}}">Job Workspace</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="mx-2 text-border">/</span>
+<span class="text-primary font-medium">Payment &amp; Completion</span>
+</div>
+</li>
+</ol>
+</nav>
+<h1 class="font-headline-lg text-headline-lg text-text-primary tracking-tight mb-2">Payment &amp; Job Completion</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl">The work has been approved. Review the payment details and complete the job.</p>
+</div>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 md:grid-cols-3 gap-6">
+<!-- Left Column (Job Summary & Checklist) -->
+<div class="md:col-span-2 flex flex-col gap-6">
+<!-- Approved Job Summary Card -->
+<div class="bg-surface border border-border rounded-xl p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-3xl -mr-16 -mt-16"></div>
+<div class="flex justify-between items-start mb-6">
+<div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-1">Fix a Python / Flask Issue</h2>
+<p class="font-body-md text-body-md text-text-secondary">Student: Aarav Sharma</p>
+</div>
+<span class="inline-flex items-center px-3 py-1 rounded-full bg-primary-container/10 border border-primary/20 text-primary font-label-md text-label-md">
+<span class="w-2 h-2 rounded-full bg-primary mr-2"></span>
+                                Work Approved
+                            </span>
+</div>
+<div class="flex items-center gap-4 border-t border-border pt-4 mt-2">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-on-surface-variant" data-icon="account_balance_wallet">account_balance_wallet</span>
+<span class="font-body-md text-body-md text-on-surface-variant">Budget:</span>
+</div>
+<span class="font-headline-md text-headline-md text-text-primary font-semibold">â‚¹300</span>
+</div>
+</div>
+<!-- Completion Checklist -->
+<div class="bg-surface border border-border rounded-xl p-6">
+<h3 class="font-headline-md text-headline-md text-text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary" data-icon="fact_check">fact_check</span>
+                            Completion Checklist
+                        </h3>
+<ul class="space-y-4">
+<li class="flex items-center gap-3 text-text-primary font-body-md text-body-md">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+                                Work submitted
+                            </li>
+<li class="flex items-center gap-3 text-text-primary font-body-md text-body-md">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+                                Client reviewed work
+                            </li>
+<li class="flex items-center gap-3 text-text-primary font-body-md text-body-md">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+                                Work approved
+                            </li>
+<li class="flex items-center gap-3 text-text-primary font-body-md text-body-md">
+<div class="w-6 h-6 rounded-full bg-primary/20 border border-primary flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[16px]" data-icon="check">check</span>
+</div>
+                                Payment amount confirmed
+                            </li>
+</ul>
+</div>
+</div>
+<!-- Right Column (Payment Breakdown & Action) -->
+<div class="flex flex-col gap-6">
+<!-- Payment Breakdown Card -->
+<div class="bg-surface border border-border rounded-xl p-6">
+<h3 class="font-headline-md text-headline-md text-text-primary mb-4">Payment Breakdown</h3>
+<div class="space-y-3 mb-6">
+<div class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Job Amount</span>
+<span class="text-text-primary">â‚¹300</span>
+</div>
+<div class="flex justify-between items-center font-body-md text-body-md">
+<span class="text-on-surface-variant">Platform Commission (10%)</span>
+<span class="text-error">-â‚¹30</span>
+</div>
+<div class="border-t border-border pt-3 mt-3">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-text-primary">Student Earnings</span>
+<span class="font-headline-md text-headline-md text-primary font-semibold">â‚¹270</span>
+</div>
+</div>
+</div>
+<div class="bg-surface-container-low rounded-lg p-4 mb-6 border border-border flex items-center gap-3">
+<span class="material-symbols-outlined text-primary" data-icon="check_circle">check_circle</span>
+<div>
+<p class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-1">Status</p>
+<p class="font-body-md text-body-md text-text-primary font-medium">Payment Ready</p>
+</div>
+</div>
+<a class="w-full bg-primary text-on-primary py-3 px-4 rounded-lg font-body-md text-body-md font-bold hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2" href="{{DATA:SCREEN:SCREEN_41}}">
+<span class="material-symbols-outlined" data-icon="payments">payments</span>
+                            Release Payment &amp; Complete Job
+                        </a>
+<p class="font-label-md text-label-md text-text-secondary mt-3 text-center">
+                            By releasing, you authorize the transfer of funds to the student.
+                        </p>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

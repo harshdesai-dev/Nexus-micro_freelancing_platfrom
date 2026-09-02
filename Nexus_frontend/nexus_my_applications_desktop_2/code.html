@@ -1,0 +1,329 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - My Applications</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "primary-container": "#10b981",
+                      "background": "#131315",
+                      "text-primary": "#ffffff",
+                      "surface-container-lowest": "#0e0e10",
+                      "surface-container": "#201f22",
+                      "on-primary-container": "#00422b",
+                      "surface-container-highest": "#353437",
+                      "on-secondary-fixed-variant": "#45464e",
+                      "on-background": "#e5e1e4",
+                      "surface": "#18181b",
+                      "error-container": "#93000a",
+                      "primary": "#4edea3",
+                      "on-secondary-fixed": "#1a1b22",
+                      "on-error": "#690005",
+                      "on-tertiary-container": "#711419",
+                      "surface-bright": "#39393b",
+                      "on-surface-variant": "#bbcabf",
+                      "on-error-container": "#ffdad6",
+                      "surface-container-low": "#1c1b1d",
+                      "surface-variant": "#353437",
+                      "secondary": "#c6c6cf",
+                      "on-primary-fixed": "#002113",
+                      "on-tertiary": "#650911",
+                      "inverse-primary": "#006c49",
+                      "on-tertiary-fixed-variant": "#842225",
+                      "inverse-surface": "#e5e1e4",
+                      "on-secondary": "#2f3037",
+                      "surface-tint": "#4edea3",
+                      "error": "#ffb4ab",
+                      "outline-variant": "#3c4a42",
+                      "primary-fixed": "#6ffbbe",
+                      "outline": "#86948a",
+                      "tertiary-fixed": "#ffdad7",
+                      "secondary-fixed-dim": "#c6c6cf",
+                      "secondary-fixed": "#e2e1eb",
+                      "secondary-container": "#45464e",
+                      "text-secondary": "#a1a1aa",
+                      "surface-dim": "#131315",
+                      "on-secondary-container": "#b4b4bd",
+                      "on-surface": "#e5e1e4",
+                      "surface-container-high": "#2a2a2c",
+                      "tertiary-container": "#fc7c78",
+                      "on-primary-fixed-variant": "#005236",
+                      "border": "#27272a",
+                      "tertiary-fixed-dim": "#ffb3af",
+                      "on-primary": "#003824",
+                      "on-tertiary-fixed": "#410005",
+                      "inverse-on-surface": "#313032",
+                      "tertiary": "#ffb3af",
+                      "primary-fixed-dim": "#4edea3"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "max-width": "1280px",
+                      "margin-desktop": "32px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex flex-col font-body-md text-body-md">
+<!-- TopNavBar -->
+<header class="bg-background sticky top-0 w-full border-b border-border z-50">
+<div class="flex justify-between items-center px-margin-desktop py-4 max-w-max-width mx-auto">
+<div class="flex items-center gap-6">
+<div class="text-headline-md font-headline-md text-primary tracking-tighter">NEXUS</div>
+<!-- Search on left -->
+<div class="hidden md:flex items-center bg-surface border border-border rounded-lg px-3 py-1.5 focus-within:border-primary-container focus-within:shadow-[0_0_0_2px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-text-secondary text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none text-text-primary placeholder-text-secondary focus:ring-0 p-0 text-sm w-48 outline-none font-body-md" placeholder="Search..." type="text"/>
+</div>
+</div>
+<nav class="hidden md:flex items-center gap-6">
+<a class="text-text-secondary hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="{{DATA:SCREEN:SCREEN_75}}">Dashboard</a>
+<a class="text-text-secondary hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="{{DATA:SCREEN:SCREEN_73}}">Find Jobs</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md" href="{{DATA:SCREEN:SCREEN_67}}">Applications</a>
+<a class="text-text-secondary hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="{{DATA:SCREEN:SCREEN_56}}">My Work</a>
+<a class="text-text-secondary hover:text-primary transition-colors duration-200 font-label-md text-label-md" href="#">Profile</a>
+</nav>
+<button class="hidden bg-primary-container text-white px-4 py-2 rounded-lg font-label-md text-label-md hover:bg-opacity-90 active:scale-95 transition-transform">Post a Job</button>
+</div>
+</header>
+<div class="flex flex-1 max-w-max-width mx-auto w-full">
+<!-- SideNavBar -->
+<aside class="bg-surface h-[calc(100vh-73px)] w-64 hidden md:flex flex-col border-r border-border sticky top-[73px]">
+<div class="p-6 border-b border-border">
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-container-high flex items-center justify-center overflow-hidden border border-border">
+<img alt="User profile" class="w-full h-full object-cover" data-alt="A futuristic minimalist user avatar profile picture with glowing cyan outlines against a deep black background. High contrast, sharp edges, sleek tech aesthetic. A sense of digital identity in a modern virtual workspace." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB5Ee7lCXKbwUJMAYnLbkfPp0HUzz4cBXnOcCjyPsEIQFyR-vDmQyMTUSCwdJLd0INUFk-uq83mCGUkG687LmCStOC1lrAxLMj0KObseEHn7Mq_VWMxogvTkuiyvXBoXpE5F_SRtBuHnIJPs5t0tCGt9bvOmU0CP5yv0J4GEjcQHNZS21p31zV5IWuIYoVE1tggz48qW-pWBs5p5g2mAkuhkrK77L4FRlsOHGh5K-PDSJ5CHQRuD1lrFw"/>
+</div>
+<div>
+<h2 class="text-text-primary font-headline-md text-sm font-semibold">Student Pro</h2>
+<p class="text-primary text-xs font-label-md">Verified Status</p>
+</div>
+</div>
+</div>
+<nav class="flex-1 py-base flex flex-col gap-1 px-3 mt-4">
+<a class="text-text-secondary hover:bg-surface-container-highest transition-all flex items-center gap-3 px-4 py-2.5 rounded-lg active:translate-x-1 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="payments">payments</span> Earnings
+                </a>
+<a class="text-text-secondary hover:bg-surface-container-highest transition-all flex items-center gap-3 px-4 py-2.5 rounded-lg active:translate-x-1 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="settings">settings</span> Settings
+                </a>
+<a class="text-text-secondary hover:bg-surface-container-highest transition-all flex items-center gap-3 px-4 py-2.5 rounded-lg active:translate-x-1 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="verified_user">verified_user</span> Verification
+                </a>
+<a class="text-text-secondary hover:bg-surface-container-highest transition-all flex items-center gap-3 px-4 py-2.5 rounded-lg active:translate-x-1 font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-xl" data-icon="help">help</span> Help
+                </a>
+</nav>
+</aside>
+<!-- Main Content -->
+<main class="flex-1 p-margin-desktop overflow-y-auto">
+<!-- Header Section -->
+<div class="mb-8">
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">My Applications</h1>
+<p class="text-text-secondary font-body-lg text-body-lg">Track your applications and see what happens next.</p>
+</div>
+<!-- Status Summary Cards -->
+<div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
+<div class="bg-surface border border-border p-4 rounded-lg flex flex-col justify-between">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">All Applications</span>
+<span class="font-headline-md text-headline-md text-text-primary">5</span>
+</div>
+<div class="bg-surface border border-border p-4 rounded-lg flex flex-col justify-between">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">Under Review</span>
+<span class="font-headline-md text-headline-md text-text-primary">2</span>
+</div>
+<div class="bg-primary/10 border border-primary p-4 rounded-lg flex flex-col justify-between">
+<span class="text-primary font-label-md text-label-md uppercase tracking-wider mb-2">Selected</span>
+<span class="font-headline-md text-headline-md text-primary">1</span>
+</div>
+<div class="bg-surface border border-border p-4 rounded-lg flex flex-col justify-between">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">Rejected</span>
+<span class="font-headline-md text-headline-md text-text-primary">2</span>
+</div>
+</div>
+<!-- Filter Bar -->
+<div class="flex flex-col md:flex-row gap-4 mb-6 items-start md:items-center justify-between">
+<div class="flex items-center bg-surface border border-border rounded-lg px-3 py-2 w-full md:w-64 focus-within:border-primary-container focus-within:shadow-[0_0_0_2px_rgba(16,185,129,0.2)] transition-all">
+<span class="material-symbols-outlined text-text-secondary text-sm mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none text-text-primary placeholder-text-secondary focus:ring-0 p-0 text-sm w-full outline-none font-body-md" placeholder="Search applications..." type="text"/>
+</div>
+<div class="flex gap-2 overflow-x-auto pb-2 md:pb-0 w-full md:w-auto scrollbar-hide">
+<button class="px-4 py-1.5 rounded-full bg-surface-container-highest text-text-primary text-sm font-label-md border border-border whitespace-nowrap hover:bg-surface-bright transition-colors">All</button>
+<button class="px-4 py-1.5 rounded-full bg-surface border border-border text-text-secondary text-sm font-label-md whitespace-nowrap hover:bg-surface-bright transition-colors">Under Review</button>
+<button class="px-4 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-primary text-sm font-label-md whitespace-nowrap hover:bg-primary/25 transition-colors">Selected</button>
+<button class="px-4 py-1.5 rounded-full bg-surface border border-border text-text-secondary text-sm font-label-md whitespace-nowrap hover:bg-surface-bright transition-colors">Rejected</button>
+</div>
+</div>
+<!-- Application List -->
+<div class="flex flex-col gap-4">
+<!-- Card 1 -->
+<div class="bg-surface border border-border rounded-lg p-6 hover:border-surface-bright transition-colors group relative overflow-hidden">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-2">
+<h3 class="font-headline-md text-headline-md text-text-primary group-hover:text-primary transition-colors">Fix a Python / Flask Issue</h3>
+<span class="px-2.5 py-0.5 rounded text-xs font-label-md bg-surface-container-highest text-text-secondary border border-border">Under Review</span>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-secondary font-body-md">
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="business">business</span> Client: College Club</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span> Budget: â‚¹300</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Applied: Aug 28, 2026</div>
+<div class="flex items-center gap-1.5 text-secondary"><span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> Deadline: 2 days remaining</div>
+</div>
+</div>
+<a class="text-text-primary hover:text-primary font-label-md text-sm transition-colors flex items-center gap-1" href="{{DATA:SCREEN:SCREEN_63}}">View Application <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+</div>
+<!-- Card 2 (Selected) -->
+<div class="bg-surface border border-primary/50 rounded-lg p-6 relative overflow-hidden shadow-[0_0_15px_rgba(16,185,129,0.05)]">
+<!-- Subtle glow effect behind card -->
+<div class="absolute inset-0 bg-gradient-to-r from-primary/5 to-transparent pointer-events-none"></div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4 relative z-10">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-2">
+<h3 class="font-headline-md text-headline-md text-text-primary">Create a 30-sec Instagram Reel</h3>
+<span class="px-2.5 py-0.5 rounded text-xs font-label-md bg-primary/20 text-primary border border-primary/30 flex items-center gap-1">Selected ðŸŽ‰</span>
+</div>
+<p class="text-primary text-sm mb-3 font-body-md">The client has selected you for this job.</p>
+<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-secondary font-body-md">
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="business">business</span> Client: Digital Studio</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span> Budget: â‚¹300</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Applied: Aug 27, 2026</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> Deadline: 3 days remaining</div>
+</div>
+</div>
+<a class="bg-primary-container text-white px-5 py-2.5 rounded-lg font-label-md text-sm hover:bg-opacity-90 active:scale-95 transition-all shadow-[0_4px_14px_0_rgba(16,185,129,0.39)] flex items-center gap-2" href="{{DATA:SCREEN:SCREEN_56}}">Open Workspace <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></a>
+</div>
+</div>
+<!-- Card 3 -->
+<div class="bg-surface border border-border rounded-lg p-6 opacity-75 hover:opacity-100 transition-opacity">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-2">
+<h3 class="font-headline-md text-headline-md text-text-secondary">Design College Event Poster</h3>
+<span class="px-2.5 py-0.5 rounded text-xs font-label-md bg-surface-container-highest text-error border border-error/20">Rejected</span>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-secondary font-body-md">
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="business">business</span> Client: Nexus Events</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span> Budget: â‚¹200</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Applied: Aug 26, 2026</div>
+</div>
+</div>
+<button class="text-text-secondary hover:text-text-primary font-label-md text-sm transition-colors flex items-center gap-1">View Application <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></button>
+</div>
+</div>
+<!-- Card 4 -->
+<div class="bg-surface border border-border rounded-lg p-6 hover:border-surface-bright transition-colors group">
+<div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
+<div class="flex-1">
+<div class="flex items-center gap-3 mb-2">
+<h3 class="font-headline-md text-headline-md text-text-primary group-hover:text-primary transition-colors">Create a Presentation</h3>
+<span class="px-2.5 py-0.5 rounded text-xs font-label-md bg-surface-container-highest text-text-secondary border border-border">Under Review</span>
+</div>
+<div class="flex flex-wrap gap-x-6 gap-y-2 text-sm text-text-secondary font-body-md">
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="business">business</span> Client: Student Union</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="payments">payments</span> Budget: â‚¹150</div>
+<div class="flex items-center gap-1.5"><span class="material-symbols-outlined text-[16px]" data-icon="calendar_today">calendar_today</span> Applied: Aug 25, 2026</div>
+<div class="flex items-center gap-1.5 text-secondary"><span class="material-symbols-outlined text-[16px]" data-icon="schedule">schedule</span> Deadline: 2 days remaining</div>
+</div>
+</div>
+<button class="text-text-primary hover:text-primary font-label-md text-sm transition-colors flex items-center gap-1">View Application <span class="material-symbols-outlined text-sm" data-icon="arrow_forward">arrow_forward</span></button>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

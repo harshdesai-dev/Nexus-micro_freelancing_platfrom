@@ -1,0 +1,360 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - AI Skill Suggestions</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-tint": "#4edea3",
+                        "background": "#131315",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-fixed": "#1a1b22",
+                        "tertiary-container": "#fc7c78",
+                        "secondary-fixed": "#e2e1eb",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "surface-bright": "#39393b",
+                        "on-primary-fixed-variant": "#005236",
+                        "surface-container-low": "#1c1b1d",
+                        "primary-container": "#10b981",
+                        "surface": "#18181b",
+                        "tertiary-fixed": "#ffdad7",
+                        "surface-dim": "#131315",
+                        "on-primary": "#003824",
+                        "border": "#27272a",
+                        "inverse-primary": "#006c49",
+                        "surface-container": "#201f22",
+                        "secondary": "#c6c6cf",
+                        "error": "#ffb4ab",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-secondary-container": "#b4b4bd",
+                        "inverse-on-surface": "#313032",
+                        "surface-container-high": "#2a2a2c",
+                        "on-error": "#690005",
+                        "on-tertiary-fixed": "#410005",
+                        "on-secondary": "#2f3037",
+                        "tertiary": "#ffb3af",
+                        "on-surface": "#e5e1e4",
+                        "secondary-container": "#45464e",
+                        "surface-container-lowest": "#0e0e10",
+                        "outline": "#86948a",
+                        "text-primary": "#ffffff",
+                        "primary": "#4edea3",
+                        "primary-fixed": "#6ffbbe",
+                        "on-primary-container": "#00422b",
+                        "surface-variant": "#353437",
+                        "inverse-surface": "#e5e1e4",
+                        "on-tertiary-container": "#711419",
+                        "on-background": "#e5e1e4",
+                        "surface-container-highest": "#353437",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "text-secondary": "#a1a1aa",
+                        "on-surface-variant": "#bbcabf",
+                        "on-tertiary": "#650911",
+                        "error-container": "#93000a",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "outline-variant": "#3c4a42"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px",
+                        "base": "4px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex selection:bg-primary/30">
+<aside class="fixed left-0 top-0 h-full w-64 flex flex-col py-6 z-40 bg-background border-r border-border hidden md:flex">
+<div class="px-6 mb-1">
+<h1 class="font-headline-lg text-headline-lg font-black text-primary tracking-tighter">NEXUS</h1>
+<p class="font-label-md text-label-md text-text-secondary mt-1">Student Portal</p>
+</div>
+<nav class="flex-1 mt-8 flex flex-col gap-1 px-3">
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container rounded-lg transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-lg">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container rounded-lg transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-lg">work_outline</span>
+                Find Jobs
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container rounded-lg transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-lg">assignment</span>
+                My Work
+            </a>
+<a class="flex items-center gap-3 px-4 py-3 text-text-secondary hover:text-text-primary hover:bg-surface-container rounded-lg transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined text-lg">stars</span>
+                Reputation
+            </a>
+</nav>
+<div class="px-6 mt-auto">
+<button class="w-full bg-primary text-on-primary font-body-md text-body-md font-semibold py-3 rounded-lg hover:bg-primary/90 transition-colors">
+                Post a Gig
+            </button>
+<div class="flex flex-col gap-2 mt-6">
+<a class="flex items-center gap-3 text-text-secondary hover:text-text-primary font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-base">settings</span> Settings
+                </a>
+<a class="flex items-center gap-3 text-text-secondary hover:text-text-primary font-label-md text-label-md transition-colors" href="#">
+<span class="material-symbols-outlined text-base">help_outline</span> Help
+                </a>
+</div>
+</div>
+</aside>
+<div class="flex-1 md:ml-64 flex flex-col min-h-screen">
+<header class="fixed top-0 right-0 left-0 md:left-64 z-30 flex justify-between items-center px-margin-desktop h-16 bg-background/80 backdrop-blur-md border-b border-border">
+<div class="flex items-center w-full max-w-md bg-surface border border-border rounded-lg px-3 py-2 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary mr-2">search</span>
+<input class="bg-transparent border-none text-text-primary font-body-md text-body-md w-full focus:outline-none focus:ring-0 placeholder:text-text-secondary" placeholder="Search skills, jobs, peers..." type="text"/>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-text-secondary hover:text-text-primary transition-colors relative">
+<span class="material-symbols-outlined">notifications</span>
+<span class="absolute top-0 right-0 w-2 h-2 bg-primary rounded-full"></span>
+</button>
+<button class="text-text-secondary hover:text-text-primary transition-colors">
+<span class="material-symbols-outlined">chat_bubble</span>
+</button>
+<div class="w-8 h-8 rounded-full border border-border overflow-hidden cursor-pointer">
+<img alt="Student Profile" class="w-full h-full object-cover" data-alt="A professional headshot of a young engineering student, south asian descent, wearing a dark minimal t-shirt. The background is a sleek, dark studio setting with very subtle rim lighting highlighting his profile. The image conveys intelligence and readiness for the tech industry." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDX36InkEpYgHljD4vRVAMQWWiBHduvc6X7pK01PwlYgYLSrp7Lz6fU01xwAhH8n4RwDfrQzPgM5yQleLbQUtQXbjQYSEm7tJGj-Woq44d1DzZ0mm5XyhhLosLCGY97r1yDjIX6eB37sF6jncUPyphvSuULlO1aAcRoH7Rj5jGp9o4S4BHlPul8WAX8KqgoUU2AKxjm5O1OgQDzwcXMaUK0Fx_EjYlLSchaj1WFBF8_MuxCcdDemN4qdw"/>
+</div>
+</div>
+</header>
+<main class="flex-1 mt-16 px-margin-mobile md:px-margin-desktop py-8 max-w-[max-width] mx-auto w-full">
+<div class="flex items-center gap-2 text-text-secondary font-label-md text-label-md mb-6">
+<a class="hover:text-text-primary transition-colors" href="#">Profile</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<a class="hover:text-text-primary transition-colors" href="#">AI Tools</a>
+<span class="material-symbols-outlined text-[14px]">chevron_right</span>
+<span class="text-primary">Skill Suggestions</span>
+</div>
+<div class="flex flex-col md:flex-row justify-between items-start md:items-end gap-4 mb-10">
+<div>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary tracking-tight">AI Skill Suggestions</h1>
+<p class="font-body-md text-body-md text-text-secondary mt-2 max-w-2xl">Discover skills that may strengthen your profile based on industry trends and your current academic trajectory.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 bg-surface-container hover:bg-surface-container-high border border-border rounded-lg text-text-primary font-body-md text-body-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                    Back to Profile
+                </button>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter">
+<div class="lg:col-span-4 flex flex-col gap-gutter">
+<div class="bg-surface border border-border rounded-lg p-6 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-32 h-32 bg-primary/5 rounded-full blur-2xl -mr-10 -mt-10"></div>
+<div class="flex items-center gap-4 mb-6 relative z-10">
+<div class="w-16 h-16 rounded-lg border border-border overflow-hidden shadow-lg">
+<img alt="Aarav Sharma" class="w-full h-full object-cover" data-alt="A close up, high resolution headshot of Aarav Sharma, a young male student with dark hair, looking confidently slightly off-camera. He is in a dark, high-end technical environment with a soft, cool emerald ambient light reflecting off the side of his face. The styling is highly professional and modern." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDcNU6pWoWsbFnMRnRNffRyvc15dUoCL3DxXQA-KQMyYge4B4zmRnlZIV1QvU3JlTrvonycVnABkFRrMg2OZJEMu2160MYl8As_jwHDNoAjl3DW4owtOYb_YmBoKagTICfz_s_dQd2k-ERW9Fkwuw_iwIYHjioNE0k7bCusthuJJyZjQ9i3deALXvEJsjjjTzYzsK2uJ2pJa5or3kXqZhdT0gASw1lj9cFmC43pDbLbLIS7MV7g1x-1JA"/>
+</div>
+<div>
+<h2 class="font-headline-md text-headline-md text-text-primary">Aarav Sharma</h2>
+<p class="font-label-md text-label-md text-text-secondary mt-1">Computer Engineering</p>
+<div class="flex items-center gap-1 text-primary mt-1">
+<span class="material-symbols-outlined text-[14px] fill-current" style="font-variation-settings: 'FILL' 1;">verified</span>
+<span class="font-label-md text-label-md">Verified Student</span>
+</div>
+</div>
+</div>
+<div class="mb-6 relative z-10">
+<div class="flex justify-between items-end mb-2">
+<span class="font-label-md text-label-md text-text-secondary">Profile Strength</span>
+<span class="font-headline-md text-headline-md text-text-primary">86<span class="text-text-secondary text-body-md font-body-md">/100</span></span>
+</div>
+<div class="h-2 w-full bg-surface-container rounded-full overflow-hidden">
+<div class="h-full bg-primary rounded-full w-[86%] relative">
+<div class="absolute inset-0 bg-white/20 w-full animate-pulse"></div>
+</div>
+</div>
+</div>
+<div class="relative z-10">
+<span class="font-label-md text-label-md text-text-secondary block mb-3">Current Core Skills</span>
+<div class="flex flex-wrap gap-2">
+<span class="px-3 py-1 bg-surface-container border border-border rounded-md font-label-md text-label-md text-text-primary">Python</span>
+<span class="px-3 py-1 bg-surface-container border border-border rounded-md font-label-md text-label-md text-text-primary">Flask</span>
+<span class="px-3 py-1 bg-surface-container border border-border rounded-md font-label-md text-label-md text-text-primary">HTML/CSS</span>
+<span class="px-3 py-1 bg-surface-container border border-border rounded-md font-label-md text-label-md text-text-primary">SQL</span>
+</div>
+</div>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-headline-md text-headline-md text-text-primary mb-4 flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">rocket_launch</span>
+                            Unlock More Jobs
+                        </h3>
+<p class="font-body-md text-body-md text-text-secondary mb-4">Adding these highly relevant skills to your verified profile immediately connects you with more opportunities.</p>
+<div class="space-y-3">
+<div class="flex justify-between items-center p-3 bg-background border border-border rounded-lg">
+<span class="font-label-md text-label-md text-text-primary">JavaScript</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="font-label-md text-label-md">+ 18 Jobs</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+</div>
+<div class="flex justify-between items-center p-3 bg-background border border-border rounded-lg">
+<span class="font-label-md text-label-md text-text-primary">REST APIs</span>
+<div class="flex items-center gap-1 text-primary">
+<span class="font-label-md text-label-md">+ 12 Jobs</span>
+<span class="material-symbols-outlined text-[14px]">arrow_forward</span>
+</div>
+</div>
+</div>
+<button class="w-full mt-6 bg-transparent border border-border hover:border-primary text-text-primary hover:text-primary font-body-md text-body-md py-2.5 rounded-lg transition-colors">
+                            Explore Matching Jobs
+                        </button>
+</div>
+</div>
+<div class="lg:col-span-8">
+<div class="flex items-center justify-between mb-6">
+<div class="flex items-center gap-3">
+<h2 class="font-headline-md text-headline-md text-text-primary">Skills Suggested for You</h2>
+<span class="flex items-center gap-1 px-2.5 py-1 bg-primary/10 border border-primary/20 rounded-full text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-[14px]">auto_awesome</span>
+                                AI Assisted
+                            </span>
+</div>
+</div>
+<div class="flex flex-col gap-4">
+<div class="bg-surface border border-primary/40 rounded-lg p-5 shadow-[0_0_15px_rgba(78,222,163,0.05)] transition-all">
+<div class="flex justify-between items-start">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h3 class="font-headline-md text-headline-md text-text-primary">REST APIs</h3>
+<span class="text-primary font-label-md text-label-md flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 92% Relevant
+                                        </span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary">Highly recommended based on your experience with Flask and backend fundamentals.</p>
+</div>
+</div>
+<div class="mt-4 bg-background border-l-2 border-primary p-4 rounded-r-lg">
+<h4 class="font-label-md text-label-md text-text-primary mb-2">Why REST APIs?</h4>
+<p class="font-body-md text-body-md text-text-secondary">Since you are already building server-side logic with Flask, understanding how to structure and expose RESTful endpoints is the natural next step. It allows your backend applications to communicate seamlessly with modern frontend frameworks and mobile apps, a requirement for 85% of full-stack roles on NEXUS.</p>
+</div>
+<div class="flex items-center gap-3 mt-5 pt-5 border-t border-border">
+<button class="bg-primary hover:bg-primary/90 text-on-primary font-body-md text-body-md px-5 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                    Add Skill
+                                </button>
+<button class="bg-transparent border border-border hover:bg-surface-container text-text-primary font-body-md text-body-md px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">expand_less</span>
+                                    Hide Why
+                                </button>
+</div>
+</div>
+<div class="bg-surface border border-border hover:border-primary/50 rounded-lg p-5 transition-all group">
+<div class="flex justify-between items-center">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h3 class="font-headline-md text-headline-md text-text-primary group-hover:text-primary transition-colors">JavaScript</h3>
+<span class="text-primary font-label-md text-label-md flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 87% Relevant
+                                        </span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary">Complements your existing HTML/CSS foundation for interactive web development.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-4">
+<button class="bg-surface-container hover:bg-primary hover:text-on-primary border border-border text-text-primary font-body-md text-body-md px-5 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                    Add Skill
+                                </button>
+<button class="bg-transparent text-text-secondary hover:text-text-primary font-body-md text-body-md px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                                    Why?
+                                </button>
+</div>
+</div>
+<div class="bg-surface border border-border hover:border-primary/50 rounded-lg p-5 transition-all group">
+<div class="flex justify-between items-center">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h3 class="font-headline-md text-headline-md text-text-primary group-hover:text-primary transition-colors">API Integration</h3>
+<span class="text-primary font-label-md text-label-md flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 84% Relevant
+                                        </span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary">Crucial for connecting third-party services to your Python projects.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-4">
+<button class="bg-surface-container hover:bg-primary hover:text-on-primary border border-border text-text-primary font-body-md text-body-md px-5 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                    Add Skill
+                                </button>
+<button class="bg-transparent text-text-secondary hover:text-text-primary font-body-md text-body-md px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                                    Why?
+                                </button>
+</div>
+</div>
+<div class="bg-surface border border-border hover:border-primary/50 rounded-lg p-5 transition-all group">
+<div class="flex justify-between items-center">
+<div>
+<div class="flex items-center gap-3 mb-1">
+<h3 class="font-headline-md text-headline-md text-text-primary group-hover:text-primary transition-colors">Git &amp; GitHub</h3>
+<span class="text-primary font-label-md text-label-md flex items-center gap-1 bg-primary/10 px-2 py-0.5 rounded">
+<span class="material-symbols-outlined text-[14px]">trending_up</span> 81% Relevant
+                                        </span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary">Essential version control for collaborating on engineering teams.</p>
+</div>
+</div>
+<div class="flex items-center gap-3 mt-4">
+<button class="bg-surface-container hover:bg-primary hover:text-on-primary border border-border text-text-primary font-body-md text-body-md px-5 py-2 rounded-lg font-medium transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">add</span>
+                                    Add Skill
+                                </button>
+<button class="bg-transparent text-text-secondary hover:text-text-primary font-body-md text-body-md px-4 py-2 rounded-lg transition-colors flex items-center gap-2">
+<span class="material-symbols-outlined text-[18px]">help</span>
+                                    Why?
+                                </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

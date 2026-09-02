@@ -1,0 +1,365 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Build Your Student Profile</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary": "#ffb3af",
+                        "surface-container-lowest": "#0e0e10",
+                        "surface-container-low": "#1c1b1d",
+                        "outline": "#86948a",
+                        "surface-container": "#201f22",
+                        "tertiary-fixed": "#ffdad7",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "secondary-fixed": "#e2e1eb",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-primary-fixed-variant": "#005236",
+                        "inverse-primary": "#006c49",
+                        "text-secondary": "#a1a1aa",
+                        "on-primary": "#003824",
+                        "border": "#27272a",
+                        "on-secondary": "#2f3037",
+                        "tertiary-container": "#fc7c78",
+                        "surface-variant": "#353437",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "error": "#ffb4ab",
+                        "background": "#131315",
+                        "secondary": "#c6c6cf",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "outline-variant": "#3c4a42",
+                        "inverse-on-surface": "#313032",
+                        "secondary-container": "#45464e",
+                        "on-surface-variant": "#bbcabf",
+                        "error-container": "#93000a",
+                        "surface": "#18181b",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-highest": "#353437",
+                        "surface-container-high": "#2a2a2c",
+                        "on-surface": "#e5e1e4",
+                        "surface-tint": "#4edea3",
+                        "on-secondary-fixed": "#1a1b22",
+                        "on-error": "#690005",
+                        "surface-dim": "#131315",
+                        "inverse-surface": "#e5e1e4",
+                        "primary-fixed": "#6ffbbe",
+                        "on-background": "#e5e1e4",
+                        "on-tertiary": "#650911",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "on-tertiary-container": "#711419",
+                        "on-primary-container": "#00422b",
+                        "on-primary-fixed": "#002113",
+                        "on-tertiary-fixed": "#410005",
+                        "text-primary": "#ffffff",
+                        "primary": "#4edea3",
+                        "primary-container": "#10b981",
+                        "surface-bright": "#39393b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1280px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #0e0e10; /* surface-container-lowest */
+            color: #ffffff; /* text-primary */
+        }
+        
+        /* Custom scrollbar for dark theme */
+        ::-webkit-scrollbar {
+            width: 8px;
+        }
+        ::-webkit-scrollbar-track {
+            background: #131315; /* background */
+        }
+        ::-webkit-scrollbar-thumb {
+            background: #27272a; /* border */
+            border-radius: 4px;
+        }
+        ::-webkit-scrollbar-thumb:hover {
+            background: #353437; /* surface-variant */
+        }
+
+        /* Input focus transitions */
+        .form-input-focus {
+            transition: border-color 0.2s ease-in-out, box-shadow 0.2s ease-in-out;
+        }
+        .form-input-focus:focus {
+            border-color: #10b981; /* primary-container */
+            box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.2);
+            outline: none;
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-surface-container-lowest text-text-primary min-h-screen flex flex-col antialiased">
+<!-- TopNavBar (Rendered via JSON mapping) -->
+<header class="bg-surface dark:bg-surface text-primary dark:text-primary font-headline-md text-headline-md-mobile md:text-headline-md docked full-width top-0 border-b border-border flat no shadows flex justify-between items-center px-margin-mobile md:px-margin-desktop h-16 w-full z-50">
+<div class="flex items-center gap-4">
+<span class="text-headline-md font-headline-md font-bold text-primary dark:text-primary tracking-tight">NEXUS</span>
+</div>
+<div class="flex items-center gap-4 hidden md:flex">
+<button class="px-4 py-2 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg font-label-md text-label-md border border-border">Save as Draft</button>
+<button class="px-4 py-2 bg-primary-container text-text-primary hover:bg-opacity-90 transition-colors rounded-lg font-label-md text-label-md flex items-center gap-2">Save &amp; Continue <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+</header>
+<div class="flex flex-1 overflow-hidden">
+<!-- SideNavBar (Semantic match: Profile is active) -->
+<nav class="hidden md:flex flex-col fixed left-0 top-16 bottom-0 py-6 bg-background dark:bg-background text-primary dark:text-primary font-body-md text-body-md docked left-0 h-full w-64 border-r border-border flat no shadows z-40">
+<div class="px-6 mb-8">
+<p class="font-headline-md text-headline-md text-primary mb-1">Setup Profile</p>
+<p class="text-on-surface-variant text-body-md font-body-md">Step 1 of 3</p>
+</div>
+<ul class="flex flex-col gap-2 px-4 w-full">
+<!-- Active Item -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-r-lg text-primary border-l-2 border-primary font-semibold bg-surface-container-low active:translate-x-1 duration-200" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                        Profile
+                    </a>
+</li>
+<!-- Inactive Items -->
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all active:translate-x-1 duration-200 border-l-2 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="description">description</span>
+                        About
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all active:translate-x-1 duration-200 border-l-2 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="bolt">bolt</span>
+                        Skills
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all active:translate-x-1 duration-200 border-l-2 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="work">work</span>
+                        Portfolio
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant hover:text-on-surface hover:bg-surface-container-highest transition-all active:translate-x-1 duration-200 border-l-2 border-transparent" href="#">
+<span class="material-symbols-outlined" data-icon="event_available">event_available</span>
+                        Availability
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto w-full">
+<div class="max-w-4xl mx-auto w-full">
+<!-- Page Header -->
+<div class="mb-10 text-center md:text-left">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg text-text-primary mb-3">Build Your Student Profile</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl mx-auto md:mx-0">Showcase your skills, experience, portfolio, and availability to find the right opportunities.</p>
+</div>
+<!-- Form Container -->
+<div class="space-y-8 pb-24">
+<!-- Section 1: Profile Information -->
+<section class="bg-surface border border-border rounded-lg p-6 md:p-8">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-6 flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary-container">person</span>
+                            Profile Information
+                        </h2>
+<div class="flex flex-col md:flex-row gap-8 items-start mb-8">
+<!-- Photo Upload -->
+<div class="flex flex-col items-center gap-3 shrink-0">
+<div class="w-32 h-32 rounded-full bg-background border border-border flex items-center justify-center overflow-hidden relative group cursor-pointer">
+<img class="w-full h-full object-cover opacity-50 group-hover:opacity-30 transition-opacity" data-alt="A professional headshot placeholder silhouette glowing slightly against a deep dark background, minimalist geometric studio style, high contrast, elegant dark mode UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAsG3TNIZINshlmkqglH0gnM8QVw1KYND3aauykg-W1cUQIgHhfKGfnblCC2cGS9Lp4s63AdikLZZtiwFFRbLkkBRGUnrrXkaPWQY-8mdcXqQD0UAm8utrI9BJzsWgcp0nAjFOMxeQZA8t_t7I9PCwOmuSouK2B9kqISG1iVuXSIkac0shEeno9I1QnRFpiQ1kyLVWxb8T5G5Hqm73fgcFMsgbMZc0wjO3uL0wTKiBHqS483TFa1QiBcQ"/>
+<div class="absolute inset-0 flex flex-col items-center justify-center opacity-0 group-hover:opacity-100 transition-opacity">
+<span class="material-symbols-outlined text-text-primary text-3xl">upload</span>
+<span class="font-label-md text-label-md mt-1">Upload</span>
+</div>
+</div>
+<button class="font-label-md text-label-md text-text-secondary hover:text-text-primary transition-colors" type="button">Remove</button>
+</div>
+<!-- Core Details Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6 w-full">
+<div class="col-span-1 md:col-span-2">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="fullName">Full Name</label>
+<input class="w-full bg-background border border-border rounded-lg px-4 py-3 font-body-md text-body-md text-text-primary form-input-focus placeholder-on-secondary-container" id="fullName" placeholder="e.g. Jane Doe" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="university">College / University</label>
+<input class="w-full bg-background border border-border rounded-lg px-4 py-3 font-body-md text-body-md text-text-primary form-input-focus placeholder-on-secondary-container" id="university" placeholder="e.g. University of Technology" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="degree">Course / Degree</label>
+<input class="w-full bg-background border border-border rounded-lg px-4 py-3 font-body-md text-body-md text-text-primary form-input-focus placeholder-on-secondary-container" id="degree" placeholder="e.g. B.S. Computer Science" type="text"/>
+</div>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="year">Year of Study</label>
+<select class="w-full bg-background border border-border rounded-lg px-4 py-3 font-body-md text-body-md text-text-primary form-input-focus appearance-none" id="year">
+<option disabled="" selected="" value="">Select Year</option>
+<option value="1">First Year / Freshman</option>
+<option value="2">Second Year / Sophomore</option>
+<option value="3">Third Year / Junior</option>
+<option value="4">Fourth Year / Senior</option>
+<option value="grad">Graduate Student</option>
+</select>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 2: About Me -->
+<section class="bg-surface border border-border rounded-lg p-6 md:p-8">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-6 flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary-container">description</span>
+                            About Me
+                        </h2>
+<div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="bio">Bio</label>
+<textarea class="w-full bg-background border border-border rounded-lg px-4 py-3 font-body-md text-body-md text-text-primary form-input-focus placeholder-on-secondary-container resize-y" id="bio" placeholder="Briefly describe yourself, your interests, and your career goals..." rows="4"></textarea>
+<p class="font-label-md text-label-md text-text-secondary mt-2 text-right">0 / 500 characters</p>
+</div>
+</section>
+<!-- Section 3: Skills -->
+<section class="bg-surface border border-border rounded-lg p-6 md:p-8">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-6 flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary-container">bolt</span>
+                            Skills
+                        </h2>
+<div class="mb-4">
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="skillInput">Add a Skill</label>
+<div class="flex gap-2">
+<input class="flex-1 bg-background border border-border rounded-lg px-4 py-3 font-body-md text-body-md text-text-primary form-input-focus placeholder-on-secondary-container" id="skillInput" placeholder="e.g. React.js, Data Analysis..." type="text"/>
+<button class="px-6 py-3 bg-surface-container-highest border border-border rounded-lg font-label-md text-label-md text-text-primary hover:bg-surface-variant transition-colors flex items-center gap-2 whitespace-nowrap" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-sm">add</span> Add
+                                </button>
+</div>
+</div>
+<div class="flex flex-wrap gap-2 mt-4" id="skillsContainer">
+<!-- Pre-filled Tags -->
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10b981]/15 text-primary-container font-label-md text-label-md border border-[#10b981]/30">
+                                Python
+                                <button class="hover:text-primary transition-colors flex items-center justify-center" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10b981]/15 text-primary-container font-label-md text-label-md border border-[#10b981]/30">
+                                Java
+                                <button class="hover:text-primary transition-colors flex items-center justify-center" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+<span class="inline-flex items-center gap-1.5 px-3 py-1.5 rounded-full bg-[#10b981]/15 text-primary-container font-label-md text-label-md border border-[#10b981]/30">
+                                Web Development
+                                <button class="hover:text-primary transition-colors flex items-center justify-center" type="button"><span aria-hidden="true" class="material-symbols-outlined text-[14px]">close</span></button>
+</span>
+</div>
+</section>
+<!-- Section 4: Portfolio -->
+<section class="bg-surface border border-border rounded-lg p-6 md:p-8">
+<div class="flex flex-col sm:flex-row justify-between items-start sm:items-center mb-6 gap-4">
+<h2 class="font-headline-md text-headline-md text-text-primary flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary-container">work</span>
+                                Portfolio &amp; Previous Work
+                            </h2>
+<button class="px-4 py-2 border border-border rounded-lg font-label-md text-label-md text-text-primary hover:bg-surface-container transition-colors flex items-center gap-2 bg-background" type="button">
+<span aria-hidden="true" class="material-symbols-outlined text-sm">add</span> Add Item
+                            </button>
+</div>
+<div class="grid grid-cols-1 gap-4">
+<!-- Placeholder Portfolio Item -->
+<div class="bg-background border border-border rounded-lg p-5 flex flex-col md:flex-row gap-4 items-start relative group">
+<div class="w-full md:w-32 h-24 bg-surface-container rounded-md flex-shrink-0 flex items-center justify-center border border-border overflow-hidden">
+<span class="material-symbols-outlined text-on-surface-variant text-3xl">image</span>
+</div>
+<div class="flex-1">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary mb-1">E-commerce React Application</h3>
+<p class="font-body-md text-body-md text-text-secondary mb-3 line-clamp-2">A full-stack e-commerce platform built with React, Node.js, and MongoDB. Features user authentication, payment processing, and inventory management.</p>
+<a class="font-label-md text-label-md text-primary-container hover:text-primary transition-colors flex items-center gap-1" href="#">
+<span aria-hidden="true" class="material-symbols-outlined text-[14px]">link</span> github.com/johndoe/ecommerce
+                                    </a>
+</div>
+<div class="absolute top-4 right-4 flex gap-2 opacity-0 group-hover:opacity-100 transition-opacity">
+<button aria-label="Edit" class="p-1.5 bg-surface rounded-md border border-border text-on-surface-variant hover:text-text-primary transition-colors"><span class="material-symbols-outlined text-sm">edit</span></button>
+<button aria-label="Delete" class="p-1.5 bg-surface rounded-md border border-border text-error hover:text-error-container transition-colors"><span class="material-symbols-outlined text-sm">delete</span></button>
+</div>
+</div>
+</div>
+</section>
+<!-- Section 5: Availability -->
+<section class="bg-surface border border-border rounded-lg p-6 md:p-8">
+<h2 class="font-headline-md text-headline-md text-text-primary mb-6 flex items-center gap-2">
+<span aria-hidden="true" class="material-symbols-outlined text-primary-container">event_available</span>
+                            Availability
+                        </h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-4">
+<!-- Radio Option 1 -->
+<label class="relative flex flex-col items-center justify-center p-5 cursor-pointer bg-background border border-border rounded-lg hover:border-outline-variant transition-colors group">
+<input checked="" class="peer sr-only" name="availability" type="radio" value="available"/>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary-container rounded-lg pointer-events-none transition-colors"></div>
+<div class="absolute inset-0 bg-primary-container/5 opacity-0 peer-checked:opacity-100 rounded-lg pointer-events-none transition-opacity"></div>
+<span aria-hidden="true" class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant peer-checked:text-primary-container transition-colors">check_circle</span>
+<span class="font-label-md text-label-md text-text-primary mb-1 text-center">Available</span>
+<span class="font-body-md text-[12px] text-text-secondary text-center">Ready for immediate work</span>
+</label>
+<!-- Radio Option 2 -->
+<label class="relative flex flex-col items-center justify-center p-5 cursor-pointer bg-background border border-border rounded-lg hover:border-outline-variant transition-colors group">
+<input class="peer sr-only" name="availability" type="radio" value="partial"/>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary-container rounded-lg pointer-events-none transition-colors"></div>
+<div class="absolute inset-0 bg-primary-container/5 opacity-0 peer-checked:opacity-100 rounded-lg pointer-events-none transition-opacity"></div>
+<span aria-hidden="true" class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant peer-checked:text-primary-container transition-colors">schedule</span>
+<span class="font-label-md text-label-md text-text-primary mb-1 text-center">Partially Available</span>
+<span class="font-body-md text-[12px] text-text-secondary text-center">Open to part-time roles</span>
+</label>
+<!-- Radio Option 3 -->
+<label class="relative flex flex-col items-center justify-center p-5 cursor-pointer bg-background border border-border rounded-lg hover:border-outline-variant transition-colors group">
+<input class="peer sr-only" name="availability" type="radio" value="not-available"/>
+<div class="absolute inset-0 border-2 border-transparent peer-checked:border-primary-container rounded-lg pointer-events-none transition-colors"></div>
+<div class="absolute inset-0 bg-primary-container/5 opacity-0 peer-checked:opacity-100 rounded-lg pointer-events-none transition-opacity"></div>
+<span aria-hidden="true" class="material-symbols-outlined text-3xl mb-2 text-on-surface-variant peer-checked:text-primary-container transition-colors">do_not_disturb_on</span>
+<span class="font-label-md text-label-md text-text-primary mb-1 text-center">Not Available</span>
+<span class="font-body-md text-[12px] text-text-secondary text-center">Currently occupied</span>
+</label>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- Mobile Bottom Action Bar (Fixed) -->
+<div class="md:hidden fixed bottom-0 left-0 right-0 p-4 bg-surface border-t border-border z-50 flex gap-3 shadow-[0_-4px_20px_rgba(0,0,0,0.5)]">
+<button class="flex-1 py-3 text-on-surface-variant hover:bg-surface-container transition-colors rounded-lg font-label-md text-label-md border border-border bg-background">Draft</button>
+<button class="flex-[2] py-3 bg-primary-container text-text-primary hover:bg-opacity-90 transition-colors rounded-lg font-label-md text-label-md flex items-center justify-center gap-2">Save &amp; Continue <span aria-hidden="true" class="material-symbols-outlined text-sm">arrow_forward</span></button>
+</div>
+</div>
+</body></html>

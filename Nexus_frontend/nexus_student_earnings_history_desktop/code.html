@@ -1,0 +1,313 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Student Earnings &amp; History</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#39393b",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "on-primary": "#003824",
+                        "on-background": "#e5e1e4",
+                        "error-container": "#93000a",
+                        "on-error-container": "#ffdad6",
+                        "surface-dim": "#131315",
+                        "secondary-fixed": "#e2e1eb",
+                        "surface": "#18181b",
+                        "surface-container": "#201f22",
+                        "on-tertiary-container": "#711419",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "text-secondary": "#a1a1aa",
+                        "on-tertiary": "#650911",
+                        "secondary": "#c6c6cf",
+                        "surface-container-lowest": "#0e0e10",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-variant": "#353437",
+                        "border": "#27272a",
+                        "inverse-on-surface": "#313032",
+                        "tertiary-container": "#fc7c78",
+                        "on-secondary-fixed": "#1a1b22",
+                        "on-primary-container": "#00422b",
+                        "on-primary-fixed": "#002113",
+                        "primary": "#4edea3",
+                        "outline": "#86948a",
+                        "outline-variant": "#3c4a42",
+                        "on-surface": "#e5e1e4",
+                        "on-secondary-container": "#b4b4bd",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "background": "#131315",
+                        "tertiary-fixed": "#ffdad7",
+                        "on-tertiary-fixed": "#410005",
+                        "secondary-container": "#45464e",
+                        "on-surface-variant": "#bbcabf",
+                        "text-primary": "#ffffff",
+                        "on-secondary": "#2f3037",
+                        "tertiary": "#ffb3af",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-tint": "#4edea3",
+                        "inverse-surface": "#e5e1e4",
+                        "primary-container": "#10b981",
+                        "inverse-primary": "#006c49",
+                        "surface-container-highest": "#353437",
+                        "surface-container-low": "#1c1b1d",
+                        "on-error": "#690005"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1280px",
+                        "base": "4px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg-mobile": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex">
+<!-- SideNavBar -->
+<aside class="hidden md:flex flex-col h-screen w-64 fixed left-0 top-0 border-r border-border dark:border-border bg-background dark:bg-background py-8 font-body-md text-body-md z-50">
+<div class="px-6 mb-10 flex items-center gap-4">
+<img alt="User profile photo" class="w-10 h-10 rounded-full object-cover" data-alt="A small, stylized digital avatar portrait of a student, utilizing a vibrant neon and dark color palette, suitable for a professional micro-freelancing platform profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDy0dj89lZaqas8vw7T9u5U2UBhC4ON6RBqySvih-sfRYFcHONP961my5Gm1MXDzOZJR7GYKkhT1ZeM2qa7CNOVxUVgowSDqPwVnqZcbkGUIY8mwNghrdL6SnaoMJYZ1CvpU4GJs-c7V33VEIhRaR4yJC_NtBYt50w4dBAA-VK__4EC9PgNAew1GdYBir9El4RByZsAFk34A_5XiKKWBmpGju4IoSlfCTyuIO5l9iyWmYlAs26J-8baPA"/>
+<div>
+<h2 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">Nexus Micro</h2>
+<p class="text-text-secondary font-label-md text-label-md">Student Pro</p>
+</div>
+</div>
+<nav class="flex-1 px-4 space-y-2">
+<a class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-secondary hover:text-on-surface transition-colors hover:bg-surface-container dark:hover:bg-surface-container transition-all duration-200 ease-in-out pl-4" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+                Dashboard
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-secondary hover:text-on-surface transition-colors hover:bg-surface-container dark:hover:bg-surface-container transition-all duration-200 ease-in-out pl-4" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+                Find Jobs
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 rounded-lg text-primary font-semibold border-l-2 border-primary hover:bg-surface-container dark:hover:bg-surface-container transition-all duration-200 ease-in-out pl-4" href="#">
+<span class="material-symbols-outlined" data-icon="work" data-weight="fill" style="font-variation-settings: 'FILL' 1;">work</span>
+                My Work
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-secondary hover:text-on-surface transition-colors hover:bg-surface-container dark:hover:bg-surface-container transition-all duration-200 ease-in-out pl-4" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+                Profile
+            </a>
+</nav>
+<div class="px-6 mb-6">
+<button class="w-full py-3 bg-primary text-on-primary font-bold rounded-lg hover:bg-primary-fixed transition-colors">
+                Post a Gig
+            </button>
+</div>
+<div class="mt-auto px-4 space-y-2">
+<a class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-secondary hover:text-on-surface transition-colors hover:bg-surface-container dark:hover:bg-surface-container transition-all duration-200 ease-in-out pl-4" href="#">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+                Settings
+            </a>
+<a class="flex items-center gap-3 py-3 px-4 rounded-lg text-text-secondary hover:text-on-surface transition-colors hover:bg-surface-container dark:hover:bg-surface-container transition-all duration-200 ease-in-out pl-4" href="#">
+<span class="material-symbols-outlined" data-icon="help">help</span>
+                Help
+            </a>
+</div>
+</aside>
+<!-- Main Content Area -->
+<main class="flex-1 ml-0 md:ml-64 flex flex-col min-h-screen">
+<!-- TopNavBar -->
+<header class="flex justify-between items-center h-16 px-margin-desktop bg-surface/80 backdrop-blur-md dark:bg-surface/80 border-b border-border dark:border-border docked full-width top-0 sticky z-40">
+<div class="flex items-center gap-4">
+<span class="md:hidden" data-icon="menu">menu</span>
+<h1 class="font-headline-md text-headline-md font-black text-primary dark:text-primary">Nexus</h1>
+</div>
+<!-- Search on Left (visually centered here for layout balance if needed, but per json logic it's present) -->
+<div class="hidden md:flex items-center bg-surface-container rounded-full px-4 py-2 border border-border w-96 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none focus:ring-0 text-on-surface w-full font-body-md text-body-md placeholder-text-secondary" placeholder="Search..." type="text"/>
+</div>
+<div class="flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors" href="#">
+<span class="material-symbols-outlined" data-icon="mail">mail</span>
+</a>
+<img alt="Student avatar" class="w-8 h-8 rounded-full border border-border cursor-pointer object-cover" data-alt="A small, stylized digital avatar portrait of a student, utilizing a vibrant neon and dark color palette, suitable for a professional micro-freelancing platform profile picture." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAxd3ue3-Fc7VUD3J9C9yub5zx4t4N_5VEkZjLtPilOH6SXO8XdCiaHD-cuwo6os2MI-mAEICsB9PEXxsHXx4k7QJ3Q5gA4b09gyEhqLeMP40jdChK7q46LUguIPnGBkzDFIJrW1NvbEP1cO5QAXWnzu3NmW7QgRJk62yFaZBCNv_exE6o1-cvhLf6ChXVuwRx_TiiDNGtE_3gAjQ7mOViGfaZMxH-xx7hnbPOMRaceF6hS4NQ7Z_Wuvg"/>
+</div>
+</header>
+<!-- Canvas -->
+<div class="flex-1 p-margin-mobile md:p-margin-desktop max-w-[max-width] mx-auto w-full space-y-8">
+<!-- Breadcrumb & Header -->
+<div>
+<nav class="flex items-center gap-2 text-text-secondary font-label-md text-label-md mb-2">
+<a class="hover:text-primary transition-colors" href="#">My Work</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Earnings &amp; History</span>
+</nav>
+<h1 class="font-headline-lg text-headline-lg md:font-headline-lg md:text-headline-lg text-on-surface">Earnings &amp; History</h1>
+</div>
+<!-- Summary Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-4 gap-gutter">
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col gap-2 hover:border-primary/50 transition-colors">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Total Earnings</span>
+<span class="font-headline-lg text-headline-lg text-primary">â‚¹2,450</span>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col gap-2 hover:border-primary/50 transition-colors">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Completed Jobs</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">8</span>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col gap-2 hover:border-primary/50 transition-colors">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">This Month</span>
+<span class="font-headline-lg text-headline-lg text-on-surface">â‚¹850</span>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col gap-2 hover:border-primary/50 transition-colors">
+<span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Pending</span>
+<span class="font-headline-lg text-headline-lg text-on-surface-variant">â‚¹300</span>
+</div>
+</div>
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Earnings Overview Breakdown -->
+<div class="bg-surface border border-border rounded-lg p-6 lg:col-span-1 flex flex-col gap-6">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-border pb-4">Earnings Overview</h2>
+<div class="space-y-4 font-body-md text-body-md">
+<div class="flex justify-between items-center text-text-secondary">
+<span>Total Job Value</span>
+<span>â‚¹2,700</span>
+</div>
+<div class="flex justify-between items-center text-error">
+<span>Platform Commission</span>
+<span>-â‚¹250</span>
+</div>
+<div class="h-px bg-border w-full"></div>
+<div class="flex justify-between items-center text-on-surface font-semibold text-lg">
+<span>Your Earnings</span>
+<span class="text-primary">â‚¹2,450</span>
+</div>
+</div>
+</div>
+<!-- Transaction History Table -->
+<div class="bg-surface border border-border rounded-lg p-6 lg:col-span-2 overflow-x-auto">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-border pb-4 mb-4">Transaction History</h2>
+<table class="w-full text-left font-body-md text-body-md border-collapse">
+<thead>
+<tr class="text-text-secondary border-b border-border">
+<th class="py-3 font-medium">Date</th>
+<th class="py-3 font-medium">Job Type</th>
+<th class="py-3 font-medium">Amount</th>
+<th class="py-3 font-medium">Status</th>
+</tr>
+</thead>
+<tbody class="text-on-surface">
+<tr class="border-b border-border/50 hover:bg-surface-container transition-colors">
+<td class="py-3">Oct 24, 2023</td>
+<td class="py-3">Web Development</td>
+<td class="py-3 text-primary">+â‚¹900</td>
+<td class="py-3"><span class="px-2 py-1 bg-primary/15 text-primary rounded-full font-label-md text-label-md">Paid</span></td>
+</tr>
+<tr class="border-b border-border/50 hover:bg-surface-container transition-colors">
+<td class="py-3">Oct 20, 2023</td>
+<td class="py-3">Social Media</td>
+<td class="py-3 text-primary">+â‚¹270</td>
+<td class="py-3"><span class="px-2 py-1 bg-primary/15 text-primary rounded-full font-label-md text-label-md">Paid</span></td>
+</tr>
+<tr class="border-b border-border/50 hover:bg-surface-container transition-colors">
+<td class="py-3">Oct 15, 2023</td>
+<td class="py-3">Programming</td>
+<td class="py-3 text-primary">+â‚¹270</td>
+<td class="py-3"><span class="px-2 py-1 bg-surface-container-high text-text-secondary border border-border rounded-full font-label-md text-label-md">Pending</span></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<!-- Recent Earnings List (Cards) -->
+<div>
+<h2 class="font-headline-md text-headline-md text-on-surface mb-6">Recent Earnings</h2>
+<div class="grid grid-cols-1 md:grid-cols-3 gap-gutter">
+<div class="bg-surface border border-border rounded-lg p-5 flex flex-col gap-4 hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-surface-container rounded-lg border border-border">
+<span class="material-symbols-outlined text-primary" data-icon="code">code</span>
+</div>
+<span class="text-primary font-bold font-body-lg text-body-lg">â‚¹270</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Fix a Python / Flask Issue</h3>
+<p class="text-text-secondary font-body-md text-body-md mt-1">Earned on Oct 15</p>
+</div>
+</div>
+<div class="bg-surface border border-border rounded-lg p-5 flex flex-col gap-4 hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-surface-container rounded-lg border border-border">
+<span class="material-symbols-outlined text-primary" data-icon="videocam">videocam</span>
+</div>
+<span class="text-primary font-bold font-body-lg text-body-lg">â‚¹270</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Create a 30-sec Instagram Reel</h3>
+<p class="text-text-secondary font-body-md text-body-md mt-1">Earned on Oct 20</p>
+</div>
+</div>
+<div class="bg-surface border border-border rounded-lg p-5 flex flex-col gap-4 hover:border-primary/50 transition-colors">
+<div class="flex justify-between items-start">
+<div class="p-2 bg-surface-container rounded-lg border border-border">
+<span class="material-symbols-outlined text-primary" data-icon="web">web</span>
+</div>
+<span class="text-primary font-bold font-body-lg text-body-lg">â‚¹900</span>
+</div>
+<div>
+<h3 class="font-body-lg text-body-lg font-semibold text-on-surface">Build a Simple Website</h3>
+<p class="text-text-secondary font-body-md text-body-md mt-1">Earned on Oct 24</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-auto w-full py-6 border-t border-border dark:border-border bg-surface-container-lowest dark:bg-surface-container-lowest font-label-md text-label-md flex flex-col md:flex-row justify-between items-center px-margin-desktop">
+<div class="font-body-md text-body-md font-bold text-on-surface mb-4 md:mb-0">
+                Â© 2024 Nexus Micro-Freelancing. All rights reserved.
+            </div>
+<div class="flex gap-6">
+<a class="text-text-secondary hover:text-on-surface underline transition-all" href="#">Privacy Policy</a>
+<a class="text-text-secondary hover:text-on-surface underline transition-all" href="#">Terms of Service</a>
+<a class="text-text-secondary hover:text-on-surface underline transition-all" href="#">Cookie Policy</a>
+</div>
+</footer>
+</main>
+</body></html>

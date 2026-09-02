@@ -1,0 +1,354 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Report / Raise Dispute</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "outline-variant": "#3c4a42",
+                        "text-primary": "#ffffff",
+                        "surface-container-highest": "#353437",
+                        "on-surface": "#e5e1e4",
+                        "on-primary-fixed": "#002113",
+                        "primary-fixed": "#6ffbbe",
+                        "on-error": "#690005",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "inverse-surface": "#e5e1e4",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-container-low": "#1c1b1d",
+                        "surface-container": "#201f22",
+                        "surface": "#18181b",
+                        "secondary-container": "#45464e",
+                        "border": "#27272a",
+                        "on-background": "#e5e1e4",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-lowest": "#0e0e10",
+                        "inverse-primary": "#006c49",
+                        "tertiary": "#ffb3af",
+                        "on-secondary-fixed": "#1a1b22",
+                        "surface-container-high": "#2a2a2c",
+                        "on-error-container": "#ffdad6",
+                        "tertiary-container": "#fc7c78",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "surface-dim": "#131315",
+                        "primary-fixed-dim": "#4edea3",
+                        "error-container": "#93000a",
+                        "outline": "#86948a",
+                        "inverse-on-surface": "#313032",
+                        "surface-tint": "#4edea3",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-tertiary-container": "#711419",
+                        "background": "#131315",
+                        "secondary": "#c6c6cf",
+                        "surface-bright": "#39393b",
+                        "secondary-fixed": "#e2e1eb",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-tertiary": "#650911",
+                        "error": "#ffb4ab",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "surface-variant": "#353437",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "on-secondary": "#2f3037",
+                        "on-primary": "#003824",
+                        "primary-container": "#10b981",
+                        "text-secondary": "#a1a1aa",
+                        "primary": "#4edea3",
+                        "on-primary-container": "#00422b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-desktop": "32px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "label-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex flex-col antialiased">
+<!-- TopNavBar -->
+<nav class="hidden md:flex bg-background dark:bg-background justify-between items-center w-full px-margin-desktop h-16 max-w-max-width mx-auto docked full-width top-0 border-b border-border flat no shadows font-body-md text-body-md z-40">
+<div class="flex items-center gap-8">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tighter">NEXUS</span>
+<div class="flex items-center gap-6">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform" href="#">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform" href="#">My Jobs</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform" href="#">Applications</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors scale-95 active:scale-90 transition-transform" href="#">Profile</a>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+</div>
+</nav>
+<div class="flex flex-1 overflow-hidden">
+<!-- Main Content -->
+<main class="flex-1 overflow-y-auto px-margin-desktop py-8 max-w-4xl mx-auto w-full" id="report-form-state">
+<!-- Breadcrumbs & Back Action -->
+<div class="flex flex-col gap-4 mb-8">
+<nav aria-label="Breadcrumb" class="flex text-sm text-on-surface-variant gap-2 items-center">
+<a class="hover:text-primary transition-colors" href="#">Job</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Trust & Safety</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-primary font-medium">Report</span>
+</nav>
+<div class="flex justify-between items-start md:items-center">
+<div>
+<h1 class="font-headline-lg text-headline-lg mb-2">Report an Issue</h1>
+<p class="font-body-md text-body-md text-on-surface-variant">Please provide details about the issue. Our Trust & Safety team will review your report shortly.</p>
+</div>
+<button class="hidden md:flex items-center gap-2 px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-surface-variant transition-colors text-on-surface" id="back-to-job" type="button">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                        Back to Job
+                    </button>
+</div>
+</div>
+<!-- Bento Grid Layout for Content -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Left Column: Primary Form -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<!-- Issue Type -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h2 class="font-headline-md text-headline-md mb-4 text-on-surface">Issue Details</h2>
+<div class="flex flex-col gap-4">
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="issue-type">Primary Reason</label>
+<div class="relative">
+<select class="w-full bg-background border border-border rounded-lg px-4 py-3 text-on-surface appearance-none focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors" id="issue-type">
+<option disabled="" selected="" value="">Select an issue type...</option>
+<option value="payment">Payment Issue</option>
+<option value="quality">Work Quality Issue</option>
+<option value="deadline">Missed Deadline</option>
+<option value="misleading">Misleading Job / Requirement</option>
+<option value="communication">Communication Problem</option>
+<option value="unprofessional">Unprofessional Behaviour</option>
+<option value="fraud">Fraud / Suspicious Activity</option>
+<option value="other">Other</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-on-surface-variant pointer-events-none">expand_more</span>
+</div>
+</div>
+<div class="flex flex-col gap-2">
+<label class="font-label-md text-label-md text-on-surface-variant" for="issue-desc">Detailed Description</label>
+<textarea class="w-full bg-background border border-border rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y" id="issue-desc" placeholder="Please provide as much detail as possible about the situation..." rows="6"></textarea>
+</div>
+</div>
+</section>
+<!-- Supporting Evidence -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h2 class="font-headline-md text-headline-md mb-4 text-on-surface flex items-center gap-2">
+<span class="material-symbols-outlined text-primary">upload_file</span>
+                            Supporting Evidence
+                        </h2>
+<p class="font-body-md text-body-md text-on-surface-variant mb-4">Upload screenshots, documents, or communication logs that support your claim.</p>
+<!-- Upload Area -->
+<div class="border-2 border-dashed border-border rounded-lg p-8 flex flex-col items-center justify-center text-center bg-background hover:bg-surface-variant/30 transition-colors cursor-pointer mb-4">
+<span class="material-symbols-outlined text-[32px] text-on-surface-variant mb-2">cloud_upload</span>
+<span class="font-body-md text-body-md text-on-surface">Click to upload or drag and drop</span>
+<span class="font-label-md text-label-md text-on-surface-variant mt-1">PNG, JPG, PDF up to 10MB</span>
+</div>
+<!-- Attached Files -->
+<div class="flex flex-col gap-2">
+<div class="flex items-center justify-between p-3 bg-background border border-border rounded-lg group">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">image</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">conversation-screenshot.png</span>
+<span class="font-label-md text-label-md text-on-surface-variant">850 KB</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+<div class="flex items-center justify-between p-3 bg-background border border-border rounded-lg group">
+<div class="flex items-center gap-3">
+<div class="p-2 bg-surface-container rounded flex items-center justify-center text-primary">
+<span class="material-symbols-outlined text-[20px]">description</span>
+</div>
+<div class="flex flex-col">
+<span class="font-body-md text-body-md text-on-surface">project-reference.pdf</span>
+<span class="font-label-md text-label-md text-on-surface-variant">1.1 MB</span>
+</div>
+</div>
+<button class="text-on-surface-variant hover:text-error transition-colors p-1 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[20px]">close</span>
+</button>
+</div>
+</div>
+</section>
+</div>
+<!-- Right Column: Context & Actions -->
+<div class="flex flex-col gap-gutter">
+<!-- Job Summary Card -->
+<section class="bg-surface border border-border rounded-lg p-5 relative overflow-hidden">
+<div class="absolute top-0 right-0 w-16 h-16 bg-primary/5 rounded-bl-full pointer-events-none"></div>
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Related Job</h3>
+<div class="flex flex-col gap-3">
+<div>
+<h4 class="font-headline-md text-headline-md text-on-surface text-lg">Fix a Python / Flask Issue</h4>
+<div class="flex items-center gap-2 mt-1">
+<span class="px-2 py-0.5 bg-primary/10 text-primary text-xs rounded border border-primary/20 font-medium">Completed</span>
+<span class="text-sm text-on-surface-variant font-medium">â‚¹300</span>
+</div>
+</div>
+<div class="h-px bg-border w-full my-1"></div>
+<div class="grid grid-cols-2 gap-2 text-sm">
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-xs">Client</span>
+<span class="text-on-surface">College Club</span>
+</div>
+<div class="flex flex-col">
+<span class="text-on-surface-variant text-xs">Student</span>
+<span class="text-on-surface">Aarav Sharma</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Reported User Card -->
+<section class="bg-surface border border-border rounded-lg p-5">
+<h3 class="font-label-md text-label-md text-on-surface-variant uppercase tracking-wider mb-3">Reporting</h3>
+<div class="flex items-center gap-3">
+<div class="w-10 h-10 rounded-full bg-surface-variant flex items-center justify-center border border-border shrink-0">
+<span class="material-symbols-outlined text-on-surface">group</span>
+</div>
+<div class="flex flex-col overflow-hidden">
+<span class="font-body-md text-body-md text-on-surface font-medium truncate">College Club</span>
+<div class="flex items-center gap-1 text-xs text-primary">
+<span class="material-symbols-outlined text-[14px]">verified</span>
+<span>Verified Provider</span>
+</div>
+</div>
+</div>
+<a class="inline-flex items-center gap-1 text-sm text-primary hover:text-primary-container transition-colors mt-3" href="#">
+                            View Profile
+                            <span class="material-symbols-outlined text-[14px]">open_in_new</span>
+</a>
+</section>
+<!-- Submission Area -->
+<section class="bg-surface-container-low border border-border rounded-lg p-5 mt-auto">
+<div class="flex items-start gap-3 mb-6">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded border-border bg-background text-primary focus:ring-primary focus:ring-offset-background" id="confirm-accuracy" type="checkbox"/>
+</div>
+<label class="text-sm text-on-surface-variant leading-tight" for="confirm-accuracy">
+                                I confirm that the information provided is accurate and true to the best of my knowledge. False reports may lead to account penalties.
+                            </label>
+</div>
+<div class="flex flex-col gap-3">
+<button class="w-full bg-primary text-on-primary font-medium py-3 px-4 rounded-lg hover:bg-primary-container transition-colors flex items-center justify-center gap-2" id="submit-report" type="button">
+<span class="material-symbols-outlined text-[20px]">send</span>
+                                Submit Report
+                            </button>
+<button class="w-full bg-transparent border border-border text-on-surface font-medium py-3 px-4 rounded-lg hover:bg-surface-variant transition-colors" id="cancel-report" type="button">
+                                Cancel
+                            </button>
+</div>
+</section>
+</div>
+</div>
+</main>
+<!-- User-facing report submission and status states; no separate status screen is required. -->
+<main aria-live="polite" class="hidden flex-1 overflow-y-auto px-margin-mobile md:px-margin-desktop py-8 max-w-4xl mx-auto w-full" id="report-status-state">
+<div class="flex flex-col gap-4 mb-8">
+<nav aria-label="Breadcrumb" class="flex text-sm text-on-surface-variant gap-2 items-center">
+<span>Job</span><span class="material-symbols-outlined text-[16px]">chevron_right</span><span>Trust &amp; Safety</span><span class="material-symbols-outlined text-[16px]">chevron_right</span><span class="text-primary font-medium">Report Status</span>
+</nav>
+<div class="flex flex-col sm:flex-row sm:items-start sm:justify-between gap-4">
+<div><div class="flex items-center gap-3 mb-3"><span class="material-symbols-outlined text-primary text-[30px]">check_circle</span><h1 class="font-headline-lg text-headline-lg text-on-surface" id="status-heading">Report Submitted ✓</h1></div><p class="font-body-md text-body-md text-on-surface-variant" id="status-message">Your report has been successfully submitted to the NEXUS Trust &amp; Safety team.</p></div>
+<button class="inline-flex items-center justify-center gap-2 px-4 py-2 border border-border rounded-lg text-sm font-medium hover:bg-surface-variant transition-colors text-on-surface" data-back-to-job type="button"><span class="material-symbols-outlined text-[18px]">arrow_back</span>Back to Job</button>
+</div>
+</div>
+
+<section class="bg-surface border border-border rounded-lg p-6 mb-gutter" id="under-review-panel">
+<div class="flex flex-col sm:flex-row sm:items-center justify-between gap-4 mb-6"><div><h2 class="font-headline-md text-headline-md text-on-surface">Report Status</h2><p class="font-body-md text-body-md text-on-surface-variant mt-1">Our team is reviewing the information and evidence you provided.</p></div><span class="w-fit bg-primary/10 text-primary border border-primary/20 rounded-full px-3 py-1.5 font-label-md text-label-md" id="status-badge">Under Review</span></div>
+<div class="grid grid-cols-1 sm:grid-cols-3 gap-4">
+<div class="border border-primary/30 bg-primary/5 rounded-lg p-4"><div class="w-7 h-7 rounded-full bg-primary text-on-primary flex items-center justify-center mb-3"><span class="material-symbols-outlined text-[16px]">check</span></div><h3 class="font-body-md text-on-surface font-medium">1. Report Submitted</h3><p class="font-label-md text-primary mt-1">Completed</p></div>
+<div class="border border-primary/30 bg-primary/5 rounded-lg p-4"><div class="w-7 h-7 rounded-full border-2 border-primary text-primary flex items-center justify-center mb-3"><span class="material-symbols-outlined text-[16px]">hourglass_top</span></div><h3 class="font-body-md text-on-surface font-medium">2. Under Review</h3><p class="font-label-md text-primary mt-1">Current</p></div>
+<div class="border border-border bg-background rounded-lg p-4"><div class="w-7 h-7 rounded-full border border-border text-on-surface-variant flex items-center justify-center mb-3">3</div><h3 class="font-body-md text-on-surface font-medium">3. Resolution</h3><p class="font-label-md text-on-surface-variant mt-1">Pending</p></div>
+</div>
+</section>
+
+<section class="hidden bg-surface border border-border rounded-lg p-6 mb-gutter" id="more-information-panel">
+<div class="flex items-center gap-3 mb-4"><span class="material-symbols-outlined text-primary">info</span><div><h2 class="font-headline-md text-headline-md text-on-surface">More Information Needed</h2><p class="font-body-md text-body-md text-on-surface-variant mt-1">The NEXUS team needs additional information to continue reviewing your report.</p></div></div>
+<div class="bg-surface-container border border-border rounded-lg p-4 mb-5"><h3 class="font-label-md text-label-md uppercase tracking-wider text-on-surface-variant mb-2">Information Requested</h3><p class="font-body-md text-body-md text-on-surface">Please provide the original project files and any relevant communication related to the reported issue.</p></div>
+<label class="block font-label-md text-label-md text-on-surface-variant mb-2" for="additional-information">Additional Information</label><textarea class="w-full bg-background border border-border rounded-lg px-4 py-3 text-on-surface focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-colors resize-y" id="additional-information" placeholder="Provide the requested information..." rows="5"></textarea>
+<div class="border-2 border-dashed border-border rounded-lg p-4 mt-4 flex items-center gap-3 text-on-surface-variant"><span class="material-symbols-outlined text-primary">upload_file</span><span class="font-body-md text-body-md">Add supporting files</span></div>
+<div class="flex flex-col sm:flex-row gap-3 mt-5"><button class="bg-primary text-on-primary font-medium py-3 px-4 rounded-lg hover:bg-primary-container transition-colors" id="submit-additional-information" type="button">Submit Additional Information</button><button class="border border-border text-on-surface font-medium py-3 px-4 rounded-lg hover:bg-surface-variant transition-colors" data-back-to-job type="button">Back to Job</button></div>
+</section>
+
+<section class="hidden bg-surface border border-border rounded-lg p-6 mb-gutter" id="resolved-panel"><div class="flex items-start gap-3"><span class="material-symbols-outlined text-primary text-[30px]">task_alt</span><div><h2 class="font-headline-md text-headline-md text-on-surface">Resolved ✓</h2><p class="font-body-md text-body-md text-on-surface-variant mt-1">The NEXUS team has completed its review of this report.</p><div class="mt-5 space-y-2 text-body-md"><p><span class="text-on-surface-variant">Resolved On:</span> <span class="text-on-surface">Aug 31, 2026</span></p><p><span class="text-on-surface-variant">Resolution:</span> <span class="text-on-surface">Issue resolved after review.</span></p></div></div></div></section>
+<section class="hidden bg-surface border border-border rounded-lg p-6 mb-gutter" id="closed-panel"><div class="flex items-start gap-3"><span class="material-symbols-outlined text-on-surface-variant text-[30px]">lock</span><div><h2 class="font-headline-md text-headline-md text-on-surface">Closed</h2><p class="font-body-md text-body-md text-on-surface-variant mt-1">This report has been closed and no further action is currently required.</p></div></div></section>
+
+<section class="bg-surface border border-border rounded-lg p-6"><h2 class="font-headline-md text-headline-md text-on-surface mb-4">Case Information</h2><dl class="grid grid-cols-1 sm:grid-cols-2 gap-x-8 gap-y-4 text-body-md"><div><dt class="text-on-surface-variant text-label-md">Report ID</dt><dd class="text-on-surface mt-1">NX-RPT-1042</dd></div><div><dt class="text-on-surface-variant text-label-md">Issue Type</dt><dd class="text-on-surface mt-1">Work Quality Issue</dd></div><div><dt class="text-on-surface-variant text-label-md">Submitted</dt><dd class="text-on-surface mt-1">Aug 30, 2026</dd></div><div><dt class="text-on-surface-variant text-label-md">Reported User</dt><dd class="text-on-surface mt-1">College Club</dd></div><div class="sm:col-span-2"><dt class="text-on-surface-variant text-label-md">Related Job</dt><dd class="text-on-surface mt-1">Fix a Python / Flask Issue</dd></div></dl></section>
+</main>
+</div>
+<script>
+(() => {
+  const formState = document.getElementById('report-form-state');
+  const statusState = document.getElementById('report-status-state');
+  const panels = { review: document.getElementById('under-review-panel'), information: document.getElementById('more-information-panel'), resolved: document.getElementById('resolved-panel'), closed: document.getElementById('closed-panel') };
+  const heading = document.getElementById('status-heading');
+  const message = document.getElementById('status-message');
+  const badge = document.getElementById('status-badge');
+  const labels = { review: ['Report Submitted ✓', 'Your report has been successfully submitted to the NEXUS Trust & Safety team.', 'Under Review'], information: ['More Information Needed', 'The NEXUS team needs additional information to continue reviewing your report.', 'More Information Needed'], resolved: ['Resolved ✓', 'The NEXUS team has completed its review of this report.', 'Resolved'], closed: ['Closed', 'This report has been closed and no further action is currently required.', 'Closed'] };
+  function showStatus(state = 'review') { const safeState = labels[state] ? state : 'review'; formState.classList.add('hidden'); statusState.classList.remove('hidden'); Object.entries(panels).forEach(([name, panel]) => panel.classList.toggle('hidden', name !== safeState)); heading.textContent = labels[safeState][0]; message.textContent = labels[safeState][1]; badge.textContent = labels[safeState][2]; window.scrollTo({ top: 0, behavior: 'smooth' }); }
+  function backToJob() { if (document.referrer && history.length > 1) { history.back(); } else { location.href = '../nexus_job_workspace_desktop_student_view/code.html'; } }
+  document.getElementById('submit-report').addEventListener('click', event => { event.preventDefault(); event.stopImmediatePropagation(); showStatus('review'); });
+  document.getElementById('cancel-report').addEventListener('click', event => { event.preventDefault(); event.stopImmediatePropagation(); backToJob(); });
+  document.getElementById('back-to-job').addEventListener('click', backToJob);
+  document.querySelectorAll('[data-back-to-job]').forEach(button => button.addEventListener('click', backToJob));
+  document.getElementById('submit-additional-information').addEventListener('click', () => showStatus('review'));
+  const hashState = () => ({ '#more-information': 'information', '#resolved': 'resolved', '#closed': 'closed' }[location.hash]);
+  if (hashState()) showStatus(hashState());
+  window.addEventListener('hashchange', () => { if (hashState()) showStatus(hashState()); });
+  window.nexusReportStatus = showStatus;
+})();
+</script>
+</body></html>

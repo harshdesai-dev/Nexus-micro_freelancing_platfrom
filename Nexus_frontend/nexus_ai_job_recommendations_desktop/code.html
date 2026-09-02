@@ -1,0 +1,369 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Recommended for You</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "tertiary-container": "#fc7c78",
+                        "text-secondary": "#a1a1aa",
+                        "outline": "#86948a",
+                        "inverse-surface": "#e5e1e4",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-secondary": "#2f3037",
+                        "primary-container": "#10b981",
+                        "surface-dim": "#131315",
+                        "error-container": "#93000a",
+                        "on-tertiary-fixed": "#410005",
+                        "on-primary": "#003824",
+                        "secondary": "#c6c6cf",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-tertiary": "#650911",
+                        "on-primary-container": "#00422b",
+                        "tertiary-fixed": "#ffdad7",
+                        "secondary-container": "#45464e",
+                        "on-tertiary-container": "#711419",
+                        "background": "#131315",
+                        "tertiary": "#ffb3af",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-surface": "#e5e1e4",
+                        "on-primary-fixed": "#002113",
+                        "surface": "#18181b",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "secondary-fixed": "#e2e1eb",
+                        "inverse-primary": "#006c49",
+                        "text-primary": "#ffffff",
+                        "error": "#ffb4ab",
+                        "surface-container-low": "#1c1b1d",
+                        "border": "#27272a",
+                        "surface-bright": "#39393b",
+                        "surface-container-highest": "#353437",
+                        "surface-container-high": "#2a2a2c",
+                        "on-secondary-fixed": "#1a1b22",
+                        "surface-variant": "#353437",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "outline-variant": "#3c4a42",
+                        "on-error": "#690005",
+                        "on-surface-variant": "#bbcabf",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "inverse-on-surface": "#313032",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-tint": "#4edea3",
+                        "on-background": "#e5e1e4",
+                        "primary": "#4edea3",
+                        "surface-container": "#201f22",
+                        "on-error-container": "#ffdad6"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "max-width": "1280px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "margin-mobile": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background dark:bg-background text-on-surface min-h-screen flex">
+<!-- SideNavBar (Hidden on Mobile, flex on md+) -->
+<nav class="hidden md:flex bg-background dark:bg-background docked left-0 h-full w-64 border-r border-border dark:border-border flat no shadows fixed left-0 top-0 h-full flex-col py-margin-desktop z-40">
+<div class="px-6 mb-8 flex items-center gap-3">
+<div class="w-10 h-10 rounded-lg bg-surface flex items-center justify-center border border-border">
+<span class="material-symbols-outlined text-primary text-2xl" data-icon="work">work</span>
+</div>
+<div>
+<h1 class="font-headline-md text-headline-md text-primary">Student Portal</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">AI-Powered Career Hub</p>
+</div>
+</div>
+<div class="flex-1 flex flex-col gap-2 px-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="dashboard">dashboard</span>
+<span class="font-label-md text-label-md">Dashboard</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary dark:text-primary font-bold border-l-4 border-primary bg-primary/10 transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="search">search</span>
+<span class="font-label-md text-label-md">Find Jobs</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="assignment_turned_in">assignment_turned_in</span>
+<span class="font-label-md text-label-md">Applications</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="work_outline">work_outline</span>
+<span class="font-label-md text-label-md">My Work</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="person">person</span>
+<span class="font-label-md text-label-md">Profile</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="add_circle">add_circle</span>
+<span class="font-label-md text-label-md">Post a Gig</span>
+</a>
+</div>
+<div class="px-4 mt-auto mb-4">
+<button class="w-full flex items-center justify-center gap-2 py-3 rounded-lg bg-surface border border-border text-text-primary font-label-md text-label-md hover:bg-surface-container transition-colors">
+                View Saved Jobs
+             </button>
+</div>
+<div class="flex flex-col gap-2 px-4 border-t border-border pt-4">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="help_outline">help_outline</span>
+<span class="font-label-md text-label-md">Help Center</span>
+</a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant dark:text-on-surface-variant hover:bg-surface-container dark:hover:bg-surface-container hover:text-primary transition-all duration-200 ease-in-out" href="#">
+<span class="material-symbols-outlined" data-icon="logout">logout</span>
+<span class="font-label-md text-label-md">Logout</span>
+</a>
+</div>
+</nav>
+<!-- Main Content Area -->
+<main class="flex-1 md:ml-64 flex flex-col min-h-screen relative">
+<!-- TopNavBar -->
+<header class="bg-background dark:bg-background flex justify-between items-center w-full px-margin-desktop h-16 sticky top-0 z-50 border-b border-border dark:border-border flat no shadows docked full-width top-0">
+<div class="flex items-center gap-4">
+<span class="font-headline-md text-headline-md font-bold text-primary dark:text-primary">NEXUS</span>
+<div class="hidden md:flex items-center bg-surface border border-border rounded-lg px-3 py-1.5 focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary mr-2" data-icon="search">search</span>
+<input class="bg-transparent border-none outline-none text-text-primary text-sm focus:ring-0 w-64 placeholder:text-text-secondary" placeholder="Search..." type="text"/>
+</div>
+</div>
+<div class="flex items-center gap-4">
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="notifications">notifications</span>
+</button>
+<button class="p-2 text-on-surface-variant dark:text-on-surface-variant hover:text-primary dark:hover:text-primary transition-colors scale-95 duration-150">
+<span class="material-symbols-outlined" data-icon="settings">settings</span>
+</button>
+<div class="w-8 h-8 rounded-full overflow-hidden border border-border">
+<img alt="Student Profile Avatar" class="w-full h-full object-cover" data-alt="A professional headshot of a young student in a modern, well-lit studio environment, perfect for a digital portfolio avatar. The lighting is soft and flattering, highlighting a friendly expression. The background is a clean, neutral dark gray to match a dark-mode aesthetic. High-resolution, crisp details." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAw3IthVfzfAS6JFe8CYGNxDhqtsguhoFBec8m2sSSMBU1LuPo12VrtiI_Z6vewsOV-ZyxFyjVPOitn52occcb_DgtePhmcpNXz_sLZidQdywnQZqUhFUzN9515dK-ucpfqB-YoW9R4SO9uY7MNPCTobhrt2JrILlLyOAhWw8wcfpsmb2mgyxHsM6q09yiwFFRkbg4kGpieV27U9sqwKl4NzU1B8TURhb6_o10uf_Q0XUv6dCW6NeLesw"/>
+</div>
+</div>
+</header>
+<!-- Page Content -->
+<div class="p-margin-desktop max-w-max-width mx-auto w-full">
+<!-- Breadcrumb & Header -->
+<div class="mb-8 flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<div class="flex items-center text-text-secondary font-label-md text-label-md mb-2">
+<a class="hover:text-primary transition-colors" href="#">Find Jobs</a>
+<span class="material-symbols-outlined mx-1 text-sm">chevron_right</span>
+<span class="text-text-primary">Recommended for You</span>
+</div>
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-2">Recommended for You</h1>
+<p class="font-body-lg text-body-lg text-text-secondary max-w-2xl">Discover jobs selected based on your skills, profile, portfolio, and availability.</p>
+</div>
+<button class="flex items-center gap-2 px-4 py-2 rounded-lg border border-border bg-transparent text-text-primary hover:bg-surface-container transition-colors font-label-md text-label-md w-fit">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                    Back to Find Jobs
+                </button>
+</div>
+<!-- Profile Context Strip -->
+<div class="bg-surface border border-border rounded-lg p-4 mb-8 flex flex-col md:flex-row md:items-center justify-between gap-4">
+<div class="flex flex-wrap gap-x-4 gap-y-2 font-body-md text-body-md text-text-secondary">
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">person</span>
+<span>Matching: Python Â· Flask Â· MySQL Â· HTML Â· CSS</span>
+</div>
+<div class="hidden md:block text-border">|</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">analytics</span>
+<span>Profile completeness: 86%</span>
+</div>
+<div class="hidden md:block text-border">|</div>
+<div class="flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">event_available</span>
+<span>Availability: <span class="text-primary">Available</span></span>
+</div>
+</div>
+<p class="font-label-md text-label-md text-text-secondary opacity-70">Recommendations use information already present in your NEXUS profile.</p>
+</div>
+<!-- Best Match Section -->
+<div class="mb-12">
+<div class="flex items-center gap-3 mb-4">
+<span class="material-symbols-outlined text-primary text-xl">star</span>
+<h2 class="font-headline-md text-headline-md text-text-primary">Best Match for You</h2>
+</div>
+<div class="bg-surface border-2 border-primary/20 rounded-xl p-6 relative overflow-hidden group hover:border-primary/40 transition-colors">
+<!-- Subtle Glow Effect -->
+<div class="absolute -inset-1 bg-gradient-to-r from-primary/10 to-transparent blur-xl opacity-0 group-hover:opacity-100 transition-opacity pointer-events-none"></div>
+<div class="relative z-10 flex flex-col md:flex-row justify-between gap-6">
+<div class="flex-1">
+<div class="flex items-start justify-between mb-2">
+<h3 class="font-headline-lg-mobile text-headline-lg-mobile text-text-primary font-semibold">Fix a Python / Flask Issue</h3>
+<div class="bg-primary/10 text-primary px-3 py-1 rounded-full font-label-md text-label-md border border-primary/20 flex items-center gap-1 shrink-0">
+<span class="material-symbols-outlined text-[14px]">local_fire_department</span>
+                                    94% Match
+                                </div>
+</div>
+<div class="flex flex-wrap items-center gap-4 text-text-secondary font-body-md text-body-md mb-6">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">payments</span> Budget: â‚¹300</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">schedule</span> Deadline: 2 days</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-sm">business</span> Client: College Club</div>
+</div>
+<div class="flex flex-wrap gap-2 mb-6">
+<span class="px-3 py-1 bg-surface-container rounded-md border border-border text-text-secondary font-label-md text-label-md">Python</span>
+<span class="px-3 py-1 bg-surface-container rounded-md border border-border text-text-secondary font-label-md text-label-md">Flask</span>
+</div>
+<div class="bg-background rounded-lg p-4 border border-border mb-6">
+<p class="font-label-md text-label-md text-text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm">psychology</span> Why this job matches you:
+                                </p>
+<ul class="space-y-1 font-body-md text-body-md text-text-secondary">
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[16px]">check</span> Python skill match</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[16px]">check</span> Flask experience</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[16px]">check</span> Relevant portfolio project</li>
+<li class="flex items-center gap-2"><span class="material-symbols-outlined text-primary text-[16px]">check</span> Available before deadline</li>
+</ul>
+</div>
+</div>
+<div class="flex md:flex-col gap-3 justify-end shrink-0">
+<button class="flex-1 md:flex-none px-6 py-3 bg-primary-container text-on-primary-container font-label-md text-label-md rounded-lg hover:bg-primary transition-colors flex items-center justify-center gap-2">
+                                Apply Now <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+<button class="flex-1 md:flex-none px-6 py-3 bg-transparent border border-border text-text-primary font-label-md text-label-md rounded-lg hover:bg-surface-container transition-colors flex items-center justify-center gap-2">
+                                View Job <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</button>
+</div>
+</div>
+</div>
+</div>
+<!-- Recommended List Section -->
+<div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-4 mb-6">
+<h2 class="font-headline-md text-headline-md text-text-primary">More Jobs You May Like</h2>
+<div class="flex gap-2 w-full md:w-auto">
+<div class="flex-1 md:w-64 bg-surface border border-border rounded-lg px-3 py-2 flex items-center focus-within:border-primary transition-colors">
+<span class="material-symbols-outlined text-text-secondary mr-2 text-sm">search</span>
+<input class="bg-transparent border-none outline-none text-text-primary font-body-md text-body-md w-full placeholder:text-text-secondary" placeholder="Search recommended jobs..." type="text"/>
+</div>
+<button class="px-4 py-2 bg-surface border border-border rounded-lg text-text-primary hover:bg-surface-container transition-colors flex items-center justify-center">
+<span class="material-symbols-outlined text-[20px]">tune</span>
+</button>
+</div>
+</div>
+<!-- Filters -->
+<div class="flex gap-2 mb-6 overflow-x-auto pb-2 scrollbar-hide">
+<button class="px-4 py-1.5 bg-surface border border-border rounded-full text-text-secondary font-label-md text-label-md hover:text-text-primary hover:border-primary/50 transition-colors whitespace-nowrap">Skills</button>
+<button class="px-4 py-1.5 bg-surface border border-border rounded-full text-text-secondary font-label-md text-label-md hover:text-text-primary hover:border-primary/50 transition-colors whitespace-nowrap">Budget</button>
+<button class="px-4 py-1.5 bg-surface border border-border rounded-full text-text-secondary font-label-md text-label-md hover:text-text-primary hover:border-primary/50 transition-colors whitespace-nowrap">Deadline</button>
+</div>
+<!-- Job List -->
+<div class="space-y-4">
+<!-- Job Card 1 -->
+<div class="bg-surface border border-border rounded-lg p-5 hover:border-primary/30 transition-colors cursor-pointer group flex flex-col md:flex-row gap-4 justify-between">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary group-hover:text-primary transition-colors">Create a 30-sec Instagram Reel</h3>
+<div class="bg-surface-container text-text-primary px-2 py-1 rounded font-label-md text-label-md border border-border flex items-center gap-1 text-[11px]">
+                                    88% Match
+                                </div>
+</div>
+<div class="flex items-center gap-4 text-text-secondary font-body-md text-body-md mb-3">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">payments</span> â‚¹300</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 3 days</div>
+</div>
+<p class="font-body-md text-body-md text-text-secondary flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">auto_awesome</span>
+<span><span class="text-text-primary">Why:</span> Matches your content-editing interests.</span>
+</p>
+</div>
+<div class="flex items-center justify-end">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity px-4 py-2 bg-transparent text-primary font-label-md text-label-md hover:bg-primary/10 rounded-md">
+                                View Details
+                            </button>
+</div>
+</div>
+<!-- Job Card 2 -->
+<div class="bg-surface border border-border rounded-lg p-5 hover:border-primary/30 transition-colors cursor-pointer group flex flex-col md:flex-row gap-4 justify-between">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary group-hover:text-primary transition-colors">Create a Presentation</h3>
+<div class="bg-surface-container text-text-primary px-2 py-1 rounded font-label-md text-label-md border border-border flex items-center gap-1 text-[11px]">
+                                    81% Match
+                                </div>
+</div>
+<div class="flex items-center gap-4 text-text-secondary font-body-md text-body-md mb-3">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">payments</span> â‚¹150</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 2 days</div>
+</div>
+<p class="font-body-md text-body-md text-text-secondary flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">auto_awesome</span>
+<span><span class="text-text-primary">Why:</span> Matches your presentation and design experience.</span>
+</p>
+</div>
+<div class="flex items-center justify-end">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity px-4 py-2 bg-transparent text-primary font-label-md text-label-md hover:bg-primary/10 rounded-md">
+                                View Details
+                            </button>
+</div>
+</div>
+<!-- Job Card 3 -->
+<div class="bg-surface border border-border rounded-lg p-5 hover:border-primary/30 transition-colors cursor-pointer group flex flex-col md:flex-row gap-4 justify-between">
+<div class="flex-1">
+<div class="flex justify-between items-start mb-2">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary group-hover:text-primary transition-colors">Build a Simple Website</h3>
+<div class="bg-surface-container text-text-primary px-2 py-1 rounded font-label-md text-label-md border border-border flex items-center gap-1 text-[11px]">
+                                    76% Match
+                                </div>
+</div>
+<div class="flex items-center gap-4 text-text-secondary font-body-md text-body-md mb-3">
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">payments</span> â‚¹1,000</div>
+<div class="flex items-center gap-1"><span class="material-symbols-outlined text-[14px]">schedule</span> 5 days</div>
+</div>
+<p class="font-body-md text-body-md text-text-secondary flex items-start gap-2">
+<span class="material-symbols-outlined text-primary text-[16px] mt-0.5">auto_awesome</span>
+<span><span class="text-text-primary">Why:</span> Matches your web development experience.</span>
+</p>
+</div>
+<div class="flex items-center justify-end">
+<button class="opacity-0 group-hover:opacity-100 transition-opacity px-4 py-2 bg-transparent text-primary font-label-md text-label-md hover:bg-primary/10 rounded-md">
+                                View Details
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</div>
+</main>
+</body></html>

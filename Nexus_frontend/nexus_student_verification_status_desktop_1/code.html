@@ -1,0 +1,233 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NEXUS - Student Verification Status</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-lowest": "#0e0e10",
+                        "surface-container-highest": "#353437",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "on-tertiary-fixed": "#410005",
+                        "outline-variant": "#3c4a42",
+                        "primary-fixed": "#6ffbbe",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-tertiary-container": "#711419",
+                        "on-background": "#e5e1e4",
+                        "secondary": "#c6c6cf",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "on-secondary-container": "#b4b4bd",
+                        "surface-variant": "#353437",
+                        "primary-container": "#10b981",
+                        "on-secondary": "#2f3037",
+                        "on-surface": "#e5e1e4",
+                        "surface-bright": "#39393b",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "outline": "#86948a",
+                        "tertiary": "#ffb3af",
+                        "inverse-primary": "#006c49",
+                        "secondary-fixed": "#e2e1eb",
+                        "tertiary-container": "#fc7c78",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-primary": "#003824",
+                        "on-error-container": "#ffdad6",
+                        "surface-container-high": "#2a2a2c",
+                        "on-surface-variant": "#bbcabf",
+                        "tertiary-fixed": "#ffdad7",
+                        "inverse-on-surface": "#313032",
+                        "on-primary-fixed": "#002113",
+                        "surface-dim": "#131315",
+                        "background": "#131315",
+                        "surface-tint": "#4edea3",
+                        "primary": "#4edea3",
+                        "on-secondary-fixed": "#1a1b22",
+                        "on-tertiary": "#650911",
+                        "text-primary": "#ffffff",
+                        "error-container": "#93000a",
+                        "surface": "#18181b",
+                        "surface-container": "#201f22",
+                        "secondary-container": "#45464e",
+                        "surface-container-low": "#1c1b1d",
+                        "inverse-surface": "#e5e1e4",
+                        "border": "#27272a",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-error": "#690005",
+                        "error": "#ffb4ab",
+                        "text-secondary": "#a1a1aa",
+                        "on-primary-container": "#00422b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "base": "4px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        /* Custom styles to handle dynamic states for this demo */
+        .state-container { display: none; }
+        .state-container.active { display: block; }
+        
+        .pulse-ring {
+            animation: pulse-ring 2s cubic-bezier(0.215, 0.61, 0.355, 1) infinite;
+        }
+        @keyframes pulse-ring {
+            0% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 222, 163, 0.7); }
+            70% { transform: scale(1); box-shadow: 0 0 0 10px rgba(78, 222, 163, 0); }
+            100% { transform: scale(0.95); box-shadow: 0 0 0 0 rgba(78, 222, 163, 0); }
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background min-h-screen flex flex-col font-body-md antialiased overflow-x-hidden selection:bg-primary-container selection:text-text-primary">
+<!-- Header -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-mobile md:px-margin-desktop py-4 max-w-max-width mx-auto bg-background/80 backdrop-blur-md">
+<a href="{{DATA:SCREEN:SCREEN_75}}" class="text-text-secondary hover:text-text-primary transition-colors flex items-center justify-center w-10 h-10 rounded-full hover:bg-surface-variant">
+<span class="material-symbols-outlined text-[24px]">arrow_back</span>
+</a>
+<div class="font-headline-md text-headline-md font-bold tracking-tighter text-primary dark:text-primary">
+            NEXUS
+        </div>
+<div class="w-10 h-10"></div> <!-- Spacer for centering -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-margin-mobile md:px-margin-desktop py-24 w-full max-w-max-width mx-auto relative">
+<!-- Background Ambient Glow -->
+<div class="absolute inset-0 overflow-hidden pointer-events-none flex items-center justify-center opacity-30">
+<div class="w-[800px] h-[800px] bg-primary/10 rounded-full blur-[120px]"></div>
+</div>
+<!-- Verification Status Card -->
+<div class="bg-surface-container-low border border-border rounded-xl p-8 md:p-12 w-full max-w-lg relative z-10 shadow-2xl flex flex-col items-center text-center">
+<!-- State Selector (For Demo Purposes Only - Would be programmatic in real app) -->
+<div class="absolute -top-12 left-0 right-0 flex justify-center gap-2 mb-4">
+<button class="px-3 py-1 text-xs rounded-full border border-border hover:text-text-primary focus:outline-none focus:ring-1 focus:ring-primary state-btn bg-primary/20 text-primary border-primary/50" data-state="pending" onclick="setState('pending')">Pending</button>
+<button class="px-3 py-1 text-xs rounded-full border border-border bg-surface text-text-secondary hover:text-text-primary focus:outline-none focus:ring-1 focus:ring-primary state-btn" data-state="verified" onclick="setState('verified')">Verified</button>
+<button class="px-3 py-1 text-xs rounded-full border border-border bg-surface text-text-secondary hover:text-text-primary focus:outline-none focus:ring-1 focus:ring-primary state-btn" data-state="rejected" onclick="setState('rejected')">Rejected</button>
+</div>
+<!-- PENDING STATE -->
+<div class="state-container w-full active" id="state-pending">
+<div class="w-24 h-24 mx-auto mb-6 rounded-full bg-surface-variant flex items-center justify-center border border-border relative pulse-ring">
+<span class="material-symbols-outlined text-[40px] text-primary" style="font-variation-settings: 'FILL' 1;">hourglass_empty</span>
+<div class="absolute -bottom-1 -right-1 w-8 h-8 rounded-full bg-surface border border-border flex items-center justify-center">
+<div class="w-3 h-3 rounded-full bg-yellow-500 animate-pulse"></div>
+</div>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-3">Pending Verification</h1>
+<p class="font-body-lg text-body-lg text-text-secondary mb-8">Your college ID has been submitted and is currently being reviewed by the NEXUS admin team. This usually takes 24-48 hours.</p>
+<div class="bg-surface border border-border rounded-lg p-4 mb-8 text-left">
+<div class="flex justify-between items-center mb-2 pb-2 border-b border-border">
+<span class="font-label-md text-label-md text-text-secondary uppercase tracking-wider">Submission Details</span>
+</div>
+<div class="flex flex-col gap-2 mt-3">
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-text-secondary">Document Type</span>
+<span class="font-body-md text-body-md text-text-primary font-medium">Student ID Card</span>
+</div>
+<div class="flex justify-between items-center">
+<span class="font-body-md text-body-md text-text-secondary">Submitted On</span>
+<span class="font-body-md text-body-md text-text-primary font-medium">Oct 24, 2023</span>
+</div>
+</div>
+</div>
+<a href="{{DATA:SCREEN:SCREEN_75}}" class="w-full py-3 px-6 rounded-lg border border-border bg-transparent text-text-primary font-body-lg text-body-lg hover:bg-surface-variant transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[20px]">home</span>
+                    Back to Home
+                </a>
+</div>
+<!-- VERIFIED STATE -->
+<div class="state-container w-full" id="state-verified">
+<div class="w-24 h-24 mx-auto mb-6 rounded-full bg-primary/10 flex items-center justify-center border border-primary/30 relative">
+<span class="material-symbols-outlined text-[48px] text-primary" style="font-variation-settings: 'FILL' 1;">check_circle</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-3">Verified</h1>
+<p class="font-body-lg text-body-lg text-text-secondary mb-8">Your college identity has been successfully verified. You're ready to start using NEXUS.</p>
+<button class="w-full py-3 px-6 rounded-lg bg-primary text-on-primary font-body-lg text-body-lg hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2 font-medium">
+                    Let's Start
+                    <span class="material-symbols-outlined text-[20px]">arrow_forward</span>
+</button>
+</div>
+<!-- REJECTED STATE -->
+<div class="state-container w-full" id="state-rejected">
+<div class="w-24 h-24 mx-auto mb-6 rounded-full bg-error/10 flex items-center justify-center border border-error/30 relative">
+<span class="material-symbols-outlined text-[48px] text-error" style="font-variation-settings: 'FILL' 1;">error</span>
+</div>
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-3">Verification Rejected</h1>
+<p class="font-body-lg text-body-lg text-text-secondary mb-6">We couldn't verify your college ID. Please review the reason and submit a valid document again.</p>
+<div class="bg-error-container/20 border border-error/30 rounded-lg p-4 mb-8 text-left flex items-start gap-3">
+<span class="material-symbols-outlined text-error mt-0.5 text-[20px]" style="font-variation-settings: 'FILL' 1;">info</span>
+<div>
+<h4 class="font-body-md text-body-md text-error font-medium mb-1">Reason for Rejection</h4>
+<p class="font-body-md text-body-md text-text-secondary text-sm">The uploaded ID card was unclear and illegible. Please ensure the photo is well-lit and all text is readable.</p>
+</div>
+</div>
+<button class="w-full py-3 px-6 rounded-lg bg-primary text-on-primary font-body-lg text-body-lg hover:bg-primary-fixed-dim transition-colors flex items-center justify-center gap-2 font-medium">
+                    Re-upload College ID
+                    <span class="material-symbols-outlined text-[20px]">upload</span>
+</button>
+<a href="mailto:support@nexus.edu" class="w-full mt-4 py-3 px-6 rounded-lg border border-border bg-transparent text-text-primary font-body-lg text-body-lg hover:bg-surface-variant transition-colors flex items-center justify-center">
+                    Contact Support
+                </a>
+</div>
+</div>
+</main>
+<script>
+        function setState(stateName) {
+            // Hide all containers
+            document.querySelectorAll('.state-container').forEach(el => {
+                el.classList.remove('active');
+            });
+            
+            // Show selected container
+            document.getElementById('state-' + stateName).classList.add('active');
+            
+            // Update buttons styling (just for demo)
+            document.querySelectorAll('.state-btn').forEach(btn => {
+                if(btn.dataset.state === stateName) {
+                    btn.classList.add('bg-primary/20', 'text-primary', 'border-primary/50');
+                    btn.classList.remove('bg-surface', 'text-text-secondary');
+                } else {
+                    btn.classList.remove('bg-primary/20', 'text-primary', 'border-primary/50');
+                    btn.classList.add('bg-surface', 'text-text-secondary');
+                }
+            });
+        }
+        
+        // Initialize state buttons styling
+        setState('pending');
+    </script>
+
+
+</body></html>

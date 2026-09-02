@@ -1,0 +1,363 @@
+<!DOCTYPE html><html class="dark" lang="en" style=""><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NEXUS - Student Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<style>
+        @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&display=swap');
+        
+        :root {
+            --color-background: #131315;
+            --color-surface: #18181b;
+            --color-border: #27272a;
+            --color-primary: #4edea3;
+            --color-text-primary: #ffffff;
+            --color-text-secondary: #a1a1aa;
+        }
+
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: var(--color-background);
+            color: var(--color-text-primary);
+            min-height: 100vh;
+            display: flex;
+            flex-direction: column;
+        }
+
+        /* Tonal Layering & Depth */
+        .surface-card {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+        }
+
+        .input-field {
+            background-color: var(--color-surface);
+            border: 1px solid var(--color-border);
+            color: var(--color-text-primary);
+            transition: border-color 0.2s, box-shadow 0.2s;
+        }
+
+        .input-field:focus {
+            outline: none;
+            border-color: var(--color-primary);
+            box-shadow: 0 0 0 2px rgba(78, 222, 163, 0.2);
+        }
+        
+        .input-field::placeholder {
+            color: var(--color-text-secondary);
+        }
+
+        /* Material Symbols Weight Setup */
+        .material-symbols-outlined[data-weight="fill"] {
+            font-variation-settings: 'FILL' 1;
+        }
+    </style>
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-tertiary-container": "#711419",
+                      "on-error-container": "#ffdad6",
+                      "on-primary-fixed-variant": "#005236",
+                      "on-primary-container": "#00422b",
+                      "outline-variant": "#3c4a42",
+                      "surface-variant": "#353437",
+                      "primary": "#4edea3",
+                      "on-tertiary-fixed": "#410005",
+                      "surface-container-low": "#1c1b1d",
+                      "primary-fixed-dim": "#4edea3",
+                      "border": "#27272a",
+                      "outline": "#86948a",
+                      "inverse-primary": "#006c49",
+                      "error-container": "#93000a",
+                      "tertiary-container": "#fc7c78",
+                      "on-secondary": "#2f3037",
+                      "surface-tint": "#4edea3",
+                      "text-secondary": "#a1a1aa",
+                      "primary-fixed": "#6ffbbe",
+                      "tertiary-fixed": "#ffdad7",
+                      "on-surface-variant": "#bbcabf",
+                      "tertiary-fixed-dim": "#ffb3af",
+                      "text-primary": "#ffffff",
+                      "on-tertiary": "#650911",
+                      "on-background": "#e5e1e4",
+                      "surface-bright": "#39393b",
+                      "on-secondary-fixed": "#1a1b22",
+                      "secondary-container": "#45464e",
+                      "secondary-fixed-dim": "#c6c6cf",
+                      "on-primary": "#003824",
+                      "on-secondary-container": "#b4b4bd",
+                      "inverse-surface": "#e5e1e4",
+                      "surface-container": "#201f22",
+                      "on-error": "#690005",
+                      "on-primary-fixed": "#002113",
+                      "primary-container": "#10b981",
+                      "surface-container-highest": "#353437",
+                      "surface-container-lowest": "#0e0e10",
+                      "on-tertiary-fixed-variant": "#842225",
+                      "inverse-on-surface": "#313032",
+                      "surface-dim": "#131315",
+                      "error": "#ffb4ab",
+                      "surface-container-high": "#2a2a2c",
+                      "on-secondary-fixed-variant": "#45464e",
+                      "secondary": "#c6c6cf",
+                      "on-surface": "#e5e1e4",
+                      "background": "#131315",
+                      "surface": "#18181b",
+                      "secondary-fixed": "#e2e1eb",
+                      "tertiary": "#ffb3af"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "max-width": "1280px",
+                      "margin-desktop": "32px",
+                      "gutter": "16px",
+                      "base": "4px",
+                      "margin-mobile": "16px"
+              },
+              "fontFamily": {
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+            },
+          }
+    </script>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" data-snapdom="injected-import"><script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-text-primary antialiased selection:bg-primary-container selection:text-text-primary flex flex-col min-h-screen">
+<!-- Header (Transactional Intent: Shell Suppressed, Minimal Brand Nav) -->
+<header class="w-full flex justify-between items-center px-margin-desktop py-6 max-w-max-width mx-auto">
+<a class="flex items-center gap-2 text-primary hover:opacity-80 transition-opacity" href="#">
+<span class="font-headline-lg text-headline-lg font-black tracking-tighter text-primary">NEXUS</span>
+</a>
+<a class="flex items-center gap-2 text-text-secondary hover:text-text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_92}}">
+<span class="material-symbols-outlined text-[20px]" data-icon="arrow_back">arrow_back</span>
+<span class="font-label-md text-label-md">Back</span>
+</a>
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center px-margin-desktop py-12">
+<!-- Registration Card Container -->
+<div class="bg-surface-container-low border border-border rounded-lg p-8 md:p-12 w-full max-w-2xl shadow-2xl relative overflow-hidden">
+<!-- Atmospheric Gradient Accent -->
+<div class="absolute top-0 left-0 w-full h-1 bg-gradient-to-r from-transparent via-primary to-transparent opacity-50"></div>
+<!-- Header Section -->
+<div class="text-center mb-10">
+<h1 class="font-headline-lg text-headline-lg mb-2 text-text-primary">Create your student account</h1>
+<p class="font-body-md text-body-md text-text-secondary">Join NEXUS, showcase your skills, and discover real paid opportunities.</p>
+</div>
+<!-- Registration Form -->
+<form class="space-y-8" action="{{DATA:SCREEN:SCREEN_84}}">
+<!-- Account Details Module -->
+<div class="space-y-6">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-secondary" for="fullName">Full Name<span class="text-primary ml-1">*</span></label>
+<input class="input-field w-full rounded-lg px-4 py-3 font-body-md text-body-md bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary" id="fullName" placeholder="Enter your full name" required="" type="text">
+</div>
+<!-- Email Address -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-secondary" for="email">Email Address<span class="text-primary ml-1">*</span></label>
+<input class="input-field w-full rounded-lg px-4 py-3 font-body-md text-body-md bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary" id="email" placeholder="Enter your college or personal email" required="" type="email">
+</div>
+<!-- Password Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Password -->
+<div class="space-y-2 relative">
+<label class="block font-label-md text-label-md text-text-secondary" for="password">Password<span class="text-primary ml-1">*</span></label>
+<input class="input-field w-full rounded-lg px-4 py-3 font-body-md text-body-md pr-12 bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary" id="password" placeholder="Create a password" required="" type="password">
+<button class="absolute right-3 top-[34px] text-text-secondary hover:text-primary transition-colors focus:outline-none" onclick="togglePassword('password', 'toggle-pass-icon')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="toggle-pass-icon">visibility</span>
+</button>
+</div>
+<!-- Confirm Password -->
+<div class="space-y-2 relative">
+<label class="block font-label-md text-label-md text-text-secondary" for="confirmPassword">Confirm Password<span class="text-primary ml-1">*</span></label>
+<input class="input-field w-full rounded-lg px-4 py-3 font-body-md text-body-md pr-12 bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary" id="confirmPassword" placeholder="Re-enter your password" required="" type="password">
+<button class="absolute right-3 top-[34px] text-text-secondary hover:text-primary transition-colors focus:outline-none" onclick="togglePassword('confirmPassword', 'toggle-confirm-pass-icon')" type="button">
+<span class="material-symbols-outlined" data-icon="visibility" id="toggle-confirm-pass-icon">visibility</span>
+</button>
+</div>
+</div>
+</div>
+<hr class="border-t border-border">
+<!-- Student Information Module -->
+<div class="space-y-6">
+<h2 class="font-headline-md text-headline-md text-text-primary">Student Information</h2>
+<!-- College / University -->
+<div class="space-y-2 relative">
+<label class="block font-label-md text-label-md text-text-secondary" for="college">College / University<span class="text-primary ml-1">*</span></label>
+<div class="relative">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary" data-icon="search">search</span>
+<input class="input-field w-full rounded-lg pl-10 pr-4 py-3 font-body-md text-body-md bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary" id="college" placeholder="Search or enter your college" required="" type="text">
+</div>
+</div>
+<!-- Course & Year Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Course / Degree -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-secondary" for="course">Course / Degree<span class="text-primary ml-1">*</span></label>
+<select class="input-field w-full rounded-lg px-4 py-3 font-body-md text-body-md appearance-none bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23a1a1aa%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]" id="course" required="">
+<option disabled="" selected="" value="">Select your course</option>
+<option value="cs">Computer Science</option>
+<option value="eng">Engineering</option>
+<option value="design">Design</option>
+<option value="business">Business</option>
+<option value="other">Other</option>
+</select>
+</div>
+<!-- Year of Study -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-secondary" for="year">Year of Study<span class="text-primary ml-1">*</span></label>
+<select class="input-field w-full rounded-lg px-4 py-3 font-body-md text-body-md appearance-none bg-surface border-border focus:border-primary focus:ring-1 focus:ring-primary bg-[url('data:image/svg+xml;charset=US-ASCII,%3Csvg%20xmlns%3D%22http%3A%2F%2Fwww.w3.org%2F2000%2Fsvg%22%20width%3D%2224%22%20height%3D%2224%22%20viewBox%3D%220%200%2024%2024%22%20fill%3D%22none%22%20stroke%3D%22%23a1a1aa%22%20stroke-width%3D%222%22%20stroke-linecap%3D%22round%22%20stroke-linejoin%3D%22round%22%3E%3Cpolyline%20points%3D%226%209%2012%2015%2018%209%22%3E%3C%2Fpolyline%3E%3C%2Fsvg%3E')] bg-no-repeat bg-[position:right_1rem_center] bg-[length:1em]" id="year" required="">
+<option disabled="" selected="" value="">Select year</option>
+<option value="1">First Year</option>
+<option value="2">Second Year</option>
+<option value="3">Third Year</option>
+<option value="4">Fourth Year</option>
+<option value="grad">Graduate</option>
+</select>
+</div>
+</div>
+</div>
+<!-- Terms and Actions -->
+<div class="space-y-6">
+<div class="space-y-2">
+<h2 class="font-headline-md text-headline-md text-text-primary">College Verification</h2>
+<p class="font-body-md text-body-md text-text-secondary">Verification of your college ID is required to activate your account and access paid opportunities.</p>
+</div>
+<div class="relative group cursor-pointer">
+<input accept=".jpg,.jpeg,.png,.pdf" class="absolute inset-0 w-full h-full opacity-0 cursor-pointer z-10" type="file">
+<div class="bg-surface border-2 border-dashed border-border group-hover:border-primary rounded-lg p-8 transition-colors flex flex-col items-center justify-center gap-3 text-center">
+<span class="material-symbols-outlined text-primary text-[32px]" data-icon="upload">upload</span>
+<div class="space-y-1">
+<p class="font-body-md text-text-primary font-medium">Click or drag to upload Student ID</p>
+<p class="font-label-md text-text-secondary">Supported formats: JPEG, PNG, PDF (Max 5MB)</p>
+</div>
+</div>
+</div>
+</div>
+<hr class="border-t border-border"><div class="space-y-8 pt-4">
+<!-- Terms Checkbox -->
+<label class="flex items-start gap-3 cursor-pointer group">
+<div class="relative flex items-center justify-center mt-1">
+<input class="peer appearance-none w-5 h-5 rounded border border-border bg-surface checked:bg-primary checked:border-primary transition-colors cursor-pointer" required="" type="checkbox">
+<span class="material-symbols-outlined absolute text-surface opacity-0 peer-checked:opacity-100 pointer-events-none text-[16px]" data-icon="check" data-weight="fill">check</span>
+</div>
+<span class="font-body-md text-body-md text-text-secondary group-hover:text-text-primary transition-colors">
+                            I agree to the NEXUS <a class="text-primary hover:underline" href="#">Terms of Service</a> and <a class="text-primary hover:underline" href="#">Privacy Policy</a>.
+                        </span>
+</label>
+<!-- Submit Button -->
+<button class="w-full bg-primary hover:bg-primary-container text-on-primary font-headline-md text-headline-md py-4 rounded-lg transition-all duration-200 active:scale-[0.98] shadow-[0_0_20px_rgba(78,222,163,0.15)] hover:shadow-[0_0_25px_rgba(78,222,163,0.25)] flex justify-center items-center gap-2" type="submit">
+<span class="">Create Student Account</span>
+<span class="material-symbols-outlined" data-icon="arrow_forward">arrow_forward</span>
+</button>
+</div>
+</form>
+</div>
+</main>
+<!-- Minimal Footer (Transactional Context) -->
+<footer class="w-full py-8 text-center">
+<p class="font-body-md text-body-md text-text-secondary">
+            Already have an account? 
+            <a class="text-primary font-medium hover:underline transition-all" href="{{DATA:SCREEN:SCREEN_90}}">Sign in</a>
+</p>
+</footer>
+<!-- Interactive Scripts -->
+<script>
+        function togglePassword(inputId, iconId) {
+            const input = document.getElementById(inputId);
+            const icon = document.getElementById(iconId);
+            
+            if (input.type === 'password') {
+                input.type = 'text';
+                icon.textContent = 'visibility_off';
+                icon.setAttribute('data-icon', 'visibility_off');
+            } else {
+                input.type = 'password';
+                icon.textContent = 'visibility';
+                icon.setAttribute('data-icon', 'visibility');
+            }
+        }
+    </script>
+
+
+
+
+</body></html>

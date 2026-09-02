@@ -1,0 +1,311 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Client Application Review</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-container-high": "#2a2a2c",
+                        "on-primary-fixed": "#002113",
+                        "on-primary": "#003824",
+                        "surface-container": "#201f22",
+                        "border": "#27272a",
+                        "secondary": "#c6c6cf",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-container-highest": "#353437",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-background": "#e5e1e4",
+                        "surface-variant": "#353437",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-surface": "#e5e1e4",
+                        "secondary-container": "#45464e",
+                        "on-error": "#690005",
+                        "on-secondary-fixed": "#1a1b22",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "tertiary": "#ffb3af",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "outline-variant": "#3c4a42",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary-container": "#711419",
+                        "on-primary-container": "#00422b",
+                        "inverse-surface": "#e5e1e4",
+                        "primary-container": "#10b981",
+                        "on-tertiary": "#650911",
+                        "background": "#131315",
+                        "tertiary-container": "#fc7c78",
+                        "surface-tint": "#4edea3",
+                        "outline": "#86948a",
+                        "on-surface-variant": "#bbcabf",
+                        "on-secondary": "#2f3037",
+                        "inverse-on-surface": "#313032",
+                        "secondary-fixed": "#e2e1eb",
+                        "text-primary": "#ffffff",
+                        "surface-bright": "#39393b",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "error-container": "#93000a",
+                        "tertiary-fixed": "#ffdad7",
+                        "surface-container-low": "#1c1b1d",
+                        "surface": "#18181b",
+                        "primary": "#4edea3",
+                        "on-error-container": "#ffdad6",
+                        "on-primary-fixed-variant": "#005236",
+                        "text-secondary": "#a1a1aa",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-dim": "#131315",
+                        "inverse-primary": "#006c49",
+                        "error": "#ffb4ab"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "gutter": "16px",
+                        "max-width": "1280px",
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .glass-card {
+            background: rgba(24, 24, 27, 0.7);
+            backdrop-filter: blur(12px);
+            -webkit-backdrop-filter: blur(12px);
+        }
+        .ai-gradient-text {
+            background: linear-gradient(90deg, #4edea3 0%, #10b981 100%);
+            -webkit-background-clip: text;
+            -webkit-text-fill-color: transparent;
+        }
+        .bento-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+            gap: 16px;
+        }
+        @media (min-width: 1024px) {
+            .bento-grid {
+                grid-template-columns: 2fr 1fr;
+            }
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-surface font-body-md min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background border-b border-border docked full-width top-0 flat no shadows z-50 sticky">
+<div class="flex justify-between items-center w-full px-margin-desktop max-w-max-width mx-auto h-16">
+<div class="flex items-center gap-8">
+<a class="text-headline-lg font-headline-lg font-black tracking-tighter text-primary dark:text-primary hover:text-primary transition-colors duration-200" href="#">NEXUS</a>
+<!-- Desktop Navigation -->
+<nav class="hidden md:flex gap-6 items-center">
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-body-md font-body-md hover:scale-95 transition-transform duration-150" href="{{DATA:SCREEN:SCREEN_8}}">Dashboard</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-body-md font-body-md hover:scale-95 transition-transform duration-150" href="#">My Jobs</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-body-md font-body-md hover:scale-95 transition-transform duration-150" href="#">Post a Job</a>
+<a class="text-primary font-bold hover:scale-95 transition-transform duration-150 text-body-md font-body-md relative after:content-[''] after:absolute after:-bottom-5 after:left-0 after:w-full after:h-0.5 after:bg-primary" href="{{DATA:SCREEN:SCREEN_61}}">Applications</a>
+<a class="text-on-surface-variant dark:text-on-surface-variant hover:text-primary transition-colors duration-200 text-body-md font-body-md hover:scale-95 transition-transform duration-150" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-primary dark:text-primary hover:text-primary transition-colors duration-200 hover:scale-95 transition-transform duration-150 p-2 rounded-full hover:bg-surface">
+<span class="material-symbols-outlined" data-icon="account_circle">account_circle</span>
+</button>
+</div>
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow w-full px-margin-desktop max-w-max-width mx-auto py-8">
+<!-- Breadcrumb -->
+<nav aria-label="Breadcrumb" class="flex items-center gap-2 text-text-secondary text-body-md font-body-md mb-6">
+<a class="hover:text-primary transition-colors" href="#">My Jobs</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="{{DATA:SCREEN:SCREEN_8}}">Applications</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Review</span>
+</nav>
+<!-- Header -->
+<div class="mb-8">
+<h1 class="text-headline-lg font-headline-lg text-text-primary mb-2">Review Applications</h1>
+<p class="text-body-lg font-body-lg text-text-secondary">Review student applications and select the best fit for your job.</p>
+</div>
+<div class="bento-grid">
+<!-- Left Column: Applicants List -->
+<div class="flex flex-col gap-6 order-2 lg:order-1">
+<!-- Filters -->
+<div class="flex items-center justify-between border-b border-border pb-4">
+<div class="flex gap-2">
+<button class="px-4 py-1.5 rounded-full bg-surface border border-primary text-primary text-label-md font-label-md hover:bg-primary/10 transition-colors">
+                            All Applicants <span class="ml-1 opacity-75">(5)</span>
+</button>
+<button class="px-4 py-1.5 rounded-full bg-transparent border border-border text-text-secondary text-label-md font-label-md hover:text-on-surface transition-colors">
+                            Highest Match
+                        </button>
+<button class="px-4 py-1.5 rounded-full bg-transparent border border-border text-text-secondary text-label-md font-label-md hover:text-on-surface transition-colors">
+                            Highest Rating
+                        </button>
+</div>
+</div>
+<!-- Applicant Card 1 -->
+<article class="bg-surface border border-border rounded-lg p-6 relative overflow-hidden group hover:border-primary/50 transition-colors duration-300">
+<!-- AI Match Badge -->
+<div class="absolute top-0 right-0 bg-primary/10 border-b border-l border-primary/20 px-4 py-2 rounded-bl-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="ai-gradient-text text-label-md font-label-md font-bold">94% Match</span>
+</div>
+<div class="flex items-start gap-4 mb-4">
+<img alt="Aarav Sharma" class="w-16 h-16 rounded-full object-cover border border-border" data-alt="A professional headshot of a young male computer engineering student, well-lit, studio lighting, modern minimalist background, dark theme aesthetic with subtle green accents, confident expression." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCZ1rVHh8RpbeiuzWyZqgkOQRabvzazgPLHe5ncdI6BkjEirY4kmOllToTkzw9GJc6CZFcFzpkKmgJw-J9b8nWc4W8MOBH5ovaAYkMSkTdIHrTe8IvwKwmWKwC64ykPQD2y4eQuWfZVB3HZmf5vfjU97J6HOInKWxTjfG5ou3MzbZvpmY6kCOG27rVWYGuWaWlh9JJQuQBSrtQf-IpqXC81DvKDQ4DkB6y8FaSI6r-OrZB6sX1jfYEwpA"/>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-md font-headline-md text-text-primary">Aarav Sharma</h3>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;" title="Verified">verified</span>
+</div>
+<p class="text-text-secondary text-body-md font-body-md">Computer Engineering, 2nd Year</p>
+<div class="flex items-center gap-3 mt-2">
+<div class="flex items-center gap-1 text-primary">
+<span class="material-symbols-outlined text-[16px]" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="text-label-md font-label-md font-bold">4.8</span>
+</div>
+<span class="text-text-secondary text-label-md font-label-md">â€¢ 12 jobs</span>
+</div>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-text-secondary text-label-md font-label-md mb-2">Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-label-md font-label-md rounded border border-primary/20">Python</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-label-md font-label-md rounded border border-primary/20">Flask</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface text-label-md font-label-md rounded border border-border">MySQL</span>
+</div>
+</div>
+<div>
+<p class="text-text-secondary text-label-md font-label-md mb-1">Relevant Portfolio</p>
+<a class="inline-flex items-center gap-1 text-on-surface hover:text-primary transition-colors text-body-md font-body-md" href="#">
+<span class="material-symbols-outlined text-[16px]">link</span>
+                                Flask Registration System
+                            </a>
+</div>
+<div class="bg-surface-container-high rounded p-4 border border-border">
+<p class="text-on-surface text-body-md font-body-md italic opacity-90 line-clamp-2">"I have experience working with Python and Flask. I've built a few REST APIs and a full-stack registration system that handled user authentication seamlessly..."</p>
+<button class="text-primary text-label-md font-label-md mt-2 hover:underline">Read full application</button>
+</div>
+</div>
+<div class="mt-6 flex justify-end gap-3">
+<button class="px-4 py-2 bg-transparent border border-border text-on-surface text-label-md font-label-md rounded hover:bg-surface-container transition-colors">Message</button>
+<a class="px-6 py-2 bg-primary text-on-primary-fixed text-label-md font-label-md rounded font-bold hover:bg-primary/90 transition-colors shadow-[0_0_15px_rgba(78,222,163,0.3)] inline-block" href="{{DATA:SCREEN:SCREEN_58}}">Select Student</a>
+</div>
+</article>
+<!-- Applicant Card 2 -->
+<article class="bg-surface border border-border rounded-lg p-6 relative overflow-hidden group hover:border-primary/50 transition-colors duration-300 opacity-80 hover:opacity-100">
+<!-- AI Match Badge -->
+<div class="absolute top-0 right-0 bg-primary/5 border-b border-l border-primary/10 px-4 py-2 rounded-bl-lg flex items-center gap-1">
+<span class="material-symbols-outlined text-primary text-[16px]" style="font-variation-settings: 'FILL' 1;">auto_awesome</span>
+<span class="text-primary text-label-md font-label-md font-bold">88% Match</span>
+</div>
+<div class="flex items-start gap-4 mb-4">
+<div class="w-16 h-16 rounded-full bg-surface-container flex items-center justify-center text-text-secondary text-headline-md font-headline-md border border-border">
+                            SC
+                        </div>
+<div>
+<div class="flex items-center gap-2">
+<h3 class="text-headline-md font-headline-md text-text-primary">Sarah Chen</h3>
+<span class="material-symbols-outlined text-primary text-[18px]" style="font-variation-settings: 'FILL' 1;" title="Verified">verified</span>
+</div>
+<p class="text-text-secondary text-body-md font-body-md">Software Engineering, 3rd Year</p>
+</div>
+</div>
+<div class="space-y-4">
+<div>
+<p class="text-text-secondary text-label-md font-label-md mb-2">Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-primary/10 text-primary text-label-md font-label-md rounded border border-primary/20">Python</span>
+<span class="px-2 py-1 bg-primary/10 text-primary text-label-md font-label-md rounded border border-primary/20">Flask</span>
+<span class="px-2 py-1 bg-surface-container-high text-on-surface text-label-md font-label-md rounded border border-border">API Dev</span>
+</div>
+</div>
+</div>
+<div class="mt-6 flex justify-end gap-3">
+<button class="px-4 py-2 bg-transparent border border-border text-on-surface text-label-md font-label-md rounded hover:bg-surface-container transition-colors">Message</button>
+<button class="px-6 py-2 bg-transparent border border-primary text-primary text-label-md font-label-md rounded font-bold hover:bg-primary/10 transition-colors">Review</button>
+</div>
+</article>
+</div>
+<!-- Right Column: Job Summary Context -->
+<div class="order-1 lg:order-2">
+<div class="bg-surface border border-border rounded-lg p-6 sticky top-24 shadow-lg shadow-black/50">
+<h2 class="text-label-md font-label-md text-text-secondary uppercase tracking-wider mb-4 border-b border-border pb-2">Job Context</h2>
+<h3 class="text-headline-md font-headline-md text-text-primary mb-2">Fix a Python / Flask Issue</h3>
+<div class="grid grid-cols-2 gap-4 my-6">
+<div class="bg-background rounded p-3 border border-border/50">
+<span class="material-symbols-outlined text-primary mb-1 text-[20px]">payments</span>
+<p class="text-label-md font-label-md text-text-secondary">Budget</p>
+<p class="text-body-lg font-body-lg text-text-primary font-semibold">â‚¹300</p>
+</div>
+<div class="bg-background rounded p-3 border border-border/50">
+<span class="material-symbols-outlined text-primary mb-1 text-[20px]">schedule</span>
+<p class="text-label-md font-label-md text-text-secondary">Deadline</p>
+<p class="text-body-lg font-body-lg text-text-primary font-semibold">2 days</p>
+</div>
+</div>
+<div class="mb-4">
+<p class="text-label-md font-label-md text-text-secondary mb-2">Required Skills</p>
+<div class="flex flex-wrap gap-2">
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-md font-label-md rounded border border-border">Python</span>
+<span class="px-2 py-1 bg-surface-container text-on-surface text-label-md font-label-md rounded border border-border">Flask</span>
+</div>
+</div>
+<div class="flex items-center justify-between border-t border-border pt-4 mt-6">
+<span class="text-body-md font-body-md text-text-secondary">Total Applicants</span>
+<span class="bg-primary/10 text-primary px-3 py-1 rounded-full text-label-md font-label-md font-bold">5</span>
+</div>
+</div>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-background dark:bg-background full-width bottom border-t border-border flat no shadows mt-auto">
+<div class="w-full py-8 px-margin-desktop max-w-max-width mx-auto flex flex-col md:flex-row justify-between items-center gap-gutter">
+<div class="text-headline-md font-headline-md font-bold text-primary">NEXUS</div>
+<nav class="flex flex-wrap justify-center gap-6">
+<a class="text-text-secondary dark:text-text-secondary hover:text-primary transition-all duration-200 text-label-md font-label-md" href="#">Terms of Service</a>
+<a class="text-text-secondary dark:text-text-secondary hover:text-primary transition-all duration-200 text-label-md font-label-md" href="#">Privacy Policy</a>
+<a class="text-text-secondary dark:text-text-secondary hover:text-primary transition-all duration-200 text-label-md font-label-md" href="#">Cookie Settings</a>
+<a class="text-text-secondary dark:text-text-secondary hover:text-primary transition-all duration-200 text-label-md font-label-md" href="#">Legal Notice</a>
+</nav>
+<div class="text-text-secondary dark:text-text-secondary text-body-md font-body-md">
+                Â© 2024 NEXUS Digital Studio. All rights reserved.
+            </div>
+</div>
+</footer>
+</body></html>

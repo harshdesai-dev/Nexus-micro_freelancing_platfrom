@@ -1,0 +1,356 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - User &amp; Job Management</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "primary": "#4edea3",
+                        "on-error": "#690005",
+                        "on-tertiary-container": "#711419",
+                        "tertiary": "#ffb3af",
+                        "surface": "#18181b",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "surface-variant": "#353437",
+                        "surface-tint": "#4edea3",
+                        "on-primary": "#003824",
+                        "tertiary-container": "#fc7c78",
+                        "tertiary-fixed": "#ffdad7",
+                        "surface-container-low": "#1c1b1d",
+                        "primary-fixed": "#6ffbbe",
+                        "surface-bright": "#39393b",
+                        "on-primary-fixed-variant": "#005236",
+                        "on-error-container": "#ffdad6",
+                        "background": "#131315",
+                        "inverse-surface": "#e5e1e4",
+                        "surface-container-high": "#2a2a2c",
+                        "on-tertiary-fixed": "#410005",
+                        "surface-container-lowest": "#0e0e10",
+                        "border": "#27272a",
+                        "secondary-container": "#45464e",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-background": "#e5e1e4",
+                        "text-primary": "#ffffff",
+                        "surface-dim": "#131315",
+                        "text-secondary": "#a1a1aa",
+                        "outline-variant": "#3c4a42",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-secondary-container": "#b4b4bd",
+                        "surface-container-highest": "#353437",
+                        "on-tertiary": "#650911",
+                        "error-container": "#93000a",
+                        "inverse-primary": "#006c49",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "on-surface-variant": "#bbcabf",
+                        "on-secondary-fixed": "#1a1b22",
+                        "on-primary-container": "#00422b",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "surface-container": "#201f22",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed": "#002113",
+                        "primary-container": "#10b981",
+                        "on-secondary": "#2f3037",
+                        "secondary": "#c6c6cf",
+                        "outline": "#86948a",
+                        "inverse-on-surface": "#313032",
+                        "secondary-fixed": "#e2e1eb",
+                        "on-surface": "#e5e1e4"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "max-width": "1280px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "headline-md": ["Geist", "sans-serif"],
+                        "body-lg": ["Geist", "sans-serif"],
+                        "label-md": ["Geist", "sans-serif"],
+                        "body-md": ["Geist", "sans-serif"],
+                        "headline-lg-mobile": ["Geist", "sans-serif"],
+                        "headline-lg": ["Geist", "sans-serif"]
+                    },
+                    "fontSize": {
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .material-symbols-outlined {
+            font-variation-settings: 'FILL' 0, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+        .material-symbols-outlined.filled {
+            font-variation-settings: 'FILL' 1, 'wght' 400, 'GRAD' 0, 'opsz' 24;
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background font-body-md text-body-md antialiased overflow-hidden flex h-screen">
+<!-- SideNavBar -->
+<nav class="bg-background border-r border-border h-screen w-64 fixed left-0 top-0 flex flex-col py-8 z-40">
+<div class="px-6 mb-8 flex items-center space-x-3">
+<div class="w-10 h-10 rounded-lg bg-surface border border-border flex items-center justify-center overflow-hidden">
+<img class="w-full h-full object-cover" data-alt="A small, stylized avatar image representing a system administrator in a futuristic, digital studio setting. The image should feature sharp, high-contrast dark elements with emerald green accents, matching the overall professional and minimalistic UI aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDs7IEK54ZMv7D66kEA9Bjdgp3oyhMWAZOuJWkia1s8zfEelOShPnqNmDaMcFXbZjDRPkpesEJStSieQgdw12qYrE4ZZqxBmUp6i99cbYTbqcHIZVDn65mV7YP2xwqPu3BoGMpxBf-KjWd5r9KThbt0aKteOHBvHfrewOgozyKN79v5KEe-i91TkDmjvKgtzoqNY6iQHnqzJ2FD0ufSz3q0m1wpqq6LQHrK1n8cnwPYE1ABYArMLiRBAQ"/>
+</div>
+<div>
+<h2 class="text-headline-md font-headline-md font-bold text-primary">NEXUS Admin</h2>
+<p class="text-label-md font-label-md text-text-secondary mt-1">Global Suite</p>
+</div>
+</div>
+<div class="flex-1 overflow-y-auto px-4 space-y-2">
+<a class="text-text-secondary flex items-center px-4 py-3 hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 rounded-lg scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">dashboard</span>
+                Dashboard
+            </a>
+<a class="text-text-secondary flex items-center px-4 py-3 hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 rounded-lg scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">verified_user</span>
+                Verification
+            </a>
+<a class="text-primary font-bold border-l-2 border-primary flex items-center px-4 py-3 bg-primary-container/10 rounded-r-lg" href="#">
+<span class="material-symbols-outlined filled mr-3 text-primary">groups</span>
+                Users &amp; Jobs
+            </a>
+<a class="text-text-secondary flex items-center px-4 py-3 hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 rounded-lg scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">assessment</span>
+                Reports
+            </a>
+<a class="text-text-secondary flex items-center px-4 py-3 hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 rounded-lg scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">monitoring</span>
+                Analytics
+            </a>
+<a class="text-text-secondary flex items-center px-4 py-3 hover:text-text-primary hover:bg-surface-container-high transition-colors duration-200 rounded-lg scale-95 active:scale-90 transition-transform" href="#">
+<span class="material-symbols-outlined mr-3">settings</span>
+                Settings
+            </a>
+</div>
+<div class="px-6 mt-auto">
+<button class="w-full bg-surface border border-border text-text-primary py-2 px-4 rounded-lg flex items-center justify-center hover:bg-surface-container-high transition-colors text-label-md font-label-md">
+<span class="material-symbols-outlined mr-2 text-[18px]">support_agent</span>
+                System Support
+            </button>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col ml-64 min-w-0">
+<!-- TopNavBar -->
+<header class="bg-surface h-16 fixed top-0 right-0 left-64 z-50 border-b border-border flex items-center justify-between px-margin-desktop w-[calc(100%-16rem)]">
+<div class="flex items-center space-x-2">
+<span class="text-text-secondary text-label-md font-label-md">Admin</span>
+<span class="text-text-secondary material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-text-primary text-label-md font-label-md font-bold">User &amp; Job Management</span>
+</div>
+<div class="flex items-center space-x-6">
+<button class="text-text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined">help_outline</span>
+</button>
+<button class="text-text-secondary hover:text-primary transition-colors opacity-80 hover:opacity-100">
+<span class="material-symbols-outlined">account_circle</span>
+</button>
+<button class="bg-primary text-on-primary px-4 py-2 rounded-lg font-label-md text-label-md font-bold hover:bg-primary-fixed transition-colors">
+                    Create Report
+                </button>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto pt-24 px-margin-desktop pb-margin-desktop bg-background">
+<!-- Page Header -->
+<div class="mb-8 flex justify-between items-end">
+<div>
+<h1 class="text-headline-lg font-headline-lg text-text-primary">User &amp; Job Management</h1>
+<p class="text-text-secondary text-body-lg font-body-lg mt-2">Manage all platform users, their verification status, and associated job listings.</p>
+</div>
+</div>
+<!-- Tabs -->
+<div class="flex border-b border-border mb-8">
+<button class="px-6 py-3 border-b-2 border-primary text-primary font-label-md text-label-md font-bold">
+                    Users
+                </button>
+<button class="px-6 py-3 border-b-2 border-transparent text-text-secondary font-label-md text-label-md hover:text-text-primary transition-colors">
+                    Jobs
+                </button>
+</div>
+<!-- Summary Cards Bento Grid -->
+<div class="grid grid-cols-1 md:grid-cols-2 lg:grid-cols-4 gap-gutter mb-8">
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-5xl text-primary">groups</span>
+</div>
+<p class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Total Users</p>
+<p class="text-headline-lg font-headline-lg text-text-primary">248</p>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-5xl text-primary">school</span>
+</div>
+<p class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Students</p>
+<p class="text-headline-lg font-headline-lg text-text-primary">192</p>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-5xl text-primary">work</span>
+</div>
+<p class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Clients</p>
+<p class="text-headline-lg font-headline-lg text-text-primary">56</p>
+</div>
+<div class="bg-surface border border-border rounded-lg p-6 flex flex-col justify-between h-32 relative overflow-hidden group">
+<div class="absolute top-0 right-0 p-4 opacity-10 group-hover:opacity-20 transition-opacity">
+<span class="material-symbols-outlined text-5xl text-primary">verified</span>
+</div>
+<p class="text-text-secondary font-label-md text-label-md uppercase tracking-wider">Verified Students</p>
+<p class="text-headline-lg font-headline-lg text-text-primary text-primary">164</p>
+</div>
+</div>
+<!-- Filters and Table Card -->
+<div class="bg-surface border border-border rounded-lg flex flex-col">
+<!-- Toolbar -->
+<div class="p-4 border-b border-border flex flex-col md:flex-row gap-4 justify-between items-center bg-surface-container-low rounded-t-lg">
+<div class="relative w-full md:w-64">
+<span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-[20px]">search</span>
+<input class="w-full bg-background border border-border rounded-lg pl-10 pr-4 py-2 text-text-primary font-body-md focus:outline-none focus:border-primary focus:ring-1 focus:ring-primary transition-all" placeholder="Search users..." type="text"/>
+</div>
+<div class="flex gap-3 w-full md:w-auto overflow-x-auto pb-2 md:pb-0">
+<select class="bg-background border border-border rounded-lg px-4 py-2 text-text-primary font-body-md focus:outline-none focus:border-primary">
+<option>Role: All</option>
+<option>Student</option>
+<option>Client</option>
+</select>
+<select class="bg-background border border-border rounded-lg px-4 py-2 text-text-primary font-body-md focus:outline-none focus:border-primary">
+<option>Status: All</option>
+<option>Active</option>
+<option>Suspended</option>
+</select>
+<select class="bg-background border border-border rounded-lg px-4 py-2 text-text-primary font-body-md focus:outline-none focus:border-primary">
+<option>Verification: All</option>
+<option>Verified</option>
+<option>Pending</option>
+</select>
+</div>
+</div>
+<!-- Table -->
+<div class="overflow-x-auto">
+<table class="w-full text-left border-collapse">
+<thead>
+<tr class="bg-surface-container-highest border-b border-border">
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider">User</th>
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider">Role</th>
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider">College/Org</th>
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider">Verification</th>
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider">Status</th>
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider">Joined</th>
+<th class="py-3 px-6 text-label-md font-label-md text-text-secondary uppercase tracking-wider text-right">Action</th>
+</tr>
+</thead>
+<tbody class="divide-y divide-border">
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 font-body-md text-text-primary font-medium flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-label-md font-bold text-primary">AS</div>
+<span>Aarav Sharma</span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Student</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">State University</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-bold bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span> Verified
+                                    </span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Active</td>
+<td class="py-4 px-6 font-body-md text-text-secondary text-sm">Oct 12, 2023</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-primary-fixed font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-end ml-auto">
+                                        View <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 font-body-md text-text-primary font-medium flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-label-md font-bold text-tertiary-container">PP</div>
+<span>Priya Patil</span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Student</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Tech Institute</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-bold bg-surface-variant text-text-secondary border border-border">
+<span class="material-symbols-outlined text-[14px] mr-1">pending</span> Pending
+                                    </span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Active</td>
+<td class="py-4 px-6 font-body-md text-text-secondary text-sm">Nov 02, 2023</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-primary-fixed font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-end ml-auto">
+                                        View <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 font-body-md text-text-primary font-medium flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-label-md font-bold text-error">RM</div>
+<span>Rohan Mehta</span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Student</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">City College</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-bold bg-error/10 text-error border border-error/20">
+<span class="material-symbols-outlined text-[14px] mr-1">error</span> Needs Resubmission
+                                    </span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Suspended</td>
+<td class="py-4 px-6 font-body-md text-text-secondary text-sm">Sep 15, 2023</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-primary-fixed font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-end ml-auto">
+                                        View <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</button>
+</td>
+</tr>
+<tr class="hover:bg-surface-container-low transition-colors group">
+<td class="py-4 px-6 font-body-md text-text-primary font-medium flex items-center space-x-3">
+<div class="w-8 h-8 rounded-full bg-surface-variant flex items-center justify-center text-label-md font-bold text-primary">CC</div>
+<span>College Club</span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Client</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Tech Org Inc.</td>
+<td class="py-4 px-6">
+<span class="inline-flex items-center px-2 py-1 rounded-full text-[11px] font-bold bg-primary/10 text-primary border border-primary/20">
+<span class="material-symbols-outlined text-[14px] mr-1">check_circle</span> Verified
+                                    </span>
+</td>
+<td class="py-4 px-6 font-body-md text-text-secondary">Active</td>
+<td class="py-4 px-6 font-body-md text-text-secondary text-sm">Aug 28, 2023</td>
+<td class="py-4 px-6 text-right">
+<button class="text-primary hover:text-primary-fixed font-label-md text-label-md opacity-0 group-hover:opacity-100 transition-opacity flex items-center justify-end ml-auto">
+                                        View <span class="material-symbols-outlined text-[16px] ml-1">arrow_forward</span>
+</button>
+</td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</main>
+</div>
+</body></html>

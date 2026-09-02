@@ -1,0 +1,346 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Student Verification Status</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700;800;900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface": "#18181b",
+                        "error": "#ffb4ab",
+                        "surface-tint": "#4edea3",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#86948a",
+                        "background": "#131315",
+                        "on-primary": "#003824",
+                        "on-secondary-fixed": "#1a1b22",
+                        "primary-fixed-dim": "#4edea3",
+                        "surface-bright": "#39393b",
+                        "surface-container-highest": "#353437",
+                        "text-primary": "#ffffff",
+                        "secondary": "#c6c6cf",
+                        "surface-container": "#201f22",
+                        "on-surface-variant": "#bbcabf",
+                        "on-error": "#690005",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-surface": "#e5e1e4",
+                        "on-background": "#e5e1e4",
+                        "on-tertiary": "#650911",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "tertiary": "#ffb3af",
+                        "surface-container-low": "#1c1b1d",
+                        "primary": "#4edea3",
+                        "on-primary-fixed": "#002113",
+                        "primary-container": "#10b981",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "surface-container-lowest": "#0e0e10",
+                        "inverse-primary": "#006c49",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "inverse-on-surface": "#313032",
+                        "on-tertiary-fixed": "#410005",
+                        "tertiary-container": "#fc7c78",
+                        "surface-variant": "#353437",
+                        "on-tertiary-container": "#711419",
+                        "secondary-fixed": "#e2e1eb",
+                        "secondary-container": "#45464e",
+                        "on-secondary": "#2f3037",
+                        "tertiary-fixed": "#ffdad7",
+                        "primary-fixed": "#6ffbbe",
+                        "inverse-surface": "#e5e1e4",
+                        "text-secondary": "#a1a1aa",
+                        "border": "#27272a",
+                        "on-primary-container": "#00422b",
+                        "surface-dim": "#131315",
+                        "outline-variant": "#3c4a42",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2c",
+                        "on-primary-fixed-variant": "#005236"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "max-width": "1280px",
+                        "margin-desktop": "32px"
+                    },
+                    "fontFamily": {
+                        "label-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-background antialiased flex h-screen overflow-hidden">
+<!-- TopNavBar (Mobile) -->
+<nav class="md:hidden sticky top-0 w-full z-50 flex justify-between items-center px-margin-mobile bg-surface/80 backdrop-blur-md h-16 border-b border-border">
+<div class="font-headline-md text-headline-md font-black text-primary">NEXUS</div>
+<div class="flex items-center gap-4 text-on-surface-variant">
+<span class="material-symbols-outlined hover:text-primary transition-all opacity-80 active:opacity-100 cursor-pointer">notifications</span>
+<span class="material-symbols-outlined hover:text-primary transition-all opacity-80 active:opacity-100 cursor-pointer">mail</span>
+<img alt="Student Avatar" class="w-8 h-8 rounded-full object-cover border border-border" data-alt="A small, circular avatar portrait of a college student in a studio lighting setup, dark theme aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB4HVwWJq8gUrchQyYNeB9BB2KjacS71lzJHQYIJYYIF4mhFl0phDtOq45jqHpnCMvSFs7EyThyirE2i_SuGt__pfwG8bFpk43Bi5LaESoDkeAL_6L7OXCDs7JPIy_X6g5Sy8UZnSVyBgtIiik_XsB8DyiPi6NVor00AIUN3qhXMcDhD-0or4LKKaMxzZ6EMRb_WCRQWhGU4fpLbOS5Nl5fNUi1poDAkIld9ILucWcCkXOXViwt1TG-6A"/>
+</div>
+</nav>
+<!-- SideNavBar (Desktop) -->
+<aside class="w-64 h-full hidden md:flex flex-col bg-surface border-r border-border fixed left-0 top-0 z-40">
+<div class="p-6">
+<div class="flex items-center gap-3 mb-8">
+<div class="w-10 h-10 rounded-full bg-primary-container flex items-center justify-center text-on-primary-container font-bold text-lg">N</div>
+<div>
+<h1 class="font-headline-md text-headline-md font-black text-primary">NEXUS</h1>
+<p class="font-label-md text-label-md text-on-surface-variant">Student Portal</p>
+</div>
+</div>
+<button class="w-full bg-primary hover:bg-primary/90 text-on-primary font-label-md text-label-md py-3 px-4 rounded-lg mb-6 transition-colors shadow-sm flex items-center justify-center gap-2">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">add</span>
+                Post a Service
+            </button>
+<nav class="flex flex-col gap-2 font-body-md text-body-md">
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                    Dashboard
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">search</span>
+                    Find Jobs
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">assignment</span>
+                    My Applications
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined">work</span>
+                    My Work
+                </a>
+<a class="flex items-center gap-3 px-4 py-3 rounded-lg text-primary font-bold border-l-4 border-primary bg-primary/10 transition-colors scale-95 duration-150 ease-in-out" href="#">
+<span class="material-symbols-outlined" style="font-variation-settings: 'FILL' 1;">person</span>
+                    Profile
+                </a>
+</nav>
+</div>
+<div class="mt-auto p-6 border-t border-border">
+<nav class="flex flex-col gap-2 font-body-md text-body-md">
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">settings</span>
+                    Settings
+                </a>
+<a class="flex items-center gap-3 px-4 py-2 rounded-lg text-on-surface-variant font-medium hover:bg-surface-container-high hover:text-on-surface transition-colors" href="#">
+<span class="material-symbols-outlined">help_outline</span>
+                    Help
+                </a>
+</nav>
+</div>
+</aside>
+<!-- Main Content Canvas -->
+<main class="flex-1 md:ml-64 h-full overflow-y-auto overflow-x-hidden p-margin-mobile md:p-margin-desktop bg-background">
+<div class="max-w-max-width mx-auto">
+<!-- Page Header -->
+<header class="mb-8">
+<nav class="flex items-center text-text-secondary font-label-md text-label-md mb-4 gap-2">
+<a class="hover:text-primary transition-colors" href="#">Profile</a>
+<span class="material-symbols-outlined text-sm">chevron_right</span>
+<span class="text-on-surface">Verification</span>
+</nav>
+<div class="flex flex-col md:flex-row md:items-end justify-between gap-4">
+<div>
+<h2 class="font-headline-lg text-headline-lg text-text-primary mb-2">Student Verification</h2>
+<p class="font-body-md text-body-md text-text-secondary">Track the status of your NEXUS student verification.</p>
+</div>
+<a class="inline-flex items-center gap-2 text-primary hover:text-primary-container font-label-md text-label-md transition-colors bg-surface-container px-4 py-2 rounded-lg border border-border w-fit" href="#">
+<span class="material-symbols-outlined text-sm">arrow_back</span>
+                        Back to Profile
+                    </a>
+</div>
+</header>
+<!-- Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Main Column -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<!-- Verification Status Card -->
+<section class="bg-surface border border-border rounded-lg p-6 relative overflow-hidden group">
+<div class="absolute inset-0 bg-gradient-to-br from-primary/5 to-transparent opacity-50 z-0"></div>
+<div class="relative z-10">
+<div class="flex flex-wrap items-center justify-between gap-4 mb-6">
+<div class="inline-flex items-center gap-2 px-3 py-1.5 rounded-full bg-primary/15 border border-primary/30 text-primary font-label-md text-label-md">
+<span class="material-symbols-outlined text-sm" style="font-variation-settings: 'FILL' 1;">hourglass_top</span>
+                                    Under Review
+                                </div>
+<span class="font-label-md text-label-md text-text-secondary">Submitted: Aug 28, 2026</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-text-primary mb-2">Verification Under Review</h3>
+<p class="font-body-md text-body-md text-on-surface-variant">Your verification details have been submitted and are currently being reviewed. This process typically takes 24-48 hours.</p>
+</div>
+</section>
+<!-- Verification Progress Timeline -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary mb-6">Review Progress</h3>
+<div class="relative pl-6 border-l-2 border-surface-container-high space-y-8">
+<!-- Stage 1 -->
+<div class="relative">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-xs" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-text-primary mb-1">Information Submitted</h4>
+<p class="font-body-md text-body-md text-text-secondary text-sm">Basic details received.</p>
+</div>
+</div>
+<!-- Stage 2 -->
+<div class="relative">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-primary flex items-center justify-center ring-4 ring-surface shadow-sm">
+<span class="material-symbols-outlined text-on-primary text-xs" style="font-variation-settings: 'FILL' 1;">check</span>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-text-primary mb-1">Documents Submitted</h4>
+<p class="font-body-md text-body-md text-text-secondary text-sm">ID proofs uploaded successfully.</p>
+</div>
+</div>
+<!-- Stage 3 (Active) -->
+<div class="relative">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-surface border-2 border-primary flex items-center justify-center ring-4 ring-surface">
+<div class="w-2 h-2 rounded-full bg-primary animate-pulse"></div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-primary mb-1">Verification Review</h4>
+<p class="font-body-md text-body-md text-text-secondary text-sm">Our team is reviewing your details.</p>
+</div>
+</div>
+<!-- Stage 4 -->
+<div class="relative">
+<div class="absolute -left-[35px] top-0 w-6 h-6 rounded-full bg-surface-container-highest flex items-center justify-center ring-4 ring-surface">
+<div class="w-2 h-2 rounded-full bg-text-secondary"></div>
+</div>
+<div>
+<h4 class="font-label-md text-label-md text-text-secondary mb-1">Verification Complete</h4>
+<p class="font-body-md text-body-md text-text-secondary text-sm opacity-50">Pending review completion.</p>
+</div>
+</div>
+</div>
+</section>
+</div>
+<!-- Secondary Column -->
+<div class="flex flex-col gap-gutter">
+<!-- Student Information -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary mb-4">Student Information</h3>
+<div class="flex items-center gap-4 mb-6 pb-6 border-b border-border">
+<img alt="Student Profile Picture" class="w-16 h-16 rounded-full object-cover border-2 border-border" data-alt="A highly detailed close up portrait of an Indian male college student, serious expression, dramatic dark studio lighting with emerald rim light, minimalist dark background, professional photography." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDEjynCoYTriJAUf64nT0_MA888F4oKnOZgRZclkuk3nTlgV_xqVjp-4OrDYrGURe1RTmiYYdLmiqbSeg1BApbhi12u4i-H1fsDjS9dv6bBcKMB7O3CPkGl0Eq67e-Pa9Ws7ayPybyTUyUNkWbLuX1Zwk38FcwqhPrKZeeYRN_LmclmK8gmvUpvfoWOmbFdBZIoCghOQIJcYDFBvA64zMOQZ1Vs6N47dter78OLkwthatavMUmf3f_knQ"/>
+<div>
+<h4 class="font-body-lg text-body-lg text-text-primary font-medium">Aarav Sharma</h4>
+<p class="font-body-md text-body-md text-text-secondary">student@example.com</p>
+</div>
+</div>
+<dl class="space-y-4">
+<div>
+<dt class="font-label-md text-label-md text-text-secondary mb-1">Education</dt>
+<dd class="font-body-md text-body-md text-on-surface">Computer Engineering Â· 2nd Year</dd>
+</div>
+<div>
+<dt class="font-label-md text-label-md text-text-secondary mb-1">College</dt>
+<dd class="font-body-md text-body-md text-on-surface">Saraswati College of Engineering</dd>
+</div>
+<div>
+<dt class="font-label-md text-label-md text-text-secondary mb-1">Student ID</dt>
+<dd class="font-body-md text-body-md text-on-surface tracking-wider font-mono">â€¢â€¢â€¢â€¢ 2841</dd>
+</div>
+</dl>
+</section>
+<!-- Submitted Details & Document -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-body-lg text-body-lg font-semibold text-text-primary mb-4">Submitted Details</h3>
+<div class="bg-surface-container rounded-lg p-4 mb-4 border border-border">
+<div class="flex items-start gap-3">
+<span class="material-symbols-outlined text-primary mt-1">description</span>
+<div class="flex-1">
+<p class="font-body-md text-body-md text-text-primary font-medium mb-1 truncate">Student_ID_Card.pdf</p>
+<p class="font-label-md text-label-md text-text-secondary">PDF Â· 1.4 MB</p>
+</div>
+</div>
+<button class="w-full mt-4 bg-transparent border border-border hover:border-primary hover:text-primary text-text-primary font-label-md text-label-md py-2 px-4 rounded transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">visibility</span>
+                                View Document
+                            </button>
+</div>
+</section>
+<!-- Help / Secondary Info -->
+<section class="bg-surface-container-low border border-border rounded-lg p-6">
+<div class="mb-6">
+<h4 class="font-label-md text-label-md text-text-primary mb-2 flex items-center gap-2">
+<span class="material-symbols-outlined text-sm text-primary">info</span>
+                                Why Verification Matters
+                            </h4>
+<p class="font-body-md text-body-md text-text-secondary text-sm">Verified students gain access to exclusive job boards, higher trust ratings, and faster payment processing on NEXUS.</p>
+</div>
+<div class="pt-4 border-t border-border">
+<h4 class="font-label-md text-label-md text-text-primary mb-3">Need Help?</h4>
+<button class="w-full bg-surface border border-border hover:bg-surface-container hover:text-primary text-text-primary font-label-md text-label-md py-2 px-4 rounded transition-colors flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-sm">support_agent</span>
+                                Contact Support
+                            </button>
+</div>
+</section>
+</div>
+</div>
+<!-- Footer -->
+<footer class="mt-12 py-8 border-t border-border flex flex-col md:flex-row justify-between items-center gap-4 text-text-secondary font-label-md text-label-md">
+<p>Â© 2024 NEXUS Digital Studio. All rights reserved.</p>
+<div class="flex gap-4">
+<a class="hover:text-primary transition-colors" href="#">Privacy Policy</a>
+<a class="hover:text-primary transition-colors" href="#">Terms of Service</a>
+<a class="hover:text-primary transition-colors" href="#">Cookie Settings</a>
+</div>
+</footer>
+</div>
+</main>
+<!-- BottomNavBar (Mobile) -->
+<nav class="md:hidden fixed bottom-0 w-full z-50 flex justify-around items-center h-16 bg-surface/90 backdrop-blur-md border-t border-border pb-safe">
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors p-2" href="#">
+<span class="material-symbols-outlined text-xl">dashboard</span>
+<span class="font-label-md text-[10px]">Dashboard</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors p-2" href="#">
+<span class="material-symbols-outlined text-xl">search</span>
+<span class="font-label-md text-[10px]">Find Jobs</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-on-surface-variant hover:text-primary transition-colors p-2" href="#">
+<span class="material-symbols-outlined text-xl">work</span>
+<span class="font-label-md text-[10px]">My Work</span>
+</a>
+<a class="flex flex-col items-center gap-1 text-primary p-2" href="#">
+<span class="material-symbols-outlined text-xl" style="font-variation-settings: 'FILL' 1;">person</span>
+<span class="font-label-md text-[10px] font-bold">Profile</span>
+</a>
+</nav>
+</body></html>

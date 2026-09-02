@@ -1,0 +1,318 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Job Workspace (Client)</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;900&amp;display=swap" rel="stylesheet"/>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-surface": "#e5e1e4",
+                        "on-tertiary": "#650911",
+                        "on-primary": "#003824",
+                        "surface-container": "#201f22",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "text-secondary": "#a1a1aa",
+                        "surface-tint": "#4edea3",
+                        "surface-container-low": "#1c1b1d",
+                        "tertiary": "#ffb3af",
+                        "on-secondary": "#2f3037",
+                        "surface-dim": "#131315",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "surface": "#18181b",
+                        "surface-bright": "#39393b",
+                        "inverse-on-surface": "#313032",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary-fixed": "#1a1b22",
+                        "secondary-fixed": "#e2e1eb",
+                        "inverse-surface": "#e5e1e4",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "on-error": "#690005",
+                        "outline": "#86948a",
+                        "on-primary-container": "#00422b",
+                        "secondary": "#c6c6cf",
+                        "outline-variant": "#3c4a42",
+                        "on-tertiary-container": "#711419",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "text-primary": "#ffffff",
+                        "on-tertiary-fixed": "#410005",
+                        "background": "#131315",
+                        "border": "#27272a",
+                        "inverse-primary": "#006c49",
+                        "primary-fixed-dim": "#4edea3",
+                        "on-background": "#e5e1e4",
+                        "error-container": "#93000a",
+                        "surface-container-high": "#2a2a2c",
+                        "on-secondary-container": "#b4b4bd",
+                        "primary-fixed": "#6ffbbe",
+                        "tertiary-container": "#fc7c78",
+                        "primary-container": "#10b981",
+                        "error": "#ffb4ab",
+                        "on-primary-fixed-variant": "#005236",
+                        "tertiary-fixed": "#ffdad7",
+                        "surface-variant": "#353437",
+                        "surface-container-highest": "#353437",
+                        "primary": "#4edea3",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-surface-variant": "#bbcabf",
+                        "on-error-container": "#ffdad6",
+                        "secondary-container": "#45464e"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "margin-mobile": "16px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px",
+                        "max-width": "1280px",
+                        "base": "4px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "body-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                },
+            },
+        }
+    </script>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-surface antialiased min-h-screen flex flex-col relative overflow-x-hidden font-body-md">
+<!-- TopNavBar -->
+<header class="fixed top-0 left-0 w-full z-50 flex justify-between items-center px-margin-desktop h-16 bg-surface border-b border-border shadow-sm">
+<div class="flex items-center gap-4">
+<h1 class="font-headline-md text-headline-md font-bold text-primary tracking-tighter">NEXUS</h1>
+</div>
+<div class="flex items-center gap-4 text-text-secondary">
+<button class="hover:text-primary transition-colors p-2 hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-[24px]">notifications</span>
+</button>
+<button class="hover:text-primary transition-colors p-2 hover:bg-surface-container-high rounded-full">
+<span class="material-symbols-outlined text-[24px]">chat</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container overflow-hidden border border-border">
+<img alt="Student or Client Profile Avatar" class="w-full h-full object-cover" data-alt="A small circular avatar showing a professional, minimalist abstract design in deep emerald and charcoal colors. The avatar suggests a corporate or client user profile, with sleek geometric lines and a modern digital studio aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDIMljMFQxf-r8R4OXsQ-Qj0y8CzIekQkn3c7Z1Sofgx6JGZNWLT1Vl1UkSoEizZY95sWh2XEnhDB-T8LU55F2ur6-xbvAX1ddzWcqY6MgwWlM6Hhr8vgYiGITYfBpkcRwT2NNoi93PV7PL4ssuMjqPjcPHkZZEdJm0xOT_MfD8Kqywvg5GT8-vDzP1l9KDpy2BWA0ksVb1vY5sjWvxdSMg45YX6fRRgqnMOxMcXj04QjSDVVlqJhqp_g"/>
+</div>
+</div>
+</header>
+<div class="flex flex-1 pt-16 h-[calc(100vh-64px)] overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden md:flex flex-col fixed left-0 top-16 h-[calc(100vh-64px)] w-64 z-40 bg-background border-r border-border py-6">
+<div class="px-6 mb-8 flex flex-col gap-2">
+<div class="flex items-center gap-3">
+<div class="h-10 w-10 rounded-full bg-surface-container overflow-hidden border border-border">
+<img alt="NEXUS User Workspace" class="w-full h-full object-cover" data-alt="A minimalist avatar for a freelancer hub workspace. Deep dark background with abstract emerald green geometric accents, representing a high-performance digital workspace. Professional and clean aesthetic." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB2CzbepoDDDQsVRDU8DMno1Rls03yE8LxsgfSVusqQ1qlSz6lvDZzav2tf4_gtfu9y9YD0SmQ50TKyssxZIDb0HoNiYX93E8NQSH6oU59nKtKy11CVsUIgRHWTB4Adxp85gLy9a0XgjKGE-3ouf8EUMq_kb7dEuIfW4-1PH7B7xCryrjqCiqGgBrmMc3uTCz4uRX3mMHAGIRLkG1YEcS5r90uwyF5704DLOsh1o2zZeFhxGph8VEYyvA"/>
+</div>
+<div>
+<h2 class="font-label-md text-label-md text-on-surface font-semibold">Freelancer Hub</h2>
+<p class="font-label-md text-label-md text-text-secondary opacity-70">Client Account</p>
+</div>
+</div>
+<button class="mt-2 text-left font-label-md text-label-md text-primary hover:text-primary-fixed transition-colors">Switch to Student</button>
+</div>
+<ul class="flex flex-col gap-1 w-full font-label-md text-label-md px-2">
+<li>
+<a class="flex items-center gap-3 text-text-secondary py-3 px-4 rounded-r-full hover:text-on-surface hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">dashboard</span>
+                        Dashboard
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-text-secondary py-3 px-4 rounded-r-full hover:text-on-surface hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">search</span>
+                        Find Talent
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-text-secondary py-3 px-4 rounded-r-full hover:text-on-surface hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">description</span>
+                        Applications
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-primary bg-primary/5 py-3 px-4 rounded-r-full border-l-2 border-primary transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]" style="font-variation-settings: 'FILL' 1;">work</span>
+                        My Jobs
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-text-secondary py-3 px-4 rounded-r-full hover:text-on-surface hover:bg-surface-container transition-all" href="#">
+<span class="material-symbols-outlined text-[20px]">settings</span>
+                        Settings
+                    </a>
+</li>
+</ul>
+</nav>
+<!-- Main Content -->
+<main class="flex-1 ml-0 md:ml-64 p-margin-mobile md:p-margin-desktop overflow-y-auto bg-background">
+<div class="max-w-[max-width] mx-auto w-full">
+<!-- Breadcrumbs -->
+<nav class="flex items-center justify-between font-label-md text-label-md text-text-secondary mb-6">
+<div class="flex items-center gap-2">
+<a class="hover:text-primary transition-colors" href="#">My Jobs</a>
+<span class="material-symbols-outlined text-[16px]">chevron_right</span>
+<span class="text-on-surface">Job Workspace</span>
+</div>
+<div class="relative group">
+<button class="flex items-center gap-2 px-3 py-1.5 text-text-secondary hover:text-on-surface bg-surface border border-border rounded-md transition-colors">
+<span class="material-symbols-outlined text-[18px]">more_horiz</span>
+</button>
+<div class="absolute right-0 mt-2 w-48 bg-surface border border-border rounded-lg shadow-lg opacity-0 invisible group-hover:opacity-100 group-hover:visible transition-all z-50 overflow-hidden">
+<a class="flex items-center gap-3 px-4 py-3 text-sm text-on-surface hover:bg-surface-container transition-colors" href="{{DATA:SCREEN:SCREEN_35}}">
+<span class="material-symbols-outlined text-[18px] text-error">flag</span>
+<span class="text-error">Report Issue</span>
+</a>
+</div>
+</div>
+</nav>
+<!-- Header Section -->
+<header class="mb-10 flex flex-col md:flex-row md:items-start justify-between gap-6">
+<div>
+<div class="flex items-center gap-3 mb-2">
+<h1 class="font-headline-lg-mobile md:font-headline-lg text-headline-lg-mobile md:text-headline-lg text-on-surface">Fix a Python / Flask Issue</h1>
+<span class="inline-flex items-center gap-1.5 px-2.5 py-1 rounded-full font-label-md text-label-md bg-primary/15 text-primary border border-primary/20">
+<div class="w-1.5 h-1.5 rounded-full bg-primary animate-pulse"></div>
+                                In Progress
+                            </span>
+</div>
+<p class="font-body-md text-body-md text-text-secondary flex items-center gap-2">
+<span class="text-on-surface">â‚¹300</span>
+<span>Â·</span>
+<span class="material-symbols-outlined text-[16px]">schedule</span>
+<span>Due in 2 days</span>
+</p>
+</div>
+</header>
+<!-- Bento Grid Layout -->
+<div class="grid grid-cols-1 lg:grid-cols-3 gap-gutter">
+<!-- Left Column (Main Info & Submission) -->
+<div class="lg:col-span-2 flex flex-col gap-gutter">
+<!-- Job Overview Card -->
+<section class="bg-surface border border-border rounded-lg p-6 flex flex-col gap-4 relative overflow-hidden">
+<!-- Subtle background element for depth -->
+<div class="absolute -top-10 -right-10 w-40 h-40 bg-primary/5 rounded-full blur-3xl pointer-events-none"></div>
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-border pb-3">Job Overview</h2>
+<div class="font-body-md text-body-md text-text-secondary space-y-4 relative z-10">
+<p class="text-on-surface opacity-90">I need help resolving an urgent issue in my Flask application. The routing seems to be failing when attempting to pass dynamic parameters, resulting in a 404 error. The codebase is relatively small, but I need someone experienced with Python and Flask's routing mechanisms to quickly diagnose and fix the problem.</p>
+<h3 class="font-label-md text-label-md text-text-secondary uppercase tracking-wider pt-2">Task Requirements</h3>
+<ul class="list-disc list-inside space-y-1 text-on-surface opacity-90">
+<li>Diagnose dynamic route failure in `app.py`.</li>
+<li>Ensure parameter passing works correctly across all environments.</li>
+<li>Provide a brief explanation of the fix.</li>
+</ul>
+</div>
+</section>
+<!-- Submission Area (Client View) -->
+<section class="bg-surface border border-border rounded-lg p-6 flex flex-col gap-4">
+<h2 class="font-headline-md text-headline-md text-on-surface border-b border-border pb-3">Submission Area</h2>
+<!-- Informational Banner -->
+<div class="bg-surface-container-low border border-border rounded-lg p-6 flex flex-col items-center justify-center text-center gap-3 py-12 shadow-inner">
+<div class="w-14 h-14 rounded-full bg-surface-container flex items-center justify-center border border-border mb-3">
+<span class="material-symbols-outlined text-[28px] text-text-secondary opacity-70">hourglass_empty</span>
+</div>
+<h3 class="font-headline-md text-headline-md text-on-surface text-lg font-medium">Waiting for Student Submission</h3>
+<p class="font-body-md text-body-md text-text-secondary max-w-md mt-1">
+                                     The workspace will update once Aarav Sharma submits the completed work for your review.
+                                 </p>
+</div>
+</section>
+</div>
+<!-- Right Column (Meta, Timeline, Activity) -->
+<div class="flex flex-col gap-gutter">
+<!-- Participant Section -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-4 border-b border-border pb-2">Freelancer</h3>
+<div class="flex items-center gap-4">
+<div class="w-12 h-12 rounded-full bg-surface-container overflow-hidden border border-border">
+<img alt="Aarav Sharma" class="w-full h-full object-cover" data-alt="A minimalist profile avatar of a male student developer. Dark moody background with subtle emerald highlights. Professional, tech-savvy appearance, digital studio style, high contrast, clean lines." src="https://lh3.googleusercontent.com/aida-public/AB6AXuAh9tKW1L-1-s18vFtPEthLkC4X42whwFpSyd4jW2c_gu5YQExZ2oeGg8DW4ndsvXYzxR4JdnvHyi3VCcb3d9M17H-043sAunk4chFStINXs_zt3zLJUAX7ipb6p3yzF5tIa_J6rVq6k9PxPFWC-kTA1v4XA1MIzt41yQ0Zpc_ArTGjeW7bD4ciC-MtdCdsNJGV8sdbSLioPHIbEalEdji2V9yw17NEFGLdgb8ln7vKwWD6XW7KVK6tXQ"/>
+</div>
+<div>
+<h4 class="font-headline-md text-headline-md text-sm text-on-surface">Aarav Sharma</h4>
+<p class="font-body-md text-body-md text-xs text-text-secondary">Python Developer</p>
+</div>
+</div>
+</section>
+<!-- Timeline Section -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-4 border-b border-border pb-2">Timeline</h3>
+<div class="relative pl-4 border-l border-border space-y-6">
+<!-- Step 1 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-primary ring-4 ring-surface"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-on-surface">Job Accepted</span>
+<span class="font-body-md text-body-md text-xs text-text-secondary">Oct 24, 10:00 AM</span>
+</div>
+</div>
+<!-- Step 2 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-primary/30 ring-4 ring-surface animate-pulse"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-primary font-semibold">Work In Progress</span>
+<span class="font-body-md text-body-md text-xs text-text-secondary">Current Status</span>
+</div>
+</div>
+<!-- Step 3 -->
+<div class="relative">
+<div class="absolute -left-[21px] top-1 w-2.5 h-2.5 rounded-full bg-surface-container ring-4 ring-surface border border-border"></div>
+<div class="flex flex-col">
+<span class="font-label-md text-label-md text-text-secondary">Review</span>
+<span class="font-body-md text-body-md text-xs text-text-secondary">Pending</span>
+</div>
+</div>
+</div>
+</section>
+<!-- Activity Section -->
+<section class="bg-surface border border-border rounded-lg p-6">
+<h3 class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-4 border-b border-border pb-2">Activity</h3>
+<div class="space-y-4">
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex-shrink-0 border border-border overflow-hidden">
+<img alt="Student" class="w-full h-full object-cover" data-alt="A minimalist profile avatar of a male student developer. Dark moody background with subtle emerald highlights. Professional, tech-savvy appearance, digital studio style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCQ7cLYDp16i4utNqOKmeDm3xTvRgQ9wRd5QcAZXokXKzCfngysgpUp9RYvDkqymT4gKVgDckVMP0vT_2qJCKArwWo_ez1EBMeGwSiVsJc_cSStTUncSQfaifHMYK7CkGYUKXgIoMAhczu_oUUyzLQsZDrYSfsaGk1a95_Rb8KuccBkllJIFdwro0lHJoc8ry31W4V8P3lWIdzfQ1Qeu70HMoZhLHv9FX6UNrofo4C2DeOVEGJRlo7OCQ"/>
+</div>
+<div class="flex flex-col">
+<p class="font-body-md text-body-md text-sm text-on-surface"><span class="font-medium text-white">Aarav Sharma</span> viewed the task requirements.</p>
+<span class="font-label-md text-label-md text-xs text-text-secondary mt-1">2 hours ago</span>
+</div>
+</div>
+<div class="flex gap-3">
+<div class="w-8 h-8 rounded-full bg-surface-container flex-shrink-0 border border-border overflow-hidden">
+<img alt="Student" class="w-full h-full object-cover" data-alt="A minimalist profile avatar of a male student developer. Dark moody background with subtle emerald highlights. Professional, tech-savvy appearance, digital studio style." src="https://lh3.googleusercontent.com/aida-public/AB6AXuCfN-_F2K0XeerQ8LZoqkVwn1SXaLUquNp18xU9R5p3MR7hySH-28JMQeeEJpvrjB-ZHfAfy7tTUM8Ice2UWt6o1q1HoqVJw2XZepcwWMMheFmkcw8jg51U8AyqZ9gsmfPqCM2mI_Gp04j3n1tJGUIItBQTMUvYwZaI3SVMb4N2rorTY5EreVVTjTWO4KVldbGYDlM-iJpqBq2BeAQliV3ELhfQ5u3_L1Uqqwv3jqc0uaFZexreURzicw"/>
+</div>
+<div class="flex flex-col">
+<p class="font-body-md text-body-md text-sm text-on-surface"><span class="font-medium text-white">Aarav Sharma</span> accepted the job offer.</p>
+<span class="font-label-md text-label-md text-xs text-text-secondary mt-1">Oct 24, 10:00 AM</span>
+</div>
+</div>
+</div>
+</section>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

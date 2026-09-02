@@ -1,0 +1,331 @@
+<!DOCTYPE html>
+
+<html class="dark" lang="en"><head>
+<meta charset="utf-8"/>
+<meta content="width=device-width, initial-scale=1.0" name="viewport"/>
+<title>NEXUS - Rating &amp; Reputation</title>
+<link href="https://fonts.googleapis.com" rel="preconnect"/>
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect"/>
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@100..900&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet"/>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "on-secondary-fixed": "#1a1b22",
+                        "on-secondary": "#2f3037",
+                        "surface": "#18181b",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "primary-container": "#10b981",
+                        "on-error-container": "#ffdad6",
+                        "on-background": "#e5e1e4",
+                        "surface-container-highest": "#353437",
+                        "surface-container": "#201f22",
+                        "outline-variant": "#3c4a42",
+                        "surface-dim": "#131315",
+                        "outline": "#86948a",
+                        "inverse-primary": "#006c49",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary-container": "#45464e",
+                        "secondary": "#c6c6cf",
+                        "background": "#131315",
+                        "on-tertiary-fixed": "#410005",
+                        "tertiary-fixed": "#ffdad7",
+                        "on-primary": "#003824",
+                        "on-tertiary-fixed-variant": "#842225",
+                        "error-container": "#93000a",
+                        "primary": "#4edea3",
+                        "on-primary-container": "#00422b",
+                        "error": "#ffb4ab",
+                        "primary-fixed": "#6ffbbe",
+                        "on-tertiary": "#650911",
+                        "on-error": "#690005",
+                        "tertiary": "#ffb3af",
+                        "surface-tint": "#4edea3",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-surface": "#e5e1e4",
+                        "on-tertiary-container": "#711419",
+                        "on-secondary-container": "#b4b4bd",
+                        "text-secondary": "#a1a1aa",
+                        "border": "#27272a",
+                        "inverse-on-surface": "#313032",
+                        "text-primary": "#ffffff",
+                        "primary-fixed-dim": "#4edea3",
+                        "secondary-fixed": "#e2e1eb",
+                        "on-primary-fixed": "#002113",
+                        "tertiary-container": "#fc7c78",
+                        "inverse-surface": "#e5e1e4",
+                        "surface-container-high": "#2a2a2c",
+                        "surface-variant": "#353437",
+                        "surface-container-low": "#1c1b1d",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-bright": "#39393b"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-desktop": "32px",
+                        "margin-mobile": "16px",
+                        "gutter": "16px",
+                        "max-width": "1280px"
+                    },
+                    "fontFamily": {
+                        "headline-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "body-md": ["Geist"],
+                        "body-lg": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "headline-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }],
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        body { font-family: 'Geist', sans-serif; }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-on-surface h-screen flex overflow-hidden">
+<!-- SideNavBar -->
+<nav class="hidden lg:flex flex-col fixed left-0 top-0 h-full w-64 bg-background dark:bg-background border-r border-border dark:border-border z-20">
+<div class="px-6 py-8 border-b border-border">
+<h1 class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">Console</h1>
+<p class="font-label-md text-label-md text-text-secondary mt-1 uppercase tracking-wider">Management Suite</p>
+</div>
+<div class="px-4 py-6">
+<button class="w-full bg-primary-container text-on-primary-container font-label-md text-label-md font-bold py-3 rounded-lg hover:bg-primary-fixed transition-colors flex items-center justify-center gap-2 mb-6">
+<span class="material-symbols-outlined" style="font-size: 18px;">add</span>
+                Post a Job
+            </button>
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">dashboard</span>
+                        Overview
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">work</span>
+                        Available Gigs
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-primary font-semibold border-l-4 border-primary bg-primary/10 px-4 py-3 rounded-r-lg font-body-md text-body-md" href="#" style="transform: scale(0.95); transition-duration: 150ms;">
+<span class="material-symbols-outlined">description</span>
+                        Active Contracts
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">payments</span>
+                        Payments
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">contact_support</span>
+                        Support
+                    </a>
+</li>
+</ul>
+</div>
+<div class="mt-auto px-4 py-6 border-t border-border">
+<ul class="space-y-1">
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">settings</span>
+                        Settings
+                    </a>
+</li>
+<li>
+<a class="flex items-center gap-3 text-on-surface-variant px-4 py-3 rounded-lg hover:bg-surface-container-low transition-all font-body-md text-body-md" href="#">
+<span class="material-symbols-outlined">logout</span>
+                        Logout
+                    </a>
+</li>
+</ul>
+</div>
+</nav>
+<!-- Main Content Wrapper -->
+<div class="flex-1 flex flex-col lg:ml-64 relative h-screen overflow-hidden">
+<!-- TopNavBar -->
+<header class="hidden md:flex justify-between items-center w-full px-margin-desktop h-16 bg-background dark:bg-background border-b border-border dark:border-border z-10 shrink-0">
+<div class="flex items-center gap-6">
+<span class="font-headline-lg text-headline-lg font-bold text-primary dark:text-primary tracking-tighter">NEXUS</span>
+<nav class="hidden md:flex space-x-6 ml-8">
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Dashboard</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">My Jobs</a>
+<a class="text-on-surface-variant hover:text-primary transition-colors font-label-md text-label-md" href="#">Applications</a>
+<a class="text-primary font-bold border-b-2 border-primary pb-1 font-label-md text-label-md opacity-80" href="#">Profile</a>
+</nav>
+</div>
+<div class="flex items-center gap-4">
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">notifications</span>
+</button>
+<button class="text-on-surface-variant hover:text-primary transition-colors p-2 rounded-full hover:bg-surface-container-low">
+<span class="material-symbols-outlined">settings</span>
+</button>
+<div class="h-8 w-8 rounded-full bg-surface-container-high border border-border overflow-hidden ml-2">
+<img alt="User profile" class="object-cover w-full h-full" data-alt="A close-up portrait of a young professional student against a dark studio background, illuminated with soft emerald green rim lighting. The mood is confident and modern, fitting a high-end digital platform. The color palette emphasizes deep blacks, crisp whites, and vibrant green accents." src="https://lh3.googleusercontent.com/aida-public/AB6AXuB_68iUFo08j4YUWa26nLwzM5zK5cA6rTeTnylpuuX4dCS8zw5nmN9rPSuKUu8wkvXSWyog9H_4a2SmccsO9Zd__hOCwjgAsSbPpX62OMiePhvym7fPmmRHXKTmKm_88M1htyK6M9KNi-5FaeW2xjufdCr4p_m0ZyoBwYbszY0chibkUjFM2-FL37XAm_BZoxO971Lg2_r0LiF2BK8nZMV_8Sg9RTm-ijiCK2PQr0R8OwCZ-Y4pu-a5Ow"/>
+</div>
+</div>
+</header>
+<!-- Canvas -->
+<main class="flex-1 overflow-y-auto p-margin-mobile md:p-margin-desktop bg-background scroll-smooth">
+<div class="max-w-max-width mx-auto">
+<!-- Breadcrumbs -->
+<nav aria-label="Breadcrumb" class="flex text-text-secondary font-label-md text-label-md mb-8">
+<ol class="inline-flex items-center space-x-1 md:space-x-3">
+<li class="inline-flex items-center">
+<a class="hover:text-primary transition-colors" href="#">My Work</a>
+</li>
+<li>
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+<a class="hover:text-primary transition-colors" href="#">Job Workspace</a>
+</div>
+</li>
+<li aria-current="page">
+<div class="flex items-center">
+<span class="material-symbols-outlined text-[16px] mx-1">chevron_right</span>
+<span class="text-on-surface">Rating &amp; Reputation</span>
+</div>
+</li>
+</ol>
+</nav>
+<h1 class="font-headline-lg text-headline-lg-mobile md:text-headline-lg text-text-primary mb-10 tracking-tight">Rate Your Experience</h1>
+<div class="grid grid-cols-1 lg:grid-cols-12 gap-gutter items-start">
+<!-- Left Column: Context Card -->
+<div class="lg:col-span-4 space-y-gutter sticky top-6">
+<div class="bg-surface border border-border rounded-lg p-6">
+<div class="flex items-center justify-between mb-4">
+<span class="text-xs font-medium uppercase tracking-wider text-text-secondary">Job Summary</span>
+<span class="bg-primary/15 text-primary text-xs font-semibold px-2 py-1 rounded border border-primary/20 flex items-center gap-1">
+<span class="material-symbols-outlined text-[14px]">check_circle</span>
+                                    Completed
+                                </span>
+</div>
+<h3 class="font-body-lg text-body-lg text-on-surface font-semibold mb-2 leading-tight">Fix a Python / Flask Issue</h3>
+<div class="mt-6 pt-6 border-t border-border flex items-center gap-3">
+<div class="w-10 h-10 rounded bg-surface-container-high border border-border flex items-center justify-center overflow-hidden">
+<img alt="College Club Logo" class="object-cover w-full h-full" data-alt="A minimalist logo for a 'College Club' rendered in crisp white against a deep charcoal background. The design features geometric, tech-inspired shapes with a subtle glowing emerald green accent line. Professional, sharp, and modern aesthetic suitable for a high-performance digital studio UI." src="https://lh3.googleusercontent.com/aida-public/AB6AXuDRexNQonTN8XIDR1Ok0YgXqxa3dBQPLvCnFZRv34GKZxkzvD6C0efMAdK-tCnFUmT0beNxNEk32RefHnJqkMhf8aA7vxCw9U1dtK4BbNaRsrPgQHNnfs86pd9avuGgXJl5selKibFKdp6_yAVp8E5UuQxL1gz8JMB_e2g5p6cU7ZrAFyAWzZuzAoRJHm65B_hBXUFPnffe-lFTrlhAbm7MCcOPs6epzgVlHK8RsVKbsazU3BznoC2Gkw"/>
+</div>
+<div>
+<p class="font-label-md text-label-md text-text-secondary">Client</p>
+<p class="font-body-md text-body-md text-on-surface font-medium">College Club</p>
+</div>
+</div>
+</div>
+<button class="w-full bg-transparent border border-border text-text-secondary hover:text-on-surface hover:bg-surface-container-low transition-colors font-body-md text-body-md py-3 rounded-lg flex items-center justify-center gap-2">
+<span class="material-symbols-outlined text-[18px]">arrow_back</span>
+                            Back to Completed Jobs
+                        </button>
+</div>
+<!-- Right Column: Rating Form -->
+<div class="lg:col-span-8 bg-surface border border-border rounded-lg p-6 md:p-10 shadow-[0_8px_30px_rgb(0,0,0,0.12)] relative overflow-hidden">
+<!-- Decorative gradient orb in background -->
+<div class="absolute -top-32 -right-32 w-64 h-64 bg-primary rounded-full blur-[100px] opacity-10 pointer-events-none"></div>
+<div class="flex flex-col md:flex-row md:items-center justify-between gap-6 mb-10 pb-10 border-b border-border">
+<div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-2">Rate College Club</h2>
+<p class="font-body-md text-body-md text-text-secondary">Your feedback helps build trust in the NEXUS community.</p>
+</div>
+<div class="flex items-center gap-4 bg-background border border-border rounded-lg p-4">
+<div class="w-12 h-12 rounded bg-surface-container-highest flex items-center justify-center">
+<span class="material-symbols-outlined text-primary text-[24px]">verified</span>
+</div>
+<div>
+<p class="font-body-md text-body-md text-on-surface font-semibold">College Club</p>
+<p class="font-label-md text-label-md text-primary mt-1">Verified Job Provider</p>
+</div>
+</div>
+</div>
+<!-- Overall Rating -->
+<div class="mb-12 flex flex-col items-center justify-center text-center">
+<p class="font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-4">Overall Experience</p>
+<div class="flex gap-2">
+<span class="material-symbols-outlined text-[40px] text-primary cursor-pointer hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[40px] text-primary cursor-pointer hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[40px] text-primary cursor-pointer hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[40px] text-primary cursor-pointer hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[40px] text-primary cursor-pointer hover:scale-110 transition-transform" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Category Ratings -->
+<div class="space-y-6 mb-10">
+<!-- Clarity -->
+<div class="flex items-center justify-between group hover:bg-surface-container-low p-3 -mx-3 rounded-lg transition-colors">
+<span class="font-body-md text-body-md text-on-surface">Clarity of Requirements</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-border hover:text-primary/50 transition-colors cursor-pointer" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Communication -->
+<div class="flex items-center justify-between group hover:bg-surface-container-low p-3 -mx-3 rounded-lg transition-colors">
+<span class="font-body-md text-body-md text-on-surface">Communication</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+<!-- Professionalism -->
+<div class="flex items-center justify-between group hover:bg-surface-container-low p-3 -mx-3 rounded-lg transition-colors">
+<span class="font-body-md text-body-md text-on-surface">Professionalism</span>
+<div class="flex gap-1">
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+<span class="material-symbols-outlined text-[24px] text-primary" style="font-variation-settings: 'FILL' 1;">star</span>
+</div>
+</div>
+</div>
+<!-- Written Review -->
+<div class="mb-10">
+<label class="block font-label-md text-label-md text-text-secondary uppercase tracking-wider mb-3" for="review">Written Review</label>
+<textarea class="w-full bg-background border border-border rounded-lg p-4 text-on-surface font-body-md focus:outline-none focus:ring-2 focus:ring-primary/50 focus:border-primary transition-all resize-none placeholder:text-surface-variant" id="review" placeholder="Share specific details about what it was like working on this gig..." rows="5"></textarea>
+</div>
+<!-- Actions -->
+<div class="flex flex-col-reverse sm:flex-row items-center justify-end gap-4 mt-8 pt-8 border-t border-border">
+<button class="w-full sm:w-auto px-6 py-3 bg-transparent border border-border text-on-surface font-body-md text-body-md rounded-lg hover:bg-surface-container-low transition-colors">
+                                Skip for Now
+                            </button>
+<button class="w-full sm:w-auto px-8 py-3 bg-primary text-on-primary-container font-body-md text-body-md font-semibold rounded-lg hover:bg-primary-fixed transition-colors shadow-[0_0_15px_rgba(16,185,129,0.3)] hover:shadow-[0_0_25px_rgba(16,185,129,0.5)]">
+                                Submit Review
+                            </button>
+</div>
+</div>
+</div>
+</div>
+</main>
+</div>
+</body></html>

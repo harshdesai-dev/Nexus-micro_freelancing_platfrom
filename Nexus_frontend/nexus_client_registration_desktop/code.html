@@ -1,0 +1,244 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NEXUS â€” Client Registration</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com" rel="preconnect">
+<link crossorigin="" href="https://fonts.gstatic.com" rel="preconnect">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+            darkMode: "class",
+            theme: {
+                extend: {
+                    "colors": {
+                        "surface-bright": "#39393b",
+                        "surface-dim": "#131315",
+                        "surface-container-lowest": "#0e0e10",
+                        "on-secondary-container": "#b4b4bd",
+                        "on-surface": "#e5e1e4",
+                        "secondary-container": "#45464e",
+                        "inverse-primary": "#006c49",
+                        "inverse-on-surface": "#313032",
+                        "on-tertiary-container": "#711419",
+                        "on-error-container": "#ffdad6",
+                        "outline": "#86948a",
+                        "text-primary": "#ffffff",
+                        "surface-container": "#201f22",
+                        "error-container": "#93000a",
+                        "surface-container-highest": "#353437",
+                        "secondary-fixed-dim": "#c6c6cf",
+                        "outline-variant": "#3c4a42",
+                        "on-background": "#e5e1e4",
+                        "tertiary": "#ffb3af",
+                        "background": "#131315",
+                        "on-primary-fixed-variant": "#005236",
+                        "secondary": "#c6c6cf",
+                        "primary-fixed-dim": "#4edea3",
+                        "inverse-surface": "#e5e1e4",
+                        "on-surface-variant": "#bbcabf",
+                        "surface-container-low": "#1c1b1d",
+                        "on-tertiary-fixed": "#410005",
+                        "on-secondary-fixed-variant": "#45464e",
+                        "primary": "#4edea3",
+                        "on-primary-fixed": "#002113",
+                        "on-secondary": "#2f3037",
+                        "secondary-fixed": "#e2e1eb",
+                        "surface": "#18181b",
+                        "on-tertiary": "#650911",
+                        "surface-container-high": "#2a2a2c",
+                        "tertiary-fixed-dim": "#ffb3af",
+                        "on-secondary-fixed": "#1a1b22",
+                        "surface-variant": "#353437",
+                        "border": "#27272a",
+                        "text-secondary": "#a1a1aa",
+                        "on-error": "#690005",
+                        "primary-fixed": "#6ffbbe",
+                        "tertiary-container": "#fc7c78",
+                        "on-primary": "#003824",
+                        "surface-tint": "#4edea3",
+                        "on-primary-container": "#00422b",
+                        "primary-container": "#10b981",
+                        "tertiary-fixed": "#ffdad7",
+                        "error": "#ffb4ab",
+                        "on-tertiary-fixed-variant": "#842225"
+                    },
+                    "borderRadius": {
+                        "DEFAULT": "0.25rem",
+                        "lg": "0.5rem",
+                        "xl": "0.75rem",
+                        "full": "9999px"
+                    },
+                    "spacing": {
+                        "base": "4px",
+                        "margin-mobile": "16px",
+                        "max-width": "1280px",
+                        "margin-desktop": "32px",
+                        "gutter": "16px"
+                    },
+                    "fontFamily": {
+                        "body-lg": ["Geist"],
+                        "label-md": ["Geist"],
+                        "headline-lg": ["Geist"],
+                        "headline-md": ["Geist"],
+                        "headline-lg-mobile": ["Geist"],
+                        "body-md": ["Geist"]
+                    },
+                    "fontSize": {
+                        "body-lg": ["16px", { "lineHeight": "1.6", "letterSpacing": "0", "fontWeight": "400" }],
+                        "label-md": ["12px", { "lineHeight": "1", "letterSpacing": "0.02em", "fontWeight": "500" }],
+                        "headline-lg": ["32px", { "lineHeight": "1.2", "letterSpacing": "-0.02em", "fontWeight": "600" }],
+                        "headline-md": ["20px", { "lineHeight": "1.4", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "headline-lg-mobile": ["24px", { "lineHeight": "1.2", "letterSpacing": "-0.01em", "fontWeight": "600" }],
+                        "body-md": ["14px", { "lineHeight": "1.5", "letterSpacing": "0", "fontWeight": "400" }]
+                    }
+                }
+            }
+        }
+    </script>
+<style>
+        .custom-scrollbar::-webkit-scrollbar {
+            width: 8px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-track {
+            background: #131315;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb {
+            background: #27272a;
+            border-radius: 4px;
+        }
+        .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+            background: #353437;
+        }
+        .input-glow:focus {
+            box-shadow: 0 0 0 2px rgba(78, 222, 163, 0.2);
+            border-color: #4edea3;
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-background text-text-primary min-h-screen flex flex-col font-body-lg custom-scrollbar">
+<!-- Header (Suppressed navigation links for transactional flow) -->
+<header class="bg-background border-b border-border w-full top-0 z-50 sticky px-margin-mobile md:px-margin-desktop h-16 max-w-max-width mx-auto flex justify-between items-center">
+<div class="flex items-center gap-4">
+<a class="text-text-secondary hover:text-primary transition-colors flex items-center group" href="{{DATA:SCREEN:SCREEN_92}}">
+<span class="material-symbols-outlined mr-2 group-hover:-translate-x-1 transition-transform">arrow_back</span>
+<span class="font-label-md text-label-md">Choose Your Role</span>
+</a>
+</div>
+<div class="text-headline-md font-headline-md text-primary tracking-tighter">NEXUS</div>
+<div class="w-[120px]"></div> <!-- Spacer to center logo -->
+</header>
+<!-- Main Content Canvas -->
+<main class="flex-grow flex items-center justify-center py-12 px-margin-mobile md:px-margin-desktop relative">
+<!-- Subtle Ambient Background Effect -->
+<div class="absolute inset-0 z-0 overflow-hidden pointer-events-none opacity-20">
+<div class="absolute top-1/4 left-1/4 w-96 h-96 bg-primary rounded-full mix-blend-screen filter blur-[128px] opacity-20"></div>
+<div class="absolute bottom-1/4 right-1/4 w-[500px] h-[500px] bg-secondary-container rounded-full mix-blend-screen filter blur-[128px] opacity-10"></div>
+</div>
+<div class="relative z-10 w-full max-w-2xl">
+<!-- Registration Card -->
+<div class="bg-surface border border-border rounded-lg p-8 md:p-12 shadow-[0_8px_32px_rgba(0,0,0,0.5)]">
+<!-- Header -->
+<div class="mb-10 text-center">
+<h1 class="font-headline-lg text-headline-lg text-text-primary mb-3">Create your client account</h1>
+<p class="font-body-md text-body-md text-text-secondary">Post small jobs and connect with skilled students on NEXUS.</p>
+</div>
+<!-- Form -->
+<form class="space-y-6">
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Full Name -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="fullName">Full Name</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none input-glow transition-all font-body-md text-body-md" id="fullName" name="fullName" placeholder="John Doe" required="" type="text">
+</div>
+<!-- Email Address -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="email">Email Address</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none input-glow transition-all font-body-md text-body-md" id="email" name="email" placeholder="john@example.com" required="" type="email">
+</div>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-6">
+<!-- Password -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="password">Password</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none input-glow transition-all font-body-md text-body-md" id="password" name="password" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required="" type="password">
+</div>
+<!-- Confirm Password -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="confirmPassword">Confirm Password</label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none input-glow transition-all font-body-md text-body-md" id="confirmPassword" name="confirmPassword" placeholder="â€¢â€¢â€¢â€¢â€¢â€¢â€¢â€¢" required="" type="password">
+</div>
+</div>
+<hr class="border-border my-6">
+<!-- Organization / Business Name -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="orgName">Organization / Business Name <span class="text-text-secondary font-normal">(Optional)</span></label>
+<input class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none input-glow transition-all font-body-md text-body-md" id="orgName" name="orgName" placeholder="e.g. Acme Corp" type="text">
+</div>
+<!-- Client Type -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="clientType">Client Type</label>
+<div class="relative">
+<select class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary appearance-none focus:outline-none input-glow transition-all font-body-md text-body-md" id="clientType" name="clientType">
+<option disabled="" selected="" value="">Select client type</option>
+<option value="student">Student</option>
+<option value="college_club">College Club</option>
+<option value="committee">Committee</option>
+<option value="local_business">Local Business</option>
+<option value="startup">Startup</option>
+</select>
+<span class="material-symbols-outlined absolute right-4 top-1/2 -translate-y-1/2 text-text-secondary pointer-events-none">expand_more</span>
+</div>
+</div>
+<!-- About You / Organization -->
+<div class="space-y-2">
+<label class="block font-label-md text-label-md text-text-primary" for="about">About You / Organization</label>
+<textarea class="w-full bg-surface border border-border rounded-lg px-4 py-3 text-text-primary placeholder-text-secondary focus:outline-none input-glow transition-all font-body-md text-body-md resize-none" id="about" name="about" placeholder="Tell us a bit about what you do and the kind of tasks you need help with..." rows="4"></textarea>
+</div>
+<!-- Terms Checkbox -->
+<div class="flex items-start mt-6 group">
+<div class="flex items-center h-5">
+<input class="w-4 h-4 rounded border-border bg-surface text-primary focus:ring-primary focus:ring-offset-background focus:ring-offset-2 transition-colors cursor-pointer" id="terms" name="terms" required="" type="checkbox">
+</div>
+<div class="ml-3 text-sm">
+<label class="font-body-md text-body-md text-text-secondary cursor-pointer group-hover:text-text-primary transition-colors" for="terms">
+                                I agree to the <a class="text-primary hover:underline" href="#">NEXUS Terms of Service</a> and <a class="text-primary hover:underline" href="#">Privacy Policy</a>.
+                            </label>
+</div>
+</div>
+<!-- Submit CTA -->
+<div class="pt-6">
+<a href="{{DATA:SCREEN:SCREEN_8}}" class="w-full bg-primary text-surface-container-lowest font-label-md text-label-md py-4 rounded-lg hover:bg-primary-fixed transition-all duration-300 shadow-[0_0_20px_rgba(78,222,163,0.3)] hover:shadow-[0_0_30px_rgba(78,222,163,0.5)] flex items-center justify-center gap-2">
+                            Create Client Account
+                            <span class="material-symbols-outlined text-sm">arrow_forward</span>
+</a>
+</div>
+<!-- Footer Link -->
+<div class="text-center mt-6">
+<p class="font-body-md text-body-md text-text-secondary">
+                            Already have an account? <a class="text-primary hover:underline font-label-md text-label-md ml-1" href="{{DATA:SCREEN:SCREEN_90}}">Sign in</a>
+</p>
+</div>
+</form>
+</div>
+</div>
+</main>
+<!-- Footer -->
+<footer class="bg-surface-container-lowest border-t border-border w-full mt-auto">
+<div class="flex flex-col md:flex-row justify-between items-center py-8 px-margin-mobile md:px-margin-desktop w-full max-w-max-width mx-auto gap-gutter">
+<div class="text-headline-md font-headline-md text-primary tracking-tighter">NEXUS</div>
+<div class="flex flex-wrap justify-center gap-6">
+<a class="font-label-md text-label-md text-text-secondary hover:text-on-surface transition-colors duration-200" href="#">Terms of Service</a>
+<a class="font-label-md text-label-md text-text-secondary hover:text-on-surface transition-colors duration-200" href="#">Privacy Policy</a>
+<a class="font-label-md text-label-md text-text-secondary hover:text-on-surface transition-colors duration-200" href="#">Cookie Settings</a>
+<a class="font-label-md text-label-md text-text-secondary hover:text-on-surface transition-colors duration-200" href="#">Support</a>
+</div>
+<div class="font-label-md text-label-md text-text-secondary">Â© 2024 NEXUS Digital Studio. All rights reserved.</div>
+</div>
+</footer>
+
+
+</body></html>

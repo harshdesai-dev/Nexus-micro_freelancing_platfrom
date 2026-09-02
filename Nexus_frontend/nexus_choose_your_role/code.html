@@ -1,0 +1,274 @@
+<!DOCTYPE html><html class="dark" lang="en"><head>
+<meta charset="utf-8">
+<meta content="width=device-width, initial-scale=1.0" name="viewport">
+<title>NEXUS - Choose Your Role</title>
+<script src="https://cdn.tailwindcss.com?plugins=forms,container-queries"></script>
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&amp;display=swap" rel="stylesheet">
+<link href="https://fonts.googleapis.com/css2?family=Material+Symbols+Outlined:wght,FILL@100..700,0..1&amp;display=swap" rel="stylesheet">
+<script id="tailwind-config">
+        tailwind.config = {
+          darkMode: "class",
+          theme: {
+            extend: {
+              "colors": {
+                      "on-error-container": "#ffdad6",
+                      "surface-variant": "#353437",
+                      "outline": "#86948a",
+                      "primary": "#4edea3",
+                      "on-primary": "#003824",
+                      "text-primary": "#ffffff",
+                      "on-secondary": "#2f3037",
+                      "surface-container": "#201f22",
+                      "on-secondary-fixed-variant": "#45464e",
+                      "surface-tint": "#4edea3",
+                      "on-tertiary-fixed-variant": "#842225",
+                      "outline-variant": "#3c4a42",
+                      "error-container": "#93000a",
+                      "secondary-fixed-dim": "#c6c6cf",
+                      "secondary-fixed": "#e2e1eb",
+                      "primary-fixed-dim": "#4edea3",
+                      "on-secondary-container": "#b4b4bd",
+                      "text-secondary": "#a1a1aa",
+                      "surface": "#18181b",
+                      "surface-bright": "#39393b",
+                      "tertiary-fixed-dim": "#ffb3af",
+                      "surface-container-high": "#2a2a2c",
+                      "primary-fixed": "#6ffbbe",
+                      "on-secondary-fixed": "#1a1b22",
+                      "tertiary-container": "#fc7c78",
+                      "on-surface": "#e5e1e4",
+                      "surface-container-low": "#1c1b1d",
+                      "inverse-on-surface": "#313032",
+                      "on-primary-fixed-variant": "#005236",
+                      "inverse-primary": "#006c49",
+                      "on-tertiary-container": "#711419",
+                      "background": "#131315",
+                      "primary-container": "#10b981",
+                      "tertiary": "#ffb3af",
+                      "border": "#27272a",
+                      "secondary": "#c6c6cf",
+                      "on-primary-container": "#00422b",
+                      "on-tertiary-fixed": "#410005",
+                      "surface-dim": "#131315",
+                      "error": "#ffb4ab",
+                      "on-surface-variant": "#bbcabf",
+                      "on-primary-fixed": "#002113",
+                      "on-error": "#690005",
+                      "on-background": "#e5e1e4",
+                      "secondary-container": "#45464e",
+                      "tertiary-fixed": "#ffdad7",
+                      "on-tertiary": "#650911",
+                      "inverse-surface": "#e5e1e4",
+                      "surface-container-highest": "#353437",
+                      "surface-container-lowest": "#0e0e10"
+              },
+              "borderRadius": {
+                      "DEFAULT": "0.25rem",
+                      "lg": "0.5rem",
+                      "xl": "0.75rem",
+                      "full": "9999px"
+              },
+              "spacing": {
+                      "base": "4px",
+                      "gutter": "16px",
+                      "margin-mobile": "16px",
+                      "margin-desktop": "32px",
+                      "max-width": "1280px"
+              },
+              "fontFamily": {
+                      "headline-lg": [
+                              "Geist"
+                      ],
+                      "body-md": [
+                              "Geist"
+                      ],
+                      "headline-md": [
+                              "Geist"
+                      ],
+                      "headline-lg-mobile": [
+                              "Geist"
+                      ],
+                      "label-md": [
+                              "Geist"
+                      ],
+                      "body-lg": [
+                              "Geist"
+                      ]
+              },
+              "fontSize": {
+                      "headline-lg": [
+                              "32px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.02em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "body-md": [
+                              "14px",
+                              {
+                                      "lineHeight": "1.5",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ],
+                      "headline-md": [
+                              "20px",
+                              {
+                                      "lineHeight": "1.4",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "headline-lg-mobile": [
+                              "24px",
+                              {
+                                      "lineHeight": "1.2",
+                                      "letterSpacing": "-0.01em",
+                                      "fontWeight": "600"
+                              }
+                      ],
+                      "label-md": [
+                              "12px",
+                              {
+                                      "lineHeight": "1",
+                                      "letterSpacing": "0.02em",
+                                      "fontWeight": "500"
+                              }
+                      ],
+                      "body-lg": [
+                              "16px",
+                              {
+                                      "lineHeight": "1.6",
+                                      "letterSpacing": "0",
+                                      "fontWeight": "400"
+                              }
+                      ]
+              }
+      },
+          },
+        }
+      </script>
+<style>
+        body {
+            font-family: 'Geist', sans-serif;
+            background-color: #09090b; /* Requested dark background, matching system background */
+            color: #ffffff;
+        }
+        
+        .role-card {
+            transition: all 0.3s cubic-bezier(0.4, 0, 0.2, 1);
+        }
+        
+        .role-card:hover {
+            border-color: #10b981; /* Emerald Green */
+            box-shadow: 0 0 20px rgba(16, 185, 129, 0.1);
+            transform: translateY(-4px);
+        }
+        
+        .role-card:focus-within {
+             border-color: #10b981;
+             box-shadow: 0 0 0 2px rgba(16, 185, 129, 0.4);
+        }
+
+        .chip {
+            background-color: rgba(16, 185, 129, 0.15); /* Emerald Green at 15% */
+            color: #10b981;
+        }
+        
+        /* Specific override for the prompt requested background */
+        .bg-custom-dark {
+            background-color: #09090b;
+        }
+    </style>
+<script src="../nexus-navigation.js" defer></script>
+</head>
+<body class="bg-custom-dark text-text-primary min-h-screen flex flex-col">
+<!-- TopAppBar -->
+<header class="bg-background dark:bg-background w-full top-0 bg-background flat no shadows flex items-center justify-between px-margin-mobile md:px-margin-desktop py-4 w-full">
+<div class="flex items-center gap-4">
+<a href="{{DATA:SCREEN:SCREEN_93}}" aria-label="Go back" class="text-on-surface-variant dark:text-on-surface-variant hover:opacity-80 transition-opacity active:scale-95 transition-transform flex items-center justify-center p-2 rounded-full hover:bg-surface-container"><span class="material-symbols-outlined">arrow_back</span></a>
+<div class="font-headline-md text-headline-md font-bold text-primary dark:text-primary tracking-tight">NEXUS</div>
+</div>
+<div class="hidden md:flex">
+<!-- Nav hidden on transactional screen as per rule -->
+</div>
+</header>
+<!-- Main Content -->
+<main class="flex-grow flex flex-col items-center justify-center px-margin-mobile md:px-margin-desktop py-12 md:py-24">
+<div class="text-center max-w-2xl mx-auto mb-12">
+<h1 class="font-headline-lg-mobile text-headline-lg-mobile md:font-headline-lg md:text-headline-lg mb-4 text-text-primary">How will you use NEXUS?</h1>
+<p class="font-body-lg text-body-lg text-text-secondary">Choose the experience that fits you best. You can participate on both sides of the marketplace later.</p>
+</div>
+<div class="grid grid-cols-1 md:grid-cols-2 gap-gutter w-full max-w-4xl mx-auto">
+<!-- Student Card -->
+<label class="role-card bg-surface border border-border rounded-xl p-8 flex flex-col cursor-pointer group relative overflow-hidden">
+<input class="sr-only" name="role" type="radio" value="student">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center mb-6 group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary">school</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-3">I'm a Student</h2>
+<p class="font-body-md text-body-md text-text-secondary mb-8 flex-grow">Find small paid opportunities, build your portfolio, gain experience, and earn from your skills.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Find Jobs</span>
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Build Portfolio</span>
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Earn</span>
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Get Rated</span>
+</div>
+<a href="{{DATA:SCREEN:SCREEN_86}}" class="mt-auto flex items-center text-primary font-body-md text-body-md font-semibold group-hover:gap-2 transition-all">Continue as Student <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+<!-- Subtle selection indicator -->
+<div class="absolute inset-0 border-2 border-transparent group-focus-within:border-primary rounded-xl pointer-events-none transition-colors"></div>
+</label>
+<!-- Client Card -->
+<label class="role-card bg-surface border border-border rounded-xl p-8 flex flex-col cursor-pointer group relative overflow-hidden">
+<input class="sr-only" name="role" type="radio" value="client">
+<div class="w-16 h-16 rounded-lg bg-surface-container flex items-center justify-center mb-6 group-hover:bg-primary-container/20 transition-colors">
+<span class="material-symbols-outlined text-3xl text-primary">work</span>
+</div>
+<h2 class="font-headline-md text-headline-md text-text-primary mb-3">I'm a Client</h2>
+<p class="font-body-md text-body-md text-text-secondary mb-8 flex-grow">Post small jobs and find skilled students for coding, design, editing, writing, marketing, and more.</p>
+<div class="flex flex-wrap gap-2 mb-8">
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Post Jobs</span>
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Find Talent</span>
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Review Applications</span>
+<span class="chip px-3 py-1 rounded-full font-label-md text-label-md">Manage Work</span>
+</div>
+<a href="{{DATA:SCREEN:SCREEN_81}}" class="mt-auto flex items-center text-primary font-body-md text-body-md font-semibold group-hover:gap-2 transition-all">Continue as Client <span class="material-symbols-outlined text-sm ml-1">arrow_forward</span></a>
+<!-- Subtle selection indicator -->
+<div class="absolute inset-0 border-2 border-transparent group-focus-within:border-primary rounded-xl pointer-events-none transition-colors"></div>
+</label>
+</div>
+<div class="mt-16 text-center">
+<p class="font-body-md text-body-md text-text-secondary">
+                Already have an account? <a class="text-primary hover:underline font-medium" href="{{DATA:SCREEN:SCREEN_90}}">Sign in</a>
+</p>
+</div>
+</main>
+<script>
+        // Simple script to handle visual selection state before navigating
+        document.querySelectorAll('input[name="role"]').forEach(radio => {
+            radio.addEventListener('change', (e) => {
+                // In a real app, this would submit a form or navigate
+                // For demo, we just add a visual cue
+                document.querySelectorAll('.role-card').forEach(card => {
+                    card.style.borderColor = '#27272a'; // Reset to default border
+                    card.style.boxShadow = 'none';
+                });
+                
+                if(e.target.checked) {
+                    const parentCard = e.target.closest('.role-card');
+                    parentCard.style.borderColor = '#10b981';
+                    parentCard.style.boxShadow = '0 0 20px rgba(16, 185, 129, 0.15)';
+                    
+                    // Simulate processing
+                    setTimeout(() => {
+                        console.log('Proceeding as:', e.target.value);
+                    }, 300);
+                }
+            });
+        });
+    </script>
+
+
+</body></html>
