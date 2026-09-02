@@ -117,7 +117,7 @@
             border-color: #4edea3;
         }
     </style>
-<script src="../nexus-navigation.js" defer></script>
+<script src="../nexus-api.js" defer></script><script src="../nexus-auth.js" defer></script><script src="../nexus-navigation.js" defer></script>
 </head>
 <body class="bg-background text-text-primary min-h-screen flex flex-col font-body-lg custom-scrollbar">
 <!-- Header (Suppressed navigation links for transactional flow) -->
@@ -211,10 +211,10 @@
 </div>
 <!-- Submit CTA -->
 <div class="pt-6">
-<a href="{{DATA:SCREEN:SCREEN_8}}" class="w-full bg-primary text-surface-container-lowest font-label-md text-label-md py-4 rounded-lg hover:bg-primary-fixed transition-all duration-300 shadow-[0_0_20px_rgba(78,222,163,0.3)] hover:shadow-[0_0_30px_rgba(78,222,163,0.5)] flex items-center justify-center gap-2">
+<button class="w-full bg-primary text-surface-container-lowest font-label-md text-label-md py-4 rounded-lg hover:bg-primary-fixed transition-all duration-300 shadow-[0_0_20px_rgba(78,222,163,0.3)] hover:shadow-[0_0_30px_rgba(78,222,163,0.5)] flex items-center justify-center gap-2" type="submit">
                             Create Client Account
                             <span class="material-symbols-outlined text-sm">arrow_forward</span>
-</a>
+</button>
 </div>
 <!-- Footer Link -->
 <div class="text-center mt-6">

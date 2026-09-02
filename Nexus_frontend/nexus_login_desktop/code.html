@@ -103,7 +103,7 @@
             box-shadow: 0 0 0 4px rgba(78, 222, 163, 0.1);
         }
     </style>
-<script src="../nexus-navigation.js" defer></script>
+<script src="../nexus-api.js" defer></script><script src="../nexus-auth.js" defer></script><script src="../nexus-navigation.js" defer></script>
 </head>
 <body class="bg-background text-on-surface min-h-screen flex flex-col antialiased selection:bg-primary selection:text-on-primary">
 <!-- Minimal Header -->
@@ -133,7 +133,7 @@
 <label class="block font-label-md text-label-md text-text-primary" for="email">Email</label>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-lg" data-icon="mail">mail</span>
-<input class="w-full bg-background border border-border rounded-lg py-3 pl-10 pr-4 font-body-md text-body-md text-text-primary placeholder:text-text-secondary/50 input-glow transition-all duration-200" id="email" placeholder="Enter your email" type="email">
+<input class="w-full bg-background border border-border rounded-lg py-3 pl-10 pr-4 font-body-md text-body-md text-text-primary placeholder:text-text-secondary/50 input-glow transition-all duration-200" id="email" placeholder="Enter your email" required type="email">
 </div>
 </div>
 <!-- Password Field -->
@@ -144,7 +144,7 @@
 </div>
 <div class="relative">
 <span class="material-symbols-outlined absolute left-3 top-1/2 -translate-y-1/2 text-text-secondary text-lg" data-icon="lock">lock</span>
-<input class="w-full bg-background border border-border rounded-lg py-3 pl-10 pr-10 font-body-md text-body-md text-text-primary placeholder:text-text-secondary/50 input-glow transition-all duration-200" id="password" placeholder="Enter your password" type="password">
+<input class="w-full bg-background border border-border rounded-lg py-3 pl-10 pr-10 font-body-md text-body-md text-text-primary placeholder:text-text-secondary/50 input-glow transition-all duration-200" id="password" placeholder="Enter your password" required type="password">
 <button class="absolute right-3 top-1/2 -translate-y-1/2 text-text-secondary hover:text-text-primary transition-colors focus:outline-none" id="togglePassword" type="button">
 <span class="material-symbols-outlined text-lg" data-icon="visibility" id="visibilityIcon">visibility</span>
 </button>
