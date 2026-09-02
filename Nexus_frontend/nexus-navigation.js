@@ -5,7 +5,7 @@
   };
   const roles = {
     STUDENT: ['verification', 'verificationLegacy', 'studentDashboard', 'profile', 'jobs', 'jobDetails', 'apply', 'applications', 'application', 'studentWorkspace', 'submitWork', 'studentPayment', 'studentRating', 'earnings', 'aiProfile', 'aiJobs', 'aiReview', 'aiSkills', 'report'],
-    CLIENT: ['clientDashboard', 'clientJobs', 'postJob', 'clientApplications', 'selection', 'clientWorkspace', 'clientReview', 'clientPayment', 'clientRating', 'report'],
+    CLIENT: ['clientDashboard', 'clientJobs', 'postJob', 'jobDetails', 'clientApplications', 'selection', 'clientWorkspace', 'clientReview', 'clientPayment', 'clientRating', 'report'],
     ADMIN: ['adminDashboard', 'verificationQueue', 'adminReport', 'adminManagement']
   };
   const byDirectory = Object.fromEntries(Object.entries(pages).map(([key, directory]) => [directory, key]));

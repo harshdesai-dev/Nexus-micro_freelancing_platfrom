@@ -295,3 +295,262 @@ class ApplicationDetailViewTests(BaseMarketplaceTestCase):
         response = self.client.get(f"/api/applications/{random_id}", **self.auth(self.student))
         self.assertEqual(response.status_code, 404)
         self.assertEqual(response.json()["error"]["code"], "NOT_FOUND")
+
+
+class CreateJobViewTests(BaseMarketplaceTestCase):
+    def test_client_can_create_job(self):
+        payload = {
+            "title": "Build a React Native Component",
+            "description": "Create a reusable card component with unit tests.",
+            "required_skills": ["React Native", "TypeScript"],
+            "budget": "450.00",
+            "deadline": "2026-10-15T18:00:00Z",
+        }
+        response = self.client.post(
+            "/api/jobs",
+            data=json.dumps(payload),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 201)
+        data = response.json()["data"]["job"]
+        self.assertEqual(data["title"], "Build a React Native Component")
+        self.assertEqual(data["budget"], "450.00")
+        self.assertEqual(data["job_state"], "POSTED")
+        self.assertEqual(data["job_provider"]["id"], str(self.provider.id))
+        self.assertTrue(uuid.UUID(data["id"]))
+
+    def test_unauthenticated_job_creation_rejected(self):
+        response = self.client.post(
+            "/api/jobs",
+            data=json.dumps({"title": "Test", "description": "Desc", "budget": "100"}),
+            content_type="application/json",
+        )
+        self.assertEqual(response.status_code, 401)
+        self.assertEqual(response.json()["error"]["code"], "UNAUTHORIZED")
+
+    def test_student_cannot_create_job(self):
+        response = self.client.post(
+            "/api/jobs",
+            data=json.dumps({"title": "Student Job", "description": "Desc", "budget": "100"}),
+            content_type="application/json",
+            **self.auth(self.student),
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.json()["error"]["code"], "FORBIDDEN")
+
+    def test_job_creation_missing_required_fields(self):
+        response = self.client.post(
+            "/api/jobs",
+            data=json.dumps({"title": "Incomplete Job"}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()["error"]["code"], "VALIDATION_ERROR")
+
+    def test_job_creation_invalid_budget(self):
+        response = self.client.post(
+            "/api/jobs",
+            data=json.dumps({"title": "Bad Budget", "description": "Desc", "budget": "invalid_num"}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()["error"]["code"], "VALIDATION_ERROR")
+
+
+class MyJobsViewTests(BaseMarketplaceTestCase):
+    def test_client_can_list_only_own_jobs(self):
+        other_provider = User.objects.create_user(
+            username="other_provider",
+            email="other_provider@example.com",
+            password="password123",
+            role=User.Role.CLIENT,
+            name="Other Client",
+        )
+        Job.objects.create(
+            title="Other Client Job",
+            description="Created by another client",
+            budget=Decimal("700.00"),
+            job_provider=other_provider,
+        )
+        response = self.client.get("/api/jobs/mine", **self.auth(self.provider))
+        self.assertEqual(response.status_code, 200)
+        jobs = response.json()["data"]["jobs"]
+        self.assertEqual(len(jobs), 1)
+        self.assertEqual(jobs[0]["id"], str(self.open_job.id))
+        self.assertEqual(jobs[0]["title"], "Python Automation Script")
+
+    def test_student_cannot_access_my_jobs(self):
+        response = self.client.get("/api/jobs/mine", **self.auth(self.student))
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.json()["error"]["code"], "FORBIDDEN")
+
+    def test_unauthenticated_my_jobs_rejected(self):
+        response = self.client.get("/api/jobs/mine")
+        self.assertEqual(response.status_code, 401)
+
+
+class ClientApplicationsViewTests(BaseMarketplaceTestCase):
+    def setUp(self):
+        super().setUp()
+        self.application = Application.objects.create(
+            job=self.open_job,
+            student=self.student,
+            application_message="Experienced with Python automation.",
+            application_information={"skills": ["Python", "Automation"]},
+        )
+        self.other_provider = User.objects.create_user(
+            username="other_client_user",
+            email="other_client@example.com",
+            password="password123",
+            role=User.Role.CLIENT,
+            name="Other Provider",
+        )
+
+    def test_job_owner_can_view_applications_for_job(self):
+        response = self.client.get(f"/api/jobs/{self.open_job.id}/applications", **self.auth(self.provider))
+        self.assertEqual(response.status_code, 200)
+        data = response.json()["data"]
+        apps = data["applications"]
+        self.assertEqual(len(apps), 1)
+        self.assertEqual(apps[0]["id"], str(self.application.id))
+        self.assertEqual(apps[0]["student"]["name"], "Student User")
+        self.assertEqual(apps[0]["application_message"], "Experienced with Python automation.")
+        self.assertEqual(apps[0]["status"], "APPLIED")
+        self.assertEqual(data["job"]["id"], str(self.open_job.id))
+
+    def test_non_owner_client_cannot_view_applications(self):
+        response = self.client.get(f"/api/jobs/{self.open_job.id}/applications", **self.auth(self.other_provider))
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.json()["error"]["code"], "FORBIDDEN")
+
+    def test_student_cannot_view_client_applications(self):
+        response = self.client.get(f"/api/jobs/{self.open_job.id}/applications", **self.auth(self.student))
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.json()["error"]["code"], "FORBIDDEN")
+
+    def test_unauthenticated_applications_view_rejected(self):
+        response = self.client.get(f"/api/jobs/{self.open_job.id}/applications")
+        self.assertEqual(response.status_code, 401)
+
+    def test_applications_for_nonexistent_job_returns_404(self):
+        random_id = uuid.uuid4()
+        response = self.client.get(f"/api/jobs/{random_id}/applications", **self.auth(self.provider))
+        self.assertEqual(response.status_code, 404)
+
+
+class SelectStudentViewTests(BaseMarketplaceTestCase):
+    def setUp(self):
+        super().setUp()
+        self.application = Application.objects.create(
+            job=self.open_job,
+            student=self.student,
+            application_message="Pick me for this job",
+        )
+        self.other_provider = User.objects.create_user(
+            username="another_client",
+            email="another_client@example.com",
+            password="password123",
+            role=User.Role.CLIENT,
+            name="Another Client",
+        )
+
+    def test_valid_student_selection(self):
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({"application_id": str(self.application.id)}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 200)
+        data = response.json()["data"]
+        self.assertEqual(data["job"]["job_state"], "STUDENT_SELECTED")
+        self.assertEqual(data["job"]["selected_student"]["id"], str(self.student.id))
+        self.open_job.refresh_from_db()
+        self.application.refresh_from_db()
+        self.assertEqual(self.open_job.status, Job.Status.STUDENT_SELECTED)
+        self.assertEqual(self.open_job.selected_student_id, self.student.id)
+        self.assertEqual(self.application.status, Application.Status.SELECTED)
+
+    def test_non_owner_client_cannot_select(self):
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({"application_id": str(self.application.id)}),
+            content_type="application/json",
+            **self.auth(self.other_provider),
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.json()["error"]["code"], "FORBIDDEN")
+
+    def test_student_cannot_select_student(self):
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({"application_id": str(self.application.id)}),
+            content_type="application/json",
+            **self.auth(self.student),
+        )
+        self.assertEqual(response.status_code, 403)
+        self.assertEqual(response.json()["error"]["code"], "FORBIDDEN")
+
+    def test_cannot_select_for_completed_job(self):
+        self.open_job.status = Job.Status.COMPLETED
+        self.open_job.save()
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({"application_id": str(self.application.id)}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.json()["error"]["code"], "INVALID_STATE")
+
+    def test_cannot_select_application_of_another_job(self):
+        other_job = Job.objects.create(
+            title="Other Job",
+            description="Other description",
+            budget=Decimal("150.00"),
+            job_provider=self.provider,
+        )
+        other_app = Application.objects.create(
+            job=other_job,
+            student=self.other_student,
+        )
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({"application_id": str(other_app.id)}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 404)
+
+    def test_cannot_select_already_selected_student(self):
+        self.application.status = Application.Status.SELECTED
+        self.application.save()
+        self.open_job.selected_student = self.student
+        self.open_job.status = Job.Status.STUDENT_SELECTED
+        self.open_job.save()
+
+        other_app = Application.objects.create(
+            job=self.open_job,
+            student=self.other_student,
+        )
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({"application_id": str(other_app.id)}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 409)
+        self.assertEqual(response.json()["error"]["code"], "INVALID_STATE")
+
+    def test_missing_application_id_returns_validation_error(self):
+        response = self.client.post(
+            f"/api/jobs/{self.open_job.id}/select",
+            data=json.dumps({}),
+            content_type="application/json",
+            **self.auth(self.provider),
+        )
+        self.assertEqual(response.status_code, 400)
+        self.assertEqual(response.json()["error"]["code"], "VALIDATION_ERROR")

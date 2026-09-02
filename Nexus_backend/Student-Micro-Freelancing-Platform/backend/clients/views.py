@@ -18,7 +18,7 @@ def _timestamp(value):
 
 
 def job_data(job):
-    return {
+    data = {
         "id": str(job.id), "title": job.title, "description": job.description,
         "required_skills": job.required_skills, "budget": str(job.budget),
         "deadline": _timestamp(job.deadline), "reference_files": job.reference_files,
@@ -26,6 +26,11 @@ def job_data(job):
         "selected_student": user_to_dict(job.selected_student) if job.selected_student else None,
         "job_state": job.status, "created_at": _timestamp(job.created_at), "updated_at": _timestamp(job.updated_at),
     }
+    if hasattr(job, "applications_count"):
+        data["applications_count"] = job.applications_count
+    elif hasattr(job, "applications"):
+        data["applications_count"] = job.applications.count()
+    return data
 
 
 def application_data(application):
@@ -47,7 +52,8 @@ def application_data(application):
 
 
 def submission_data(submission):
-    return {"id": str(submission.id), "job": str(submission.job_id), "student": str(submission.student_id), "submitted_work": submission.submitted_work, "submission_information": submission.submission_information, "status": submission.submission_status, "created_at": _timestamp(submission.created_at), "updated_at": _timestamp(submission.updated_at)}
+    student = submission.student if hasattr(submission, 'student') and hasattr(submission.student, 'name') else None
+    return {"id": str(submission.id), "job": str(submission.job_id), "student": user_to_dict(submission.student) if student else str(submission.student_id), "submitted_work": submission.submitted_work, "submission_information": submission.submission_information, "status": submission.submission_status, "submission_status": submission.submission_status, "created_at": _timestamp(submission.created_at), "updated_at": _timestamp(submission.updated_at)}
 
 
 def _job_or_error(job_id):
@@ -94,8 +100,8 @@ def jobs_view(request):
     if request.method == "GET":
         jobs = Job.objects.select_related("job_provider", "selected_student").filter(status__in=[Job.Status.POSTED, Job.Status.APPLICATIONS]).order_by("-created_at")
         return success({"jobs": [job_data(job) for job in jobs]})
-    if request.user.role not in (User.Role.STUDENT, User.Role.CLIENT):
-        return error("FORBIDDEN", "Only STUDENT or CLIENT users may create jobs.", 403)
+    if request.user.role != User.Role.CLIENT:
+        return error("FORBIDDEN", "Only CLIENT users may create jobs.", 403)
     data = body(request)
     if data is None: return error("INVALID_JSON", "Invalid JSON in request body.")
     missing = [field for field in ("title", "description", "budget") if not data.get(field)]
@@ -108,6 +114,13 @@ def jobs_view(request):
     try: job.full_clean(); job.save()
     except Exception: return error("VALIDATION_ERROR", "Invalid job data.")
     return success({"job": job_data(job)}, "Job created", 201)
+
+
+@require_http_methods(["GET"])
+@role_required("CLIENT")
+def my_jobs_view(request):
+    jobs = Job.objects.select_related("job_provider", "selected_student").prefetch_related("applications").filter(job_provider=request.user).order_by("-created_at")
+    return success({"jobs": [job_data(job) for job in jobs]})
 
 
 @require_http_methods(["GET"])
@@ -126,8 +139,32 @@ def applications_view(request, job_id):
     if not job: return error("NOT_FOUND", "Job not found.", 404)
     if request.method == "GET":
         if job.job_provider_id != request.user.id: return error("FORBIDDEN", "Only the job provider may view applications.", 403)
-        apps = Application.objects.select_related("student").filter(job=job).order_by("-created_at")
-        return success({"applications": [{"id": str(a.id), "student": user_to_dict(a.student), "application_information": a.application_information, "status": a.status, "created_at": _timestamp(a.created_at)} for a in apps]})
+        apps = Application.objects.select_related("student", "job").filter(job=job).order_by("-created_at")
+        student_ids = [a.student_id for a in apps]
+        profiles = {p.user_id: p for p in StudentProfile.objects.filter(user_id__in=student_ids)}
+        app_list = []
+        for a in apps:
+            prof = profiles.get(a.student_id)
+            prof_dict = {
+                "college": prof.college if prof else "",
+                "course": prof.course if prof else "",
+                "year_of_study": prof.year_of_study if prof else "",
+                "bio": prof.bio if prof else "",
+                "skills": prof.skills_data if prof else [],
+                "portfolio": prof.portfolio if prof else [],
+                "previous_work": prof.previous_work if prof else [],
+            } if prof else {}
+            app_list.append({
+                "id": str(a.id),
+                "student": user_to_dict(a.student),
+                "student_profile": prof_dict,
+                "application_information": a.application_information,
+                "application_message": a.application_message,
+                "expected_completion": a.expected_completion.isoformat() if a.expected_completion else None,
+                "status": a.status,
+                "created_at": _timestamp(a.created_at),
+            })
+        return success({"applications": app_list, "job": job_data(job)})
     if request.user.role != User.Role.STUDENT: return error("FORBIDDEN", "Only STUDENT users may apply.", 403)
     if job.status not in (Job.Status.POSTED, Job.Status.APPLICATIONS): return error("INVALID_STATE", "This job is not accepting applications.", 409)
     if job.job_provider_id == request.user.id: return error("FORBIDDEN", "A provider cannot apply to their own job.", 403)
@@ -163,6 +200,8 @@ def application_detail_view(request, application_id):
 @require_http_methods(["POST"])
 @jwt_required
 def select_view(request, job_id):
+    if request.user.role != User.Role.CLIENT:
+        return error("FORBIDDEN", "Only CLIENT users may select a student.", 403)
     data = body(request)
     if data is None or not data.get("application_id"): return error("VALIDATION_ERROR", "application_id is required.")
     try:
@@ -170,13 +209,14 @@ def select_view(request, job_id):
             job = Job.objects.select_for_update().select_related("job_provider").get(id=job_id)
             if job.job_provider_id != request.user.id: return error("FORBIDDEN", "Only the job provider may select a student.", 403)
             if job.status not in (Job.Status.POSTED, Job.Status.APPLICATIONS): return error("INVALID_STATE", "This job cannot select a student now.", 409)
-            application = Application.objects.select_for_update().select_related("student").get(id=data["application_id"], job=job)
+            application = Application.objects.select_for_update().select_related("student", "job", "job__job_provider").get(id=data["application_id"], job=job)
             if application.status != Application.Status.APPLIED or application.student.role != User.Role.STUDENT: return error("INVALID_APPLICATION", "Application is not eligible for selection.", 409)
             if Application.objects.filter(job=job, status=Application.Status.SELECTED).exists(): return error("STUDENT_ALREADY_SELECTED", "A student is already selected.", 409)
             application.status = Application.Status.SELECTED; application.save(update_fields=["status", "updated_at"])
             job.selected_student = application.student; job.status = Job.Status.STUDENT_SELECTED; job.save(update_fields=["selected_student", "status", "updated_at"])
-    except (Job.DoesNotExist, Application.DoesNotExist): return error("NOT_FOUND", "Job or application not found.", 404)
-    return success({"job": job_data(job)}, "Student selected")
+    except Job.DoesNotExist: return error("NOT_FOUND", "Job not found.", 404)
+    except Application.DoesNotExist: return error("NOT_FOUND", "Application not found for this job.", 404)
+    return success({"job": job_data(job), "application": application_data(application)}, "Student selected")
 
 
 @csrf_exempt
@@ -198,11 +238,15 @@ def messages_view(request, job_id):
 
 
 @csrf_exempt
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 @jwt_required
 def submissions_view(request, job_id):
     job = _job_or_error(job_id)
     if not job: return error("NOT_FOUND", "Job not found.", 404)
+    if not _participant(job, request.user): return error("FORBIDDEN", "Only job participants may access submissions.", 403)
+    if request.method == "GET":
+        subs = job.submissions.all().order_by("-created_at")
+        return success({"submissions": [submission_data(s) for s in subs]})
     if job.selected_student_id != request.user.id: return error("FORBIDDEN", "Only the selected student may submit work.", 403)
     if job.status not in (Job.Status.STUDENT_SELECTED, Job.Status.IN_PROGRESS, Job.Status.WORK_SUBMITTED): return error("INVALID_STATE", "Work cannot be submitted in the current job state.", 409)
     data = body(request)
@@ -213,57 +257,68 @@ def submissions_view(request, job_id):
 
 
 @csrf_exempt
-@require_http_methods(["GET", "PATCH"])
+@require_http_methods(["GET", "PATCH", "POST"])
 @jwt_required
 def submission_review_view(request, job_id, submission_id):
     job = _job_or_error(job_id)
     if not job: return error("NOT_FOUND", "Job not found.", 404)
     try: submission = Submission.objects.get(id=submission_id, job=job)
     except Submission.DoesNotExist: return error("NOT_FOUND", "Submission not found.", 404)
-    if job.job_provider_id != request.user.id: return error("FORBIDDEN", "Only the job provider may review submissions.", 403)
+    if not _participant(job, request.user): return error("FORBIDDEN", "Only job participants may view submissions.", 403)
     if request.method == "GET": return success({"submission": submission_data(submission)})
+    if job.job_provider_id != request.user.id: return error("FORBIDDEN", "Only the job provider may review submissions.", 403)
     data = body(request); action = str(data.get("status", "")).upper() if data else ""
     if action not in (Submission.Status.ACCEPTED, Submission.Status.REJECTED): return error("VALIDATION_ERROR", "status must be ACCEPTED or REJECTED.")
     submission.submission_status = action; submission.save(update_fields=["submission_status", "updated_at"])
     if action == Submission.Status.ACCEPTED:
         job.status = Job.Status.PAYMENT; job.save(update_fields=["status", "updated_at"])
+        # Ensure pending payment record exists
+        Payment.objects.get_or_create(job=job, defaults={"payer": request.user, "recipient": job.selected_student, "amount": job.budget, "platform_commission": Decimal("0.00"), "transaction_status": Payment.Status.PENDING})
     else:
         job.status = Job.Status.IN_PROGRESS; job.save(update_fields=["status", "updated_at"])
     return success({"submission": submission_data(submission)}, "Submission reviewed")
 
 
 @csrf_exempt
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 @jwt_required
 def payment_view(request, job_id):
     job = _job_or_error(job_id)
     if not job: return error("NOT_FOUND", "Job not found.", 404)
-    if job.job_provider_id != request.user.id: return error("FORBIDDEN", "Only the job provider may create a payment.", 403)
-    if job.status != Job.Status.PAYMENT: return error("INVALID_STATE", "Payment requires an accepted submission.", 409)
-    data = body(request)
-    if data is None: return error("INVALID_JSON", "Invalid JSON in request body.")
-    try: amount = Decimal(str(data.get("amount", job.budget))); commission = Decimal(str(data.get("platform_commission", 0)))
-    except (InvalidOperation, ValueError): return error("VALIDATION_ERROR", "amount and platform_commission must be valid numbers.")
-    state = str(data.get("transaction_state", Payment.Status.PENDING)).upper()
-    if state != Payment.Status.PENDING: return error("PAYMENT_GATEWAY_REQUIRED", "Only PENDING payments may be created until gateway verification is implemented.", 409)
-    payment = Payment(job=job, payer=request.user, recipient=job.selected_student, amount=amount, platform_commission=commission, transaction_status=state, transaction_reference=data.get("transaction_reference") or None)
-    try: payment.full_clean(); payment.save()
-    except Exception: return error("VALIDATION_ERROR", "Invalid payment data.")
-    return success({"payment": {"id": str(payment.id), "transaction_state": payment.transaction_status}}, "Payment recorded", 201)
+    if not _participant(job, request.user): return error("FORBIDDEN", "Only job participants may access payment details.", 403)
+    payment = Payment.objects.filter(job=job).order_by("-created_at").first()
+    if request.method == "GET":
+        pay_dict = {"id": str(payment.id), "amount": str(payment.amount), "transaction_state": payment.transaction_status, "created_at": _timestamp(payment.created_at)} if payment else None
+        return success({"payment": pay_dict, "job": job_data(job)})
+    if job.job_provider_id != request.user.id: return error("FORBIDDEN", "Only the job provider may execute payment.", 403)
+    if job.status not in (Job.Status.PAYMENT, Job.Status.COMPLETED): return error("INVALID_STATE", "Payment requires an accepted submission.", 409)
+    if not payment:
+        payment = Payment.objects.create(job=job, payer=request.user, recipient=job.selected_student, amount=job.budget, platform_commission=Decimal("0.00"), transaction_status=Payment.Status.COMPLETED)
+    else:
+        payment.transaction_status = Payment.Status.COMPLETED
+        payment.save(update_fields=["transaction_status", "updated_at"])
+    job.status = Job.Status.COMPLETED
+    job.save(update_fields=["status", "updated_at"])
+    return success({"payment": {"id": str(payment.id), "amount": str(payment.amount), "transaction_state": payment.transaction_status}, "job": job_data(job)}, "Payment completed")
 
 
 @csrf_exempt
-@require_http_methods(["POST"])
+@require_http_methods(["GET", "POST"])
 @jwt_required
 def ratings_view(request, job_id):
     job = _job_or_error(job_id)
     if not job: return error("NOT_FOUND", "Job not found.", 404)
+    if not _participant(job, request.user): return error("FORBIDDEN", "Only job participants may access ratings.", 403)
+    if request.method == "GET":
+        ratings = job.ratings.all()
+        return success({"ratings": [{"id": str(r.id), "reviewer": user_to_dict(r.reviewer), "reviewed_user": user_to_dict(r.reviewed_user), "rating": r.rating, "review_content": r.review_content} for r in ratings]})
     if job.status not in (Job.Status.COMPLETED, Job.Status.RATED): return error("INVALID_STATE", "Ratings are available only after completed payment.", 409)
-    if not _participant(job, request.user): return error("FORBIDDEN", "Only job participants may rate.", 403)
     data = body(request)
     if data is None: return error("INVALID_JSON", "Invalid JSON in request body.")
     reviewed_id = data.get("reviewed_user_id")
-    try: reviewed = User.objects.get(id=reviewed_id); rating_value = int(data.get("rating"))
+    try:
+        reviewed = User.objects.get(id=reviewed_id) if reviewed_id else (job.job_provider if request.user.id == job.selected_student_id else job.selected_student)
+        rating_value = int(data.get("rating", 5))
     except (User.DoesNotExist, TypeError, ValueError): return error("VALIDATION_ERROR", "A valid reviewed_user_id and rating are required.")
     if reviewed.id == request.user.id or not _participant(job, reviewed): return error("VALIDATION_ERROR", "Ratings must be for the other job participant.")
     try:
@@ -271,7 +326,7 @@ def ratings_view(request, job_id):
         rating.full_clean(); rating.save()
     except Exception: return error("VALIDATION_ERROR", "Invalid or duplicate rating data.")
     job.status = Job.Status.RATED; job.save(update_fields=["status", "updated_at"])
-    return success({"rating": {"id": str(rating.id), "rating": rating.rating}}, "Rating submitted", 201)
+    return success({"rating": {"id": str(rating.id), "rating": rating.rating, "review_content": rating.review_content}}, "Rating submitted", 201)
 
 
 @csrf_exempt
