@@ -155,7 +155,7 @@
         @import url('https://fonts.googleapis.com/css2?family=Geist:wght@400;500;600;700&display=swap');
         body { font-family: 'Geist', sans-serif; }
     </style>
-<script src="../nexus-api.js" defer></script><script src="../nexus-auth.js" defer></script><script src="../nexus-navigation.js" defer></script>
+<script src="../nexus-api.js" defer></script><script src="../nexus-auth.js" defer></script><script src="../nexus-navigation.js" defer></script><script src="../nexus-student-marketplace.js" defer></script>
 </head>
 <body class="bg-background text-text-primary min-h-screen flex flex-col font-body-md text-body-md">
 <!-- TopNavBar -->
@@ -219,19 +219,19 @@
 <div class="grid grid-cols-2 md:grid-cols-4 gap-4 mb-8">
 <div class="bg-surface border border-border p-4 rounded-lg flex flex-col justify-between">
 <span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">All Applications</span>
-<span class="font-headline-md text-headline-md text-text-primary">5</span>
+<span data-application-count class="font-headline-md text-headline-md text-text-primary">Loading</span>
 </div>
 <div class="bg-surface border border-border p-4 rounded-lg flex flex-col justify-between">
 <span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">Under Review</span>
-<span class="font-headline-md text-headline-md text-text-primary">2</span>
+<span data-application-count class="font-headline-md text-headline-md text-text-primary">Loading</span>
 </div>
 <div class="bg-primary/10 border border-primary p-4 rounded-lg flex flex-col justify-between">
 <span class="text-primary font-label-md text-label-md uppercase tracking-wider mb-2">Selected</span>
-<span class="font-headline-md text-headline-md text-primary">1</span>
+<span data-application-count class="font-headline-md text-headline-md text-primary">Loading</span>
 </div>
 <div class="bg-surface border border-border p-4 rounded-lg flex flex-col justify-between">
 <span class="text-text-secondary font-label-md text-label-md uppercase tracking-wider mb-2">Rejected</span>
-<span class="font-headline-md text-headline-md text-text-primary">2</span>
+<span data-application-count class="font-headline-md text-headline-md text-text-primary">Loading</span>
 </div>
 </div>
 <!-- Filter Bar -->
@@ -248,7 +248,7 @@
 </div>
 </div>
 <!-- Application List -->
-<div class="flex flex-col gap-4">
+<div id="marketplace-applications" class="flex flex-col gap-4">
 <!-- Card 1 -->
 <div class="bg-surface border border-border rounded-lg p-6 hover:border-surface-bright transition-colors group relative overflow-hidden">
 <div class="flex flex-col md:flex-row justify-between items-start md:items-center gap-4">
