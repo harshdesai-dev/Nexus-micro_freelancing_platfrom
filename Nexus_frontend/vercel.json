@@ -1,0 +1,9 @@
+{
+  "rewrites": [
+    {
+      "source": "/",
+      "destination": "/nexus_landing_page_updated_hero/code.html"
+    }
+  ]
+}
+
